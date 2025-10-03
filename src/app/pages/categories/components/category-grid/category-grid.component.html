@@ -1,0 +1,30 @@
+<section class="category-grid">
+  @if (items().length > 0) {
+    <div class="grid">
+      @for (item of items(); track item.id) {
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <app-review-card [review]="item"></app-review-card>
+        </article>
+      }
+    </div>
+
+    @if (showLoadMore()) {
+      <div class="load-more-section">
+        <app-button-secondary
+          [text]="loadMoreText()"
+          variant="outline"
+          color="primary"
+          (click)="onLoadMore()">
+        </app-button-secondary>
+      </div>
+    }
+  } @else {
+    <!-- Empty State -->
+    <div class="empty-state">
+      <h3 class="empty-title">{{ emptyStateTitle() }}</h3>
+      <p class="empty-description">{{ emptyStateDescription() }}</p>
+      <app-button-primary text="Clear filters" (click)="onClearFilters()">
+      </app-button-primary>
+    </div>
+  }
+</section>

@@ -1,0 +1,44 @@
+<div class="article-card-large">
+  <div class="article-card-wrapper" (click)="onCardClick($event)">
+    <!-- Image/Background Section -->
+    <div class="article-image"
+         [style.background]="article().imageUrl
+           ? 'url(' + article().imageUrl + ') center/cover no-repeat'
+           : (article().gradient || 'var(--gradient-primary)')">
+      <div class="article-category">{{ article().category }}</div>
+      @if (!article().imageUrl) {
+        <div class="article-icon">{{ article().icon || '₿' }}</div>
+      }
+    </div>
+
+    <!-- Content Section -->
+    <div class="article-content">
+      <h3 class="article-title">{{ article().title }}</h3>
+      <p class="article-description">{{ article().description }}</p>
+
+      <!-- Metadata -->
+      <div class="article-meta">
+        <span class="article-date">{{ article().date }}</span>
+        @if (article().readTime) {
+          <span class="article-separator"> • </span>
+          <span class="article-read-time">{{ article().readTime }}</span>
+        }
+      </div>
+
+      <!-- CTA Actions -->
+      <div class="article-actions">
+        <app-button-primary
+          [text]="article().primaryCta"
+          [link]="article().primaryCtaLink"
+          [external]="true"
+          [attr.aria-label]="getAriaLabel('primary')">
+        </app-button-primary>
+
+        <app-button-secondary
+          [text]="article().secondaryCta"
+          [link]="article().secondaryCtaLink || article().routerLink">
+        </app-button-secondary>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+// how-to-buy-eth-uk-copy.component.scss - МИНИМУМ стилей
+@import 'variables';
+
+// Специфичный background для ETH UK Guide
+.hero-banner {
+  background-image: url('/images/how-to-buy-ethereum/how-to-buy-eth-hero.webp');
+}
+
+// Screenshot placeholders
+.screenshot-placeholder {
+  background: $color-bg-muted;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px 20px;
+  margin: 20px 0;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Main часть использует ТОЛЬКО глобальные стили из _layout.scss

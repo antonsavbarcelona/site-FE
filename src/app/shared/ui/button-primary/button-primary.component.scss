@@ -1,0 +1,55 @@
+@import 'variables';
+@import 'mixins';
+
+.btn-primary {
+  // Base styles
+  display: block;
+  width: 100%;
+  padding: $spacing-sm $spacing-lg;
+  border: 2px solid transparent;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  // Primary colors
+  background: $color-primary;
+  color: $color-text-light;
+
+  // Hover effects
+  &:hover {
+    background: $color-primary-hover;
+    transform: translateY(-1px);
+  }
+
+  // Focus styles
+  &:focus-visible {
+    @include focus-ring();
+  }
+
+  // Active state
+  &:active {
+    transform: translateY(0);
+    background: $color-primary-active;
+  }
+
+  // Sizes
+  &--small {
+    padding: $spacing-xs $spacing-md;
+    font-size: 14px;
+    border-radius: $border-radius-sm;
+  }
+
+  &--medium {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-base;
+  }
+
+  &--large {
+    padding: $spacing-md $spacing-xl;
+    font-size: 18px;
+    border-radius: $border-radius-lg;
+  }
+}

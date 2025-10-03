@@ -1,0 +1,71 @@
+// bitcoin-origin-new.component.scss
+@import 'variables';
+
+// Специфичный background для Bitcoin Review
+.hero-banner {
+  background-image: url('/images/bitcoin-review/btc-review-hero.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+// ВАЖНО: Фикс списков с точками
+// Используем :host ::ng-deep для правильного применения стилей к дочерним компонентам
+:host ::ng-deep {
+
+  // Стилизация для Key Features & Benefits списка
+  app-bullet-list ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Специальная стилизация для suitable/not-suitable блоков
+  .suitable-list,
+  .not-suitable-list {
+    app-bullet-list ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        padding-left: 1.5rem;
+        position: relative;
+        margin-bottom: 0.75rem;
+
+        // Убираем синий маркер по умолчанию
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0.25rem;
+          top: 0.5rem;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  // Зеленые точки для suitable list
+  .suitable-list app-bullet-list ul li::before {
+    background-color: #10b981;
+  }
+
+  // Красные точки для not-suitable list
+  .not-suitable-list app-bullet-list ul li::before {
+    background-color: #ef4444;
+  }
+}

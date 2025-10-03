@@ -1,0 +1,86 @@
+@import 'variables';
+@import 'mixins';
+
+.btn-secondary {
+  // Base styles
+  display: block;
+  width: 100%;
+  padding: $spacing-sm $spacing-lg;
+  text-align: center;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 2px solid;
+
+  // Sizes
+  &--small {
+    padding: $spacing-xs $spacing-md;
+    font-size: 14px;
+    border-radius: $border-radius-sm;
+  }
+
+  &--medium {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-base;
+  }
+
+  &--large {
+    padding: $spacing-md $spacing-xl;
+    font-size: 18px;
+    border-radius: $border-radius-xl;
+  }
+
+  // Colors
+  &--primary {
+    color: $color-primary;
+    border-color: $color-primary;
+
+    &:hover {
+      background: rgba($color-primary, 0.1);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--gray {
+    color: $color-text;
+    border-color: $color-border-dark;
+
+    &:hover {
+      background: $color-bg-light;
+      border-color: $color-gray-400;
+      transform: translateY(-1px);
+    }
+  }
+
+  // Variants
+  &--ghost {
+    border: none !important;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  &--outline {
+    &:hover {
+      background: currentColor;
+      color: $color-text-light;
+      transform: translateY(-1px);
+    }
+  }
+
+  // Focus
+  &:focus-visible {
+    @include focus-ring();
+  }
+
+  // Disabled
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}

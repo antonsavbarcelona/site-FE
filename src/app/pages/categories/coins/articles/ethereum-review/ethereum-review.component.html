@@ -1,0 +1,227 @@
+<!-- Ethereum Review 2025 - Based on provided article -->
+
+<!-- Mobile TOC - выносим из page-layout чтобы убрать отступы -->
+@if (isMobile()) {
+  <app-table-of-contents
+    title="Ethereum Review Guide 2025"
+    contentSelector=".article-content"
+    [showMobile]="true">
+  </app-table-of-contents>
+}
+
+<div class="page-layout">
+  <!-- Main layout с сайдбаром -->
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      <!-- Hero секция как banner -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">{{ article.category }}</span>
+            <span class="date">{{ article.date }}</span>
+          </div>
+          <h1 class="page-title">{{ article.title }}</h1>
+          <div class="author-info">
+            <span class="author">By {{ article.author }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-content content-spacing">
+        <!-- Introduction Section -->
+        <section>
+          <p>
+            <strong>Ethereum</strong> is the programmable blockchain at the centre of decentralised finance (DeFi), NFTs, DAOs and a vast ecosystem of smart-contract applications. In 2025 Ethereum remains the <strong>dominant platform</strong> for on-chain innovation — but it also presents unique economic mechanics, staking choices and regulatory questions for UK investors. This review follows the same structure as your Bitcoin article: quick verdict, how to buy in the UK, clear technical primer, risks, use cases, comparison and a long-tail SEO-friendly FAQ written for UK readers.
+          </p>
+        </section>
+
+        <!-- Quick Verdict Section -->
+        <section>
+          <h2>Quick Verdict</h2>
+          <app-tldr [items]="tldrItems" title="Summary"></app-tldr>
+        </section>
+
+        <!-- Pros & Cons Table -->
+        <section>
+          <h2>Pros & Cons</h2>
+          <app-pros-cons-table
+            [pros]="prosData"
+            [cons]="consData"
+            prosTitle="Advantages"
+            consTitle="Challenges">
+          </app-pros-cons-table>
+        </section>
+
+        <!-- How to buy ETH in the UK -->
+        <section>
+          <h2>How to buy ETH in the UK — quick example (Kraken)</h2>
+          <p>
+            Purchasing Ethereum in the UK follows a straightforward process similar to buying Bitcoin:
+          </p>
+
+          <ol>
+            <li><strong>Create account:</strong> Register on Kraken.com and complete UK identity verification</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-register.webp" alt="Kraken registration process" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="2">
+            <li><strong>Fund account:</strong> Deposit GBP via Faster Payments, debit card or bank transfer</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-deposit.webp" alt="Kraken deposit options" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="3">
+            <li><strong>Place order:</strong> Buy on ETH/GBP pair (market or limit)</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-order-execution.webp" alt="Kraken order execution" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="4">
+            <li><strong>Secure storage:</strong> Withdraw to a hardware wallet (Ledger, Trezor) for long-term holdings or choose a regulated custodian for institutional scale</li>
+          </ol>
+
+          <p>
+            Other commonly used platforms: <strong>Coinbase</strong> (and Coinbase Pro), <strong>Binance</strong>, and UK-friendly services for smaller purchases. If you plan to stake, check the provider's lock-up, withdrawal policy and fees.
+          </p>
+        </section>
+
+        <!-- What is Ethereum? -->
+        <section>
+          <h2>What is Ethereum?</h2>
+          <p>
+            Ethereum is an <strong>open-source blockchain protocol</strong> launched in 2015 that extends simple value transfer into a global, programmable platform. <strong>Ether (ETH)</strong> is the network's native token — used to pay transaction fees (gas), secure the network via staking and act as the economic unit inside smart contracts. The <strong>Ethereum Virtual Machine (EVM)</strong> runs deterministic code (smart contracts), enabling decentralised exchanges, lending protocols, DAOs, NFTs and tokenised real-world assets.
+          </p>
+        </section>
+
+        <!-- Brief Origin & History -->
+        <section>
+          <h2>Brief Origin & Why Ethereum Matters</h2>
+          <p>
+            Picture a small whitepaper turned into a global lab for finance: developers and entrepreneurs built protocols on Ethereum that replicated <strong>banking primitives</strong> — lending, trading, derivatives — but without banks. Over a decade, that experiment grew into thousands of applications and trillions in total addressable activity (on-chain + Layer-2).
+          </p>
+
+          <p>Key moments that reshaped Ethereum's investment case include:</p>
+          <app-bullet-list [items]="keyMoments"></app-bullet-list>
+        </section>
+
+        <!-- Technical Overview -->
+        <section>
+          <h2>How Ethereum Works — A Concise Technical Primer</h2>
+
+          <app-key-value-table [items]="keyFeatures" [title]="'Ethereum Key Specifications'" />
+
+          <h3>Proof-of-Stake (PoS) and Validators</h3>
+          <p>
+            After <strong>The Merge</strong>, Ethereum replaced energy-intensive mining with staking. Validators secure the network by locking ETH; they propose and attest blocks and earn rewards. The move slashed Ethereum's electricity consumption by roughly <strong>99.95%</strong> in estimates used by major analyses — a headline change for institutional and ESG considerations.
+          </p>
+
+          <h3>Smart Contracts and Composability</h3>
+          <p>
+            <strong>Smart contracts</strong> are immutable programs on the chain. <strong>Composability</strong> — protocols building on each other — enables rapid innovation but also concentrates risk: a bug in one contract can cascade through many protocols.
+          </p>
+
+          <h3>Scaling: Rollups and Proto-danksharding (EIP-4844)</h3>
+          <p>
+            The current scalability model pivots on <strong>Layer-2 rollups</strong> that execute transactions off-chain and post compressed data to Ethereum. <strong>EIP-4844</strong> (proto-danksharding), rolled into Dencun, introduced "blobs" to lower the cost of posting rollup data, meaning common user actions on rollups can be an order of magnitude cheaper than before. This is central to the narrative that Ethereum is becoming usable for everyday apps.
+          </p>
+
+          <h3>Monetary Mechanics — No Fixed Cap</h3>
+          <p>
+            Ethereum does not have a <strong>21-million cap</strong>. ETH issuance now primarily rewards validators, while <strong>EIP-1559's base-fee burn</strong> reduces supply when network activity is high. The net effect (inflationary vs deflationary) depends on activity levels and staking participation.
+          </p>
+
+          <h3>Key Features & Benefits</h3>
+          <app-bullet-list [items]="technicalFeatures"></app-bullet-list>
+        </section>
+
+        <!-- Risks & Criticisms -->
+        <section>
+          <h2>Risks & Criticisms — What UK Investors Must Consider</h2>
+
+          <h3>Primary Risks</h3>
+          <p>Understanding these challenges is crucial for UK investors considering Ethereum exposure:</p>
+
+          <app-key-value-table [items]="primaryRisks" [title]="'Primary Risk Factors'"></app-key-value-table>
+
+          <h3>Security & Custody Options</h3>
+          <p>As with Bitcoin, "not your keys, not your crypto" applies: assess custody choices carefully.</p>
+          <app-bullet-list [items]="custodyOptions"></app-bullet-list>
+        </section>
+
+        <!-- Real-World Use Cases -->
+        <section>
+          <h2>Practical Use Cases</h2>
+          <p>Ethereum's utility spans multiple sectors with real-world applications:</p>
+
+          <app-tldr [items]="useCases" title="Real-World Examples"></app-tldr>
+        </section>
+
+        <!-- Market & Institutional Context -->
+        <section>
+          <h2>Market & Institutional Context</h2>
+
+          <h3>Important 2024–25 Developments</h3>
+          <p>
+            <strong>Spot ETH ETFs:</strong> Regulatory approvals in 2024 enabled spot Ether ETFs to list and trade (US market debut in July 2024), creating a regulated channel for institutional and retail flows via brokerages. That development broadened access and institutional interest in ETH exposure.
+          </p>
+
+          <p>
+            <strong>Staking adoption:</strong> By 2025 roughly ~27–30% of ETH supply was staked, representing a material portion of liquid supply and influencing issuance dynamics.
+          </p>
+        </section>
+
+        <!-- Comparison Table -->
+        <section>
+          <h2>Comparison: Bitcoin vs Ethereum vs Layer-1 Alternatives</h2>
+          <app-material-comparison-table
+            title="Blockchain Platform Comparison"
+            [columns]="comparisonColumns"
+            [rows]="comparisonRows"
+            [highlightRowIndex]="1">
+          </app-material-comparison-table>
+        </section>
+
+        <!-- Final Verdict -->
+        <section>
+          <h2>Final Verdict — Is Ethereum Right for You in 2025?</h2>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+            <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border: 1px solid #bbf7d0;">
+              <h4 style="color: #166534; margin-top: 0;">Ethereum is appropriate if you:</h4>
+              <app-bullet-list [items]="suitableFor" style="color: #166534;"></app-bullet-list>
+            </div>
+
+            <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border: 1px solid #fecaca;">
+              <h4 style="color: #dc2626; margin-top: 0;">Ethereum may not suit you if you:</h4>
+              <app-bullet-list [items]="notSuitableFor" style="color: #dc2626;"></app-bullet-list>
+            </div>
+          </div>
+
+          <p>
+            A common allocation for many diversified UK investors is <strong>1–5% of portfolio value in ETH</strong> (adjust to personal risk tolerance). If you consider staking, model lock-up, slashing risk and liquid staking alternatives carefully.
+          </p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+          <h2>FAQ — Long-Tail Questions</h2>
+          <app-faq [items]="faqItems"></app-faq>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Ethereum Review Guide 2025"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+    </aside>
+
+  </div>
+</div>

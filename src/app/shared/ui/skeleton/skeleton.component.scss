@@ -1,0 +1,272 @@
+@import 'variables';
+@import 'mixins';
+
+// Shimmer animation
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+// Base skeleton element
+.skeleton-base {
+  background: linear-gradient(90deg, $color-bg-light 25%, $color-bg-muted 50%, $color-bg-light 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: $border-radius-sm;
+}
+
+// Hero Skeleton
+.skeleton-hero {
+  min-height: 350px;
+  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg-muted 100%);
+  padding: $spacing-3xl 0;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+
+  @include mobile {
+    padding: $spacing-2xl 0;
+    min-height: 280px;
+  }
+
+  .hero-content {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+
+    @include mobile {
+      padding: 0 $spacing-md;
+    }
+  }
+
+  .hero-title {
+    @extend .skeleton-base;
+    height: 56px;
+    width: 60%;
+    margin: 0 auto $spacing-md;
+  }
+
+  .hero-subtitle {
+    @extend .skeleton-base;
+    height: 20px;
+    width: 80%;
+    margin: 0 auto $spacing-md;
+  }
+
+  .hero-stats {
+    @extend .skeleton-base;
+    height: 14px;
+    width: 40%;
+    margin: 0 auto $spacing-xl;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+// Skeleton Text
+.skeleton-text {
+  @extend .skeleton-base;
+  border-radius: $border-radius;
+}
+
+// Skeleton Buttons
+.skeleton-button {
+  @extend .skeleton-base;
+  height: 44px;
+  border-radius: $border-radius-lg;
+
+  &.primary {
+    width: 160px;
+  }
+
+  &.secondary {
+    width: 140px;
+  }
+
+  &.card-button {
+    width: 120px;
+    height: 36px;
+    margin-top: $spacing-sm;
+  }
+
+  @include mobile {
+    &.primary, &.secondary {
+      width: 200px;
+      height: 40px;
+    }
+  }
+}
+
+// Controls Skeleton
+.skeleton-controls {
+  padding: $spacing-xl 0;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+
+  .controls-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-lg;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $spacing-md;
+    }
+  }
+
+  .filter-chips {
+    display: flex;
+    gap: $spacing-xs;
+    flex-wrap: wrap;
+  }
+
+  .search-sort {
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+
+    @include mobile {
+      justify-content: space-between;
+    }
+  }
+}
+
+// Skeleton Chips
+.skeleton-chip {
+  @extend .skeleton-base;
+  height: 32px;
+  width: 78px;
+  border-radius: $border-radius-xl;
+}
+
+// Skeleton Search & Sort
+.skeleton-search {
+  @extend .skeleton-base;
+  height: 40px;
+  width: 240px;
+  border-radius: $border-radius;
+
+  @include mobile {
+    width: 180px;
+  }
+}
+
+.skeleton-sort {
+  @extend .skeleton-base;
+  height: 40px;
+  width: 120px;
+  border-radius: $border-radius;
+}
+
+// Grid Skeleton
+.skeleton-grid {
+  padding: $spacing-2xl 0;
+  background: $color-bg;
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: $spacing-lg;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+}
+
+// Skeleton Card
+.skeleton-card {
+  background: $color-bg;
+  border-radius: $border-radius-xl;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  .skeleton-image {
+    @extend .skeleton-base;
+    height: 200px;
+    border-radius: 0;
+
+    @include mobile {
+      height: 160px;
+    }
+  }
+
+  .card-content {
+    padding: $spacing-md;
+
+    @include mobile {
+      padding: $spacing-md;
+    }
+  }
+
+  .skeleton-badge {
+    @extend .skeleton-base;
+    height: 20px;
+    width: 60px;
+    margin-bottom: $spacing-sm;
+    border-radius: $border-radius-lg;
+  }
+
+  .card-title {
+    @extend .skeleton-base;
+    height: 24px;
+    width: 90%;
+    margin-bottom: $spacing-xs;
+  }
+
+  .card-subtitle {
+    @extend .skeleton-base;
+    height: 16px;
+    width: 100%;
+    margin-bottom: $spacing-xs;
+  }
+
+  .card-meta {
+    @extend .skeleton-base;
+    height: 14px;
+    width: 70%;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Width variations for realism
+.skeleton-text:nth-child(even) {
+  width: 85%;
+}
+
+.skeleton-text:nth-child(3n) {
+  width: 75%;
+}
+
+.skeleton-card:nth-child(2n) .card-title {
+  width: 80%;
+}
+
+.skeleton-card:nth-child(3n) .card-title {
+  width: 95%;
+}
+
+.skeleton-card:nth-child(2n) .card-meta {
+  width: 60%;
+}

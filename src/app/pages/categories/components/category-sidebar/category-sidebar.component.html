@@ -1,0 +1,61 @@
+<aside class="category-sidebar">
+  <!-- Popular Articles Block -->
+  @if (data().popularArticles?.length) {
+    <div class="sidebar-block">
+      <h3 class="sidebar-title">Popular in this Category</h3>
+      <div class="popular-articles">
+        @for (article of data().popularArticles; track article.link) {
+          <a [routerLink]="article.link" class="popular-article">
+            <div class="article-category">{{ article.category }}</div>
+            <div class="article-title">{{ article.title }}</div>
+            <div class="article-date">{{ article.date }}</div>
+          </a>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Related Categories Block -->
+  @if (data().relatedCategories?.length) {
+    <div class="sidebar-block">
+      <h3 class="sidebar-title">Related Categories</h3>
+      <div class="related-categories">
+        @for (category of data().relatedCategories; track category.link) {
+          <a [routerLink]="category.link" class="related-category">
+            <div class="category-name">{{ category.name }}</div>
+            @if (category.description) {
+              <div class="category-description">{{ category.description }}</div>
+            }
+          </a>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Best for UK Banner -->
+  @if (data().showBestForUK) {
+    <div class="sidebar-block cta-block">
+      <div class="cta-content">
+        <div class="cta-badge">Best for UK</div>
+        <h4 class="cta-title">Start Trading Today</h4>
+        <p class="cta-text">Join thousands of UK investors using our top-rated exchange recommendations.</p>
+        <a href="#" class="cta-button">Get Started</a>
+      </div>
+    </div>
+  }
+
+  <!-- Newsletter Block -->
+  @if (data().showNewsletter) {
+    <div class="sidebar-block newsletter-block">
+      <div class="newsletter-content">
+        <h4 class="newsletter-title">Weekly Crypto Insights</h4>
+        <p class="newsletter-text">Get the latest market analysis and expert tips delivered to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" class="newsletter-input">
+          <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+        <div class="newsletter-disclaimer">Unsubscribe anytime. No spam.</div>
+      </div>
+    </div>
+  }
+</aside>

@@ -1,0 +1,36 @@
+@import 'variables';
+@import 'mixins';
+
+.bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.bullet-item {
+  position: relative;
+  padding-left: $spacing-lg;
+  line-height: 1.6;
+  color: $color-text;
+  font-size: $font-size-base;
+
+  // Custom bullet
+  &::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $color-primary;
+    font-size: 1.2rem;
+    font-weight: $font-weight-bold;
+    line-height: 1.6;
+  }
+
+  @include mobile-tablet {
+    font-size: 14px;
+    padding-left: $spacing-md;
+  }
+}

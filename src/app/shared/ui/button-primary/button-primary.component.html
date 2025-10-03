@@ -1,0 +1,13 @@
+@if (external()) {
+  <a [href]="link()"
+     [class]="buttonClass()"
+     [target]="target()"
+     [rel]="rel()">
+    {{ text() }}
+  </a>
+} @else {
+  <a [routerLink]="link()"
+     [class]="buttonClass()">
+    {{ text() }}
+  </a>
+}

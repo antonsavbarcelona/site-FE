@@ -1,0 +1,36 @@
+<div class="faq-container">
+  <div class="faq-header">
+    <h2 class="faq-title">{{ title() }}</h2>
+    <p class="faq-description">{{ description() }}</p>
+  </div>
+
+  <div class="faq-list">
+    @for (item of items(); track $index) {
+      <div class="faq-item" [class.is-open]="isOpen($index)">
+        <button
+          type="button"
+          class="faq-question"
+          (click)="toggleItem($index)"
+          [attr.aria-expanded]="isOpen($index)"
+          [attr.aria-controls]="'faq-answer-' + $index">
+          <span class="question-text">{{ item.question }}</span>
+          <span class="question-icon">
+            <svg class="icon-plus" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <svg class="icon-minus" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </span>
+        </button>
+
+        <div class="faq-answer" [attr.id]="'faq-answer-' + $index" [attr.aria-hidden]="!isOpen($index)">
+          <div class="answer-content">
+            <p>{{ item.answer }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

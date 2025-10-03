@@ -1,0 +1,156 @@
+// ================================
+// MATERIAL COMPARISON TABLE
+// ================================
+
+@import 'variables';
+
+.material-comparison-table {
+  margin: 3rem 0;
+}
+
+.table-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0 0 2rem 0;
+  line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  -webkit-overflow-scrolling: touch; // Плавная прокрутка на iOS
+}
+
+.comparison-table {
+  width: 100%;
+  min-width: 600px; // Уменьшаем минимальную ширину
+
+  // Переопределяем стили Material Table
+  .mat-mdc-table {
+    background: transparent;
+    width: 100%;
+    min-width: 600px; // Уменьшаем минимальную ширину
+  }
+
+  .mat-mdc-header-row {
+    background-color: #383545;
+    height: 56px;
+
+    @media (max-width: 768px) {
+      height: 48px;
+    }
+  }
+
+  .mat-mdc-row {
+    height: auto; // Автоматическая высота для многострочного текста
+    min-height: 48px; // Минимальная высота
+    border-bottom: 1px solid #F3F4F6;
+
+    @media (max-width: 768px) {
+      min-height: 44px;
+    }
+
+    &:hover {
+      background-color: #F9FAFB;
+    }
+
+    &.highlighted-row {
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+
+  .mat-mdc-header-cell {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-right: 1px solid #4A4659;
+    padding: 0 0.75rem;
+    min-width: 80px;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+      font-size: 0.75rem;
+      padding: 0 0.5rem;
+      min-width: 60px;
+    }
+
+    &:last-child {
+      border-right: none;
+      min-width: 180px; // Увеличиваем для последней колонки
+      white-space: normal; // Разрешаем перенос в последней колонке
+
+      @media (max-width: 768px) {
+        min-width: 120px;
+      }
+    }
+  }
+
+  .mat-mdc-cell {
+    color: #374151;
+    font-size: 0.875rem;
+    border-right: 1px solid #F3F4F6;
+    padding: 0 0.75rem;
+    min-width: 80px;
+    white-space: nowrap;
+    vertical-align: top; // Выравнивание по верху для многострочного текста
+
+    @media (max-width: 768px) {
+      font-size: 0.75rem;
+      padding: 0 0.5rem;
+      min-width: 60px;
+    }
+
+    &:last-child {
+      border-right: none;
+      min-width: 180px; // Увеличиваем для последней колонки
+      white-space: normal; // Разрешаем перенос в последней колонке
+      line-height: 1.4; // Увеличиваем межстрочный интервал
+
+      @media (max-width: 768px) {
+        min-width: 120px;
+      }
+    }
+
+    &.percentage-cell {
+      color: $color-primary;
+      font-weight: 500;
+    }
+  }
+}
+
+// Дополнительные мобильные стили
+@media (max-width: 480px) {
+  .material-comparison-table {
+    margin: 2rem 0;
+  }
+
+  .table-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .comparison-table {
+    min-width: 480px; // Еще меньше для очень маленьких экранов
+
+    .mat-mdc-table {
+      min-width: 480px;
+    }
+
+    .mat-mdc-header-cell,
+    .mat-mdc-cell {
+      font-size: 0.7rem;
+      padding: 0 0.25rem;
+      min-width: 50px;
+    }
+  }
+}

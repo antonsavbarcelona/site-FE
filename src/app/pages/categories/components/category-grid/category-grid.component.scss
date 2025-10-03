@@ -1,0 +1,88 @@
+@import 'variables';
+@import 'mixins';
+
+.category-grid {
+  padding: 60px 0;
+
+  @include mobile-tablet {
+    padding: $spacing-3xl 0;
+  }
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  width: 100%;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+
+    /* Центрируем третий элемент если есть */
+    > :nth-child(3n) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    /* Убираем центрирование на мобильных */
+    > :nth-child(3n) {
+      grid-column: auto;
+      max-width: none;
+      margin: 0;
+    }
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
+
+.load-more-section {
+  text-align: center;
+  margin-top: $spacing-3xl;
+
+  @include mobile-tablet {
+    margin-top: $spacing-xl;
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 80px $spacing-md;
+
+  @include mobile-tablet {
+    padding: 60px $spacing-md;
+  }
+}
+
+.empty-title {
+  font-size: 24px;
+  font-weight: $font-weight-semi-bold;
+  color: $color-text;
+  margin-bottom: $spacing-sm;
+
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.empty-description {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+
+  @include mobile {
+    font-size: 14px;
+  }
+}

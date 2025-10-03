@@ -1,0 +1,17 @@
+<div class="checklist">
+  @if (title()) {
+    <h3 class="checklist-title">{{ title() }}</h3>
+  }
+  <ul class="checklist-items">
+    @for (item of items(); track $index) {
+      <li class="checklist-item">
+        <div class="checklist-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.6667 5L7.5 14.1667L3.33333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="checklist-content">{{ item }}</div>
+      </li>
+    }
+  </ul>
+</div>

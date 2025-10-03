@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tokenoversity.com/sitemap.xml
+
+# Crawl-delay (optional, 0 = no delay)
+Crawl-delay: 0
+
+# Disallow admin/private pages if any
+# Disallow: /admin/
+# Disallow: /api/

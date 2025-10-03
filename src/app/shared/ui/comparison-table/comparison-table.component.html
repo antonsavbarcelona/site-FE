@@ -1,0 +1,31 @@
+<div class="comparison-table">
+  <h2 class="table-title">{{ title() }}</h2>
+
+  <div class="table-container">
+    <div class="table-wrapper">
+      <table class="comparison-grid">
+        <thead class="table-header">
+          <tr class="header-row">
+            @for (column of columns(); track column.key) {
+              <th class="header-cell">{{ column.title }}</th>
+            }
+          </tr>
+        </thead>
+
+        <tbody class="table-body">
+          @for (row of rows(); track $index) {
+            <tr class="data-row" [class.highlighted-row]="highlightRowIndex() === $index">
+              @for (column of columns(); track column.key) {
+                <td class="data-cell"
+                    [class.percentage-cell]="column.type === 'percentage'"
+                    [class.highlight-cell]="column.type === 'highlight'">
+                  {{ row[column.key] }}
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

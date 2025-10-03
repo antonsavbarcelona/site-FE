@@ -1,0 +1,116 @@
+<!-- Hero Section -->
+<app-category-hero [data]="heroData"></app-category-hero>
+
+<!-- Start Here Section -->
+<section class="start-here" id="start-here">
+  <div class="section-header">
+    <div class="section-header-with-link">
+      <div class="section-titles">
+        <h2 class="section-title">Start here — Fundamentals first</h2>
+        <p class="section-subtitle">New to crypto? Start with these core concepts.</p>
+      </div>
+      <app-button-secondary
+        text="See all fundamentals →"
+        variant="ghost"
+        color="primary"
+        link="/learn/fundamentals">
+      </app-button-secondary>
+    </div>
+  </div>
+
+  <div class="start-here-grid">
+    @for (article of startHereArticles; track article.id) {
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <app-review-card [review]="article"></app-review-card>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Explore by Topic Section -->
+<section class="explore-topics" id="topics">
+  <div class="section-header">
+    <h2 class="section-title">Explore by topic</h2>
+    <p class="section-subtitle">Deep dive into specific areas of crypto knowledge.</p>
+  </div>
+
+  <div class="topics-grid">
+    @for (topic of topicTiles; track topic.title) {
+      <a [routerLink]="topic.link" class="topic-tile" [attr.aria-label]="topic.title + ' — ' + topic.count + ' articles'">
+        <div class="topic-icon">{{ topic.icon }}</div>
+        <h3 class="topic-title">{{ topic.title }}</h3>
+        <p class="topic-description">{{ topic.description }}</p>
+        <div class="topic-count" [attr.aria-label]="topic.count + ' articles'">{{ topic.count }} articles</div>
+      </a>
+    }
+  </div>
+</section>
+
+<!-- Featured Explainers Section -->
+<section class="featured-explainers">
+  <div class="section-header">
+    <h2 class="section-title">Featured explainers</h2>
+    <p class="section-subtitle">Essential knowledge for informed crypto decisions.</p>
+  </div>
+
+  <div class="featured-grid">
+    @for (article of featuredArticles; track article.id) {
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <app-review-card [review]="article"></app-review-card>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Latest Updates Section -->
+<section class="latest-updates">
+  <div class="section-header">
+    <div class="section-header-with-link">
+      <div class="section-titles">
+        <h2 class="section-title">Recently updated</h2>
+        <p class="section-subtitle">Fresh insights and updated explainers.</p>
+      </div>
+      <app-button-secondary
+        text="View all updates →"
+        variant="ghost"
+        color="primary"
+        link="/learn/updates">
+      </app-button-secondary>
+    </div>
+  </div>
+
+  <div class="latest-grid">
+    @for (article of latestArticles; track article.id) {
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <app-review-card [review]="article"></app-review-card>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Beginner Path CTA -->
+<section class="beginner-path-cta" id="beginner-cta">
+  <div class="cta-content">
+    <h2 class="cta-title">New to crypto?</h2>
+    <p class="cta-description">Follow our structured learning path designed for complete beginners.</p>
+    <div class="cta-progress">3 steps • ~35–45 min</div>
+    <app-button-primary text="Follow the beginner curriculum →" link="/learn/beginner">
+    </app-button-primary>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="section-header">
+    <h2 class="section-title">Frequently asked questions</h2>
+  </div>
+
+  <div class="faq-grid">
+    @for (faq of faqItems; track faq.question) {
+      <div class="faq-item">
+        <h3 class="faq-question">{{ faq.question }}</h3>
+        <p class="faq-answer">{{ faq.answer }}</p>
+      </div>
+    }
+  </div>
+</section>

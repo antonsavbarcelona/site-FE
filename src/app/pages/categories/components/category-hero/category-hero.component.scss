@@ -1,0 +1,205 @@
+@import 'variables';
+@import 'mixins';
+
+// Hero Section - full width
+.hero {
+  padding: 60px 0 80px;
+  color: $color-text-light;
+  position: relative;
+  overflow: hidden;
+  min-height: 350px;
+
+  // Классический full-width hack
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  // Тёмная вуаль для читаемости текста
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Для hero с подложкой под текст делаем вуаль темнее
+  &.hero-with-text-bg::before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  @include mobile-tablet {
+    padding: $spacing-3xl 0 50px;
+    min-height: 280px;
+  }
+
+  @include mobile {
+    padding: $spacing-xl 0 $spacing-3xl;
+    min-height: 250px;
+  }
+}
+
+// Внутренний контейнер для hero контента
+.hero-container {
+  max-width: $container-desktop;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include mobile-tablet {
+    padding: 0 $spacing-md;
+  }
+
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+.hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  min-height: 350px;
+
+  @include mobile-tablet {
+    min-height: 280px;
+  }
+
+  @include mobile {
+    min-height: 250px;
+  }
+}
+
+.hero-text {
+  z-index: 3;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+
+  // Полупрозрачная подложка только когда флаг включен
+  .hero-with-text-bg & {
+    background: rgba($color-bg, 0.12);
+    border-radius: $spacing-md;
+    padding: $spacing-3xl $spacing-xl;
+    border: 1px solid rgba($color-bg, 0.2);
+
+    @include mobile-tablet {
+      padding: $spacing-lg $spacing-md;
+      border-radius: $border-radius-lg;
+    }
+
+    @include mobile {
+      padding: $spacing-md $spacing-md;
+      border-radius: $border-radius;
+    }
+  }
+
+  // Для обычных hero без подложки
+  .hero:not(.hero-with-text-bg) & {
+    padding: 0;
+  }
+}
+
+.hero-title {
+  font-size: clamp(28px, 7vw, 56px);
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.05;
+  margin-bottom: $spacing-md;
+  color: $color-text-light;
+  white-space: pre-line;
+
+  // Размытие только под буквами
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.9);
+
+  @include mobile-tablet {
+    font-weight: $font-weight-bold;
+    line-height: 1.1;
+    margin-bottom: $spacing-md;
+  }
+
+  @include mobile {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.5;
+  color: $color-text-light;
+  margin-bottom: $spacing-md;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Размытие только под буквами
+  text-shadow:
+    0 0 8px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(0, 0, 0, 0.5),
+    0 1px 6px rgba(0, 0, 0, 0.8);
+
+  @include mobile-tablet {
+    margin-bottom: $spacing-sm;
+  }
+
+  @include mobile {
+    margin-bottom: 10px;
+  }
+}
+
+.hero-stats {
+  font-size: clamp(12px, 3vw, 14px);
+  color: $color-text-light;
+  margin-bottom: $spacing-2xl;
+  font-weight: $font-weight-medium;
+
+  // Размытие только под буквами
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(0, 0, 0, 0.4),
+    0 1px 4px rgba(0, 0, 0, 0.7);
+
+  @include mobile-tablet {
+    margin-bottom: $spacing-lg;
+  }
+
+  @include mobile {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.hero-cta {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @include mobile-tablet {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @include mobile {
+    gap: $spacing-xs;
+
+    app-button-primary {
+      a {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  }
+}

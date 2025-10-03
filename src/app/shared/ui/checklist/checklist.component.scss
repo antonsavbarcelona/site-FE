@@ -1,0 +1,70 @@
+@import 'variables';
+@import 'mixins';
+
+.checklist {
+  margin: $spacing-xl 0;
+}
+
+.checklist-title {
+  font-size: 18px;
+  font-weight: $font-weight-semi-bold;
+  color: $color-text;
+  margin-bottom: $spacing-md;
+
+  @include mobile {
+    font-size: $font-size-base;
+  }
+}
+
+.checklist-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist-item {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: 14px;
+  align-items: flex-start;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.checklist-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  color: $color-success;
+}
+
+.checklist-content {
+  flex: 1;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text;
+
+  strong {
+    font-weight: $font-weight-semi-bold;
+    color: $color-text;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-primary-dark;
+    }
+  }
+
+  @include mobile {
+    font-size: 15px;
+  }
+}

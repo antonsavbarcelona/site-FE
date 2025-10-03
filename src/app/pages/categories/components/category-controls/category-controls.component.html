@@ -1,0 +1,58 @@
+<section class="control-panel">
+  <div class="control-row">
+    <!-- Filter Chips -->
+    <div class="filter-chips">
+      @for (chip of config().filterChips; track chip.value) {
+        <button
+          class="filter-chip"
+          [class.active]="chip.active"
+          (click)="onFilterChange(chip.value)"
+          [attr.aria-label]="'Filter by ' + chip.name">
+          {{ chip.name }}
+        </button>
+      }
+    </div>
+
+    <!-- Search & Sort -->
+    <div class="search-sort">
+      @if (config().showSearch !== false) {
+        <div class="search-box">
+          <input
+            type="text"
+            [placeholder]="config().searchPlaceholder"
+            class="search-input"
+            [value]="searchQuery()"
+            (input)="onSearchInput($event)">
+        </div>
+      }
+
+      @if (config().showSort !== false) {
+        <div class="sort-dropdown">
+          <select
+            class="sort-select"
+            [value]="currentSort()"
+            (change)="onSortChange($event)">
+            @for (option of config().sortOptions; track option.value) {
+              <option [value]="option.value">{{ option.name }}</option>
+            }
+          </select>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Filter Status -->
+  @if (hasActiveFilters()) {
+    <div class="filter-status">
+      <span class="filter-info">
+        @if (currentFilter() !== 'all') {
+          <span>Showing: {{ currentFilter() | titlecase }}</span>
+        }
+        @if (currentSort() !== 'newest') {
+          <span> • Sorted by {{ currentSort() | titlecase }}</span>
+        }
+      </span>
+      <button class="clear-filters" (click)="onClearFilters()">Clear filters</button>
+    </div>
+  }
+</section>

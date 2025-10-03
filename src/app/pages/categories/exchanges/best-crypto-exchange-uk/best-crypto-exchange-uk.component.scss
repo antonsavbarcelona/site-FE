@@ -1,0 +1,252 @@
+@import '../../../../../styles/variables';
+
+// Container
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Удален блок дублированных стилей - используем компоненты кнопок
+
+// Hero Section
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0 60px;
+  text-align: center;
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 0 40px;
+
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-description {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 0 30px;
+
+    .hero-title {
+      font-size: 28px;
+    }
+
+    .hero-description {
+      font-size: 14px;
+    }
+  }
+}
+
+// Coming Soon Section
+.coming-soon {
+  padding: 80px 0;
+  background: $color-bg-light;
+
+  .coming-soon-card {
+    background: white;
+    border-radius: 16px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto 60px;
+
+    .coming-soon-icon {
+      font-size: 80px;
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .coming-soon-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: $color-text;
+      margin-bottom: 20px;
+    }
+
+    .coming-soon-description {
+      font-size: 18px;
+      color: $color-text-secondary;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .coming-soon-features {
+      background: $color-bg-light;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: left;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $color-text;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 8px 0;
+          font-size: 16px;
+          color: $color-text-secondary;
+          display: flex;
+          align-items: center;
+
+          &:before {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+
+    .coming-soon-cta {
+      p {
+        font-size: 16px;
+        color: $color-text-secondary;
+        margin-bottom: 20px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+
+        @media (max-width: 480px) {
+          flex-direction: column;
+          align-items: center;
+
+          .btn {
+            min-width: 200px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 40px 30px;
+
+      .coming-soon-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+
+      .coming-soon-title {
+        font-size: 28px;
+      }
+
+      .coming-soon-description {
+        font-size: 16px;
+      }
+
+      .coming-soon-features {
+        padding: 20px;
+        text-align: center;
+
+        ul {
+          text-align: left;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 30px 20px;
+
+      .coming-soon-title {
+        font-size: 24px;
+      }
+
+      .coming-soon-description {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Quick Links Section
+.quick-links {
+  text-align: center;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-text;
+    margin-bottom: 30px;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .link-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        color: $color-text;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: $color-text-secondary;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

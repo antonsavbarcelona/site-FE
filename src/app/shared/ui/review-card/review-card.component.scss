@@ -1,0 +1,198 @@
+@import 'variables';
+@import 'mixins';
+
+.article-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  outline: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus .article-card {
+    transform: translateY(-5px);
+  }
+}
+
+.article-card {
+  background: $color-bg;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  border: 1px solid $color-border-light;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba($color-primary, 0.3);
+  }
+
+  &.dark-theme {
+    background: $color-bg-dark;
+    color: $color-text-light;
+
+    .article-content {
+      background: $color-bg-dark;
+    }
+
+    .article-meta .article-author,
+    .article-meta .article-date,
+    .article-meta .article-read-time,
+    .article-meta .meta-separator {
+      color: $color-text-light;
+      opacity: 0.8;
+    }
+
+    .article-footer .article-category {
+      color: $color-text-light;
+      opacity: 0.7;
+    }
+  }
+}
+
+.article-image {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-light;
+  background-size: cover;
+  background-position: center;
+
+  @include mobile {
+    height: 160px;
+  }
+}
+
+.article-icon {
+  font-size: 60px;
+  opacity: 0.8;
+
+  @include mobile {
+    font-size: 48px;
+  }
+}
+
+.article-label {
+  position: absolute;
+  top: $spacing-md;
+  left: $spacing-md;
+  background: rgba($color-bg, 0.2);
+  padding: $spacing-xs $spacing-sm;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: $font-weight-semi-bold;
+
+  &.featured {
+    background: linear-gradient(135deg, $color-warning 0%, darken($color-warning, 10%) 100%);
+    color: $color-text-light;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.article-content {
+  padding: $spacing-lg;
+
+  @include mobile {
+    padding: $spacing-md;
+  }
+}
+
+.article-title {
+  font-size: 20px;
+  font-weight: $font-weight-semi-bold;
+  margin-bottom: $spacing-md;
+  line-height: 1.4;
+  color: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @include mobile {
+    font-size: 18px;
+  }
+}
+
+.article-teaser {
+  font-size: 14px;
+  color: $color-text-secondary;
+  line-height: 1.5;
+  margin-bottom: $spacing-md;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+  font-size: 14px;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+
+  @include mobile {
+    font-size: 13px;
+    gap: 6px;
+  }
+}
+
+.article-author {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.meta-separator {
+  color: $color-text-muted;
+  font-weight: $font-weight-medium;
+}
+
+.article-date,
+.article-read-time {
+  color: $color-text-secondary;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.article-btn {
+  background: $color-primary;
+  color: $color-text-light;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $border-radius-sm;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+// Grid styles (for parent component)
+.crypto-knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}

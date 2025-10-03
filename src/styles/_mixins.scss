@@ -1,0 +1,108 @@
+// ================================
+// RESPONSIVE BREAKPOINT MIXINS
+// ================================
+
+// Используйте эти миксины вместо прямых @media запросов
+// Mobile: до 767px (телефоны)
+// Tablet: 768px - 1024px (планшеты)
+// Desktop: от 1025px (десктопы)
+
+// Mobile only
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+// Tablet only
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+// Desktop only
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
+// ================================
+// КОМБИНИРОВАННЫЕ МИКСИНЫ
+// ================================
+
+// Mobile + Tablet (не десктоп)
+@mixin mobile-tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+// Tablet + Desktop (не мобилка)
+@mixin tablet-desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+// ================================
+// UTILITY MIXINS
+// ================================
+
+// Focus ring для accessibility
+@mixin focus-ring($color: $focus-ring-color, $width: $focus-ring-width, $offset: $focus-ring-offset) {
+  outline: $width solid $color;
+  outline-offset: $offset;
+  box-shadow: 0 0 0 1px rgba($color, 0.3);
+}
+
+// Screen reader only content
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Text truncate с многоточием
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ================================
+// GRID LAYOUT MIXIN
+// ================================
+
+// Универсальная grid-сетка с автоматическим responsive поведением
+// $cols - количество колонок на desktop (по умолчанию 3)
+// $gap - расстояние между элементами (по умолчанию 24px)
+// $cols-tablet - количество колонок на tablet (по умолчанию 2)
+// $cols-mobile - количество колонок на mobile (по умолчанию 1)
+@mixin grid-layout($cols: 3, $gap: 24px, $cols-tablet: 2, $cols-mobile: 1) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+
+  @include mobile-tablet {
+    grid-template-columns: repeat($cols-tablet, 1fr);
+    gap: calc($gap * 0.8);
+  }
+
+  @include mobile {
+    grid-template-columns: repeat($cols-mobile, 1fr);
+    gap: calc($gap * 0.6);
+  }
+
+  // Предотвращаем overflow дочерних элементов
+  > * {
+    min-width: 0;
+  }
+}

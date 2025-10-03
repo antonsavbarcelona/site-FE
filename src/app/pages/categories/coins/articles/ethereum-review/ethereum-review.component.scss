@@ -1,0 +1,11 @@
+// ethereum-review.component.scss - МИНИМУМ стилей
+@import 'variables';
+
+// Специфичный background для Ethereum Review
+.hero-banner {
+  background-image: url('/images/ethereum-review/ethereum-review-hero.webp');
+  background-position: center 60% !important;
+}
+// Main часть использует ТОЛЬКО глобальные стили из _layout.scss:
+// .page-layout, .layout-sidebar, .article-content-wrapper,
+// .article-content, .content-spacing, .sidebar, etc.

@@ -1,0 +1,145 @@
+// ================================
+// DESIGN TOKENS / VARIABLES - UNIFIED SYSTEM
+// ================================
+
+// Colors - Унифицированная система цветов
+// --------------------------------
+$color-primary: #6366f1;         // Главный фиолетовый
+$color-danger: #ef4444;          // Красный для ошибок
+$color-success: #22c55e;         // Зеленый для успеха
+$color-warning: #ffc107;         // Желтый для предупреждений
+$color-error: #ef4444;           // Алиас для danger
+
+// Text colors - Цвета текста
+$color-text: #333333;           // Основной темный текст
+$color-text-secondary: #666666; // Серый текст
+$color-text-muted: #999999;     // Приглушенный серый
+$color-text-light: #ffffff;     // Белый текст
+
+// Background colors - Системные фоны
+$color-bg: #ffffff;              // Основной белый фон
+$color-bg-light: #f8f9fa;        // Светло-серый для карточек
+$color-bg-dark: #1a1a1a;         // Темный фон
+$color-bg-muted: #f1f3f4;        // Приглушенный для разделителей
+$color-bg-purple: #f4f4ff;       // Светло-фиолетовый для TLDR блоков
+
+// Border colors - Цвета границ
+$color-border: #f0f0f0;          // Основные границы
+$color-border-light: #e5e7eb;    // Светлые границы
+$color-border-dark: #d1d5db;     // Темные границы
+
+// Gradients - Градиенты
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$ethereum-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$buying-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+
+// LEGACY ALIASES - для совместимости со старым кодом
+// Постепенно заменять на новые имена выше
+$primary-color: $color-primary;
+$text-color: $color-text;
+$light-gray: $color-text-secondary;
+$border-color: $color-border;
+$background-light: $color-bg-light;
+$background-dark: $color-bg-dark;
+$success-color: $color-success;
+$error-color: $color-error;
+$warning-color: $color-warning;
+
+// Typography
+// --------------------------------
+$font-family-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-family-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+// Base typography
+$font-size-base: 16px;
+$line-height-base: 1.6;
+
+// Font weights (Gilroy)
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+// Spacing
+// --------------------------------
+$spacing-unit: 8px;
+
+$spacing-xs: $spacing-unit * 0.5; // 4px
+$spacing-sm: $spacing-unit * 1;   // 8px
+$spacing-md: $spacing-unit * 2;   // 16px
+$spacing-lg: $spacing-unit * 3;   // 24px
+$spacing-xl: $spacing-unit * 4;   // 32px
+$spacing-2xl: $spacing-unit * 5;  // 40px
+$spacing-3xl: $spacing-unit * 6;  // 48px
+
+// Breakpoints
+// --------------------------------
+$breakpoint-mobile: 768px;   // До 768px - мобилка
+$breakpoint-tablet: 1024px;  // 768px - 1024px - таблетка
+$breakpoint-desktop: 1025px; // От 1025px - десктоп
+
+// Container widths
+// --------------------------------
+$container-mobile: 100%;     // Мобилка - на всю ширину
+$container-tablet: 720px;    // Таблетка - ограниченная ширина
+$container-desktop: 1400px;  // Десктоп - увеличенная ширина для современных мониторов
+
+// Borders & Radius
+// --------------------------------
+$border-width: 1px;
+$border-radius-sm: 4px;
+$border-radius: 6px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+
+// Shadows
+// --------------------------------
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+
+// Focus ring
+// --------------------------------
+$focus-ring-width: 3px;
+$focus-ring-offset: 2px;
+$focus-ring-color: $color-primary;
+
+// ================================
+// НОВЫЕ ПЕРЕМЕННЫЕ (добавлены при рефакторинге)
+// ================================
+
+// Primary color shades - оттенки основного цвета
+// --------------------------------
+$color-primary-hover: #5138d4;      // Темнее на hover для button-primary
+$color-primary-active: #4630c2;     // Ещё темнее на active
+$color-primary-dark: #4f46e5;       // Темный оттенок для ссылок при hover
+
+// Gray shades - серые оттенки
+// --------------------------------
+$color-gray-50: #f9fafb;           // Самый светлый серый
+$color-gray-100: #f3f4f6;          // Очень светлый серый
+$color-gray-200: #e5e7eb;          // Светлый серый
+$color-gray-300: #d1d5db;          // Средне-светлый серый
+$color-gray-400: #9ca3af;          // Средний серый
+$color-gray-500: #6b7280;          // Средне-темный серый
+$color-gray-600: #4b5563;          // Темно-средний серый
+$color-gray-700: #374151;          // Темный серый
+$color-gray-800: #1f2937;          // Очень темный серый
+$color-gray-900: #111827;          // Почти черный
+
+// Специфичные цвета компонентов
+// --------------------------------
+$color-tldr-text: #383545;          // Текст для TLDR компонента
+$color-tldr-border: rgba(56, 53, 69, 0.1); // Граница в TLDR
+
+// Background variants - варианты фонов
+// --------------------------------
+$color-bg-warning: #fff8e1;         // Светло-желтый фон для предупреждений
+$color-bg-success: #e8f5e8;         // Светло-зеленый фон для успеха
+
+// Специфичные цвета для home page
+// --------------------------------
+$color-step-pill-bg: #F3F4FE;       // Фон для pill'ов на странице
+$color-step-pill-text: #6C6FF5;     // Текст для pill'ов
+$color-criteria-tile-bg: #F6F8FF;   // Фон для плиток критериев

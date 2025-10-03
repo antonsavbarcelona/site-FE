@@ -1,0 +1,407 @@
+// Стили для innerHTML контента
+// Используй ::ng-deep чтобы стили применялись к динамическому HTML
+
+.article-content {
+  
+  // Применяем стили к динамическому контенту
+  ::ng-deep {
+    
+    // Заголовки
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1rem;
+      color: #1a1a1a;
+      line-height: 1.2;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: #2d2d2d;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: #404040;
+    }
+
+    // Параграфы
+    p {
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      color: #374151;
+      font-size: 1rem;
+    }
+
+    // Списки
+    ul, ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+      
+      li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+        color: #374151;
+        
+        strong {
+          color: #1a1a1a;
+          font-weight: 600;
+        }
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+
+    // Таблицы
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+
+      thead {
+        background: #f3f4f6;
+        
+        th {
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+          color: #1f2937;
+          border-bottom: 2px solid #e5e7eb;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #e5e7eb;
+          
+          &:hover {
+            background: #f9fafb;
+          }
+
+          td {
+            padding: 1rem;
+            color: #374151;
+            
+            strong {
+              color: #1a1a1a;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    // Картинки
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      display: block;
+    }
+
+    // Блоки кода
+    code {
+      background: #f3f4f6;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #dc2626;
+    }
+
+    pre {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+
+      code {
+        background: none;
+        color: inherit;
+        padding: 0;
+      }
+    }
+
+    // TL;DR box
+    .tldr-box {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+
+      .tldr-title {
+        color: #1e40af;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .tldr-list {
+        margin: 0;
+        padding-left: 1.5rem;
+
+        li {
+          color: #1e3a8a;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    // Pros & Cons Grid
+    .pros-cons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .pros-column,
+      .cons-column {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .pros-column {
+        border-left: 4px solid #10b981;
+      }
+
+      .cons-column {
+        border-left: 4px solid #ef4444;
+      }
+
+      .pros-title {
+        color: #065f46;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .cons-title {
+        color: #991b1b;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .pros-list,
+      .cons-list {
+        margin: 0;
+        padding-left: 1.5rem;
+
+        li {
+          margin-bottom: 0.75rem;
+          line-height: 1.5;
+        }
+      }
+
+      .pros-list li {
+        color: #065f46;
+      }
+
+      .cons-list li {
+        color: #991b1b;
+      }
+    }
+
+    // Key-Value Table
+    .key-value-table {
+      margin: 2rem 0;
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+
+      table {
+        tbody tr {
+          td:first-child {
+            width: 30%;
+            font-weight: 600;
+            color: #1f2937;
+          }
+
+          td:last-child {
+            width: 70%;
+          }
+        }
+      }
+    }
+
+    // Risk Table
+    .risk-table {
+      margin: 2rem 0;
+
+      table {
+        tbody tr {
+          td:first-child {
+            width: 25%;
+            font-weight: 600;
+            color: #dc2626;
+          }
+
+          td:last-child {
+            width: 75%;
+          }
+        }
+      }
+    }
+
+    // Comparison Table
+    .comparison-table {
+      margin: 2rem 0;
+      overflow-x: auto;
+
+      table {
+        min-width: 600px;
+
+        thead {
+          th {
+            background: #1f2937;
+            color: white;
+            font-weight: 600;
+          }
+        }
+
+        tbody {
+          tr {
+            &:first-child {
+              background: #eff6ff;
+              font-weight: 500;
+            }
+
+            td:first-child {
+              font-weight: 600;
+              color: #1f2937;
+            }
+          }
+        }
+      }
+    }
+
+    // Use Cases Box
+    .use-cases-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+
+      ul {
+        margin: 0;
+        padding-left: 1.5rem;
+
+        li {
+          margin-bottom: 1rem;
+
+          strong {
+            color: #1f2937;
+          }
+        }
+      }
+    }
+
+    // FAQ Container
+    .faq-container {
+      margin: 2rem 0;
+
+      .faq-item {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: box-shadow 0.2s;
+
+        &:hover {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+          color: #1f2937;
+          font-size: 1.125rem;
+          font-weight: 600;
+          margin-top: 0;
+          margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+          color: #4b5563;
+          line-height: 1.7;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // Sections
+    section {
+      margin-bottom: 3rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // Strong/Bold text
+    strong {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    // Em/Italic text
+    em {
+      font-style: italic;
+      color: #6b7280;
+    }
+
+    // Links
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #2563eb;
+        text-decoration: underline;
+      }
+    }
+
+    // Blockquotes
+    blockquote {
+      border-left: 4px solid #e5e7eb;
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+
+    // HR
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 2rem 0;
+    }
+  }
+}

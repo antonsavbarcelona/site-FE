@@ -1,0 +1,37 @@
+@import 'variables';
+
+// Content with sidebar layout
+.content-with-sidebar {
+  min-height: 60vh;
+  padding: 40px 0 80px;
+
+  @media (max-width: 768px) {
+    padding: 32px 0 60px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 24px 0 50px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: start;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  .main-content {
+    min-width: 0; // Prevent grid overflow
+  }
+
+  .sidebar-content {
+    @media (max-width: 1024px) {
+      order: -1; // Show sidebar above content on mobile
+    }
+  }
+}

@@ -1,0 +1,225 @@
+<!-- Storybook Page - UI Components Showcase -->
+
+<div class="page-layout">
+  <div class="layout-sidebar">
+    
+    <!-- Main Content -->
+    <main class="article-content-wrapper">
+      
+      <!-- Page Header -->
+      <div class="storybook-header">
+        <div class="page-intro">
+          <h1 class="page-title">🎨 UI Components Storybook</h1>
+          <p class="page-description">
+            A comprehensive showcase of all reusable UI components in our shared library. 
+            Each component is demonstrated with sample data to help developers understand 
+            their functionality and visual appearance.
+          </p>
+        </div>
+      </div>
+
+      <!-- Components Showcase -->
+      <div class="article-content content-spacing">
+
+        <!-- TL;DR Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">TL;DR Component</h2>
+            <p class="component-description">
+              Perfect for displaying key takeaways and summary information in a highlighted format.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>TldrComponent</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-tldr [items]="tldrItems" title="Sample TL;DR"></app-tldr>
+          </div>
+        </section>
+
+        <!-- Key-Value Table Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Key-Value Table</h2>
+            <p class="component-description">
+              Displays structured information in a clean key-value format, ideal for specifications and details.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>KeyValueTableComponent, KeyValueTableItem</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-key-value-table 
+              [items]="keyValueItems" 
+              title="Platform Specifications">
+            </app-key-value-table>
+          </div>
+        </section>
+
+        <!-- Pros & Cons Table Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Pros & Cons Table</h2>
+            <p class="component-description">
+              Side-by-side comparison of advantages and disadvantages with clear visual distinction.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>ProsConsTableComponent, ProsConsItem</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-pros-cons-table
+              [pros]="prosItems"
+              [cons]="consItems"
+              prosTitle="Advantages"
+              consTitle="Drawbacks">
+            </app-pros-cons-table>
+          </div>
+        </section>
+
+        <!-- Material Comparison Table Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Material Comparison Table</h2>
+            <p class="component-description">
+              Advanced data table with Material Design styling, perfect for detailed comparisons.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>MaterialComparisonTableComponent, MaterialComparisonColumn, MaterialComparisonRow</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-material-comparison-table
+              title="Exchange Comparison"
+              [columns]="comparisonColumns"
+              [rows]="comparisonRows">
+            </app-material-comparison-table>
+          </div>
+        </section>
+
+        <!-- FAQ Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">FAQ Component</h2>
+            <p class="component-description">
+              Expandable question-answer sections with smooth animations and intuitive interaction.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>FaqComponent, FaqItem</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-faq [items]="faqItems"></app-faq>
+          </div>
+        </section>
+
+        <!-- Pros List Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Pros List</h2>
+            <p class="component-description">
+              Enhanced list component with titles and detailed descriptions for highlighting benefits.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>ProsListComponent, ProsItem</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-pros-list [items]="prosListItems"></app-pros-list>
+          </div>
+        </section>
+
+        <!-- Bullet List Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Bullet List</h2>
+            <p class="component-description">
+              Simple yet elegant bullet point list with consistent styling and spacing.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>BulletListComponent</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <app-bullet-list [items]="bulletItems"></app-bullet-list>
+          </div>
+        </section>
+
+        <!-- Table of Contents Component -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">Table of Contents</h2>
+            <p class="component-description">
+              Dynamic navigation component that automatically generates links from page headings.
+            </p>
+            <div class="component-meta">
+              <span class="meta-tag">Import:</span>
+              <code>TableOfContentsComponent</code>
+            </div>
+          </div>
+          <div class="component-demo">
+            <div class="toc-demo-note">
+              <p><strong>Note:</strong> The Table of Contents component automatically scans page content for headings. In a real implementation, it would show links to all the component sections on this page.</p>
+              <app-table-of-contents
+                title="Demo TOC"
+                contentSelector=".article-content"
+                [showMobile]="false">
+              </app-table-of-contents>
+            </div>
+          </div>
+        </section>
+
+        <!-- Usage Guidelines -->
+        <section class="component-section">
+          <div class="component-header">
+            <h2 class="component-title">💡 Usage Guidelines</h2>
+            <p class="component-description">
+              Best practices for implementing and customizing these components in your projects.
+            </p>
+          </div>
+          <div class="component-demo">
+            <div class="usage-guidelines">
+              <div class="guideline-item">
+                <h4>🎯 Import Components</h4>
+                <p>Import components from their respective directories in <code>shared/ui</code>. Each component exports its main class and related interfaces.</p>
+              </div>
+              
+              <div class="guideline-item">
+                <h4>📝 TypeScript Support</h4>
+                <p>All components are fully typed with TypeScript interfaces. Check the <code>.component.ts</code> files for required props and data structures.</p>
+              </div>
+              
+              <div class="guideline-item">
+                <h4>🎨 Styling</h4>
+                <p>Components use SCSS with CSS custom properties for theming. Modify the variables in your global styles to customize the appearance.</p>
+              </div>
+              
+              <div class="guideline-item">
+                <h4>📱 Responsive Design</h4>
+                <p>All components are mobile-first responsive. Test on different screen sizes to ensure proper behavior in your implementation.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Sidebar with TOC -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Components"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+    </aside>
+
+  </div>
+</div>

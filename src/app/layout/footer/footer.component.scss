@@ -1,0 +1,14 @@
+// ================================
+// FOOTER COMPONENT STYLES
+// ================================
+
+// Import variables
+@import 'variables';
+@import 'mixins';
+
+.app-footer {
+  background-color: #2A2E45; // Dark blue background like reference
+  color: #FFFFFF;
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+}

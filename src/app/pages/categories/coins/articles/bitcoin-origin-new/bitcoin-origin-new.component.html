@@ -1,0 +1,216 @@
+<!-- Bitcoin Review 2025 - Based on provided article -->
+
+<!-- Mobile TOC - выносим из page-layout чтобы убрать отступы -->
+@if (isMobile()) {
+  <app-table-of-contents
+    title="Bitcoin Review Guide 2025"
+    contentSelector=".article-content"
+    [showMobile]="true">
+  </app-table-of-contents>
+}
+
+<div class="page-layout">
+  <!-- Main layout с сайдбаром -->
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      <!-- Hero секция как banner -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">{{ article.category }}</span>
+            <span class="date">{{ article.date }}</span>
+          </div>
+          <h1 class="page-title">{{ article.title }}</h1>
+          <div class="author-info">
+            <span class="author">By {{ article.author }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-content content-spacing">
+        <!-- Introduction Section -->
+        <section>
+          <p>
+            Bitcoin continues to dominate headlines and portfolios worldwide, but many UK investors still wonder: what exactly is Bitcoin, and should you consider it in 2025? This comprehensive <strong>Bitcoin review</strong> explores everything from basic mechanics to real-world applications, helping you make an informed decision about the world's <strong>first cryptocurrency</strong>.
+          </p>
+        </section>
+
+        <!-- Quick Verdict Section -->
+        <section>
+          <h2>Quick Verdict</h2>
+          <app-tldr [items]="tldrItems" title="Summary"></app-tldr>
+        </section>
+
+        <!-- Pros & Cons Table -->
+        <section>
+          <h2>Pros & Cons</h2>
+          <app-pros-cons-table
+            [pros]="prosData"
+            [cons]="consData"
+            prosTitle="Advantages"
+            consTitle="Challenges">
+          </app-pros-cons-table>
+        </section>
+
+        <!-- How to Buy BTC in the UK -->
+        <section>
+          <h2>How to Buy BTC in the UK</h2>
+          <p>
+            Purchasing Bitcoin in the UK has become increasingly straightforward. Here's a quick example using Kraken, one of the leading exchanges:
+          </p>
+
+          <ol>
+            <li><strong>Create Account:</strong> Register on Kraken.com with your email and verify your identity with UK documentation</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-register.webp" alt="Kraken registration process" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="2">
+            <li><strong>Fund Account:</strong> Deposit GBP via Easy Bank Transfer, PayPal or manual bank transfer options</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-deposit.webp" alt="Kraken deposit options" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="3">
+            <li><strong>Place Order:</strong> Navigate to BTC/GBP trading pair and choose market or limit order</li>
+          </ol>
+
+          <img src="/images/bitcoin-review/buy-btc-kraken-order-execution.webp" alt="Kraken order execution" style="width: 100%; border-radius: 8px; margin: 1rem 0;" />
+
+          <ol start="4">
+            <li><strong>Secure Storage:</strong> Transfer Bitcoin to a hardware wallet for long-term holding</li>
+          </ol>
+
+          <p>
+            Other recommended platforms include Coinbase Pro, Binance, and newer UK-focused services like Ziglu for smaller purchases.
+          </p>
+        </section>
+
+<!-- What is Bitcoin? -->
+        <section>
+          <h2>What is Bitcoin?</h2>
+          <p>
+            Bitcoin is the world's first <strong>decentralised digital currency</strong>, created in 2009 by the pseudonymous <strong>Satoshi Nakamoto</strong>. Unlike traditional currencies controlled by central banks, Bitcoin operates on a <strong>peer-to-peer network</strong> where transactions are verified by computers worldwide and recorded on an immutable public ledger called the <strong>blockchain</strong>.
+          </p>
+          <p>
+            At its core, Bitcoin solves the <strong>"double-spending problem"</strong> that plagued previous digital cash attempts, ensuring that each bitcoin can only be spent once without requiring a trusted intermediary.
+          </p>
+        </section>
+
+        <!-- Brief Origin & History -->
+        <section>
+          <h2>Brief Origin & History and Why Bitcoin Matters</h2>
+          <p>
+            Bitcoin emerged from the <strong>2008 financial crisis</strong> as a response to traditional banking failures. Nakamoto's whitepaper introduced a revolutionary concept: money that exists purely in digital form, cannot be counterfeited, and operates <strong>independently of government control</strong>.
+          </p>
+
+          <p>Key milestones include:</p>
+          <app-bullet-list [items]="keyMilestones"></app-bullet-list>
+
+          <p>
+            Bitcoin matters because it represents the first successful attempt at creating <strong>truly scarce digital money</strong>, challenging traditional monetary systems and offering an alternative <strong>store of value</strong> in an era of currency debasement.
+          </p>
+        </section>
+
+        <!-- Technical Overview -->
+        <section>
+          <h2>How Bitcoin Works — A Simple Technical Overview</h2>
+
+          <app-key-value-table [items]="keyFeatures" [title]="'Bitcoin Key Specifications'" />
+
+          <h3>Proof-of-Work (PoW)</h3>
+          <p>
+            Bitcoin uses a <strong>Proof-of-Work consensus mechanism</strong> where "miners" compete to solve complex mathematical puzzles. The first to solve the puzzle validates the next block of transactions and receives newly minted bitcoin as a reward. This process, known as <strong>Bitcoin mining</strong>, secures the network and prevents fraud.
+          </p>
+
+          <h3>Supply Mechanics & Halvings</h3>
+          <p>
+            Bitcoin's monetary policy is programmed and predictable. Only <strong>21 million Bitcoin</strong> will ever exist, making it inherently <strong>deflationary</strong>. Approximately every four years, the reward for mining new blocks is <strong>halved</strong>, reducing the rate at which new bitcoin enters circulation. The next halving is expected around <strong>2028</strong>.
+          </p>
+
+          <h3>Key Features & Benefits</h3>
+          <app-bullet-list [items]="keyBenefits"></app-bullet-list>
+        </section>
+
+        <!-- Risks & Security -->
+        <section>
+          <h2>Risks & Criticisms, Security & Custody Options</h2>
+
+          <h3>Primary Risks</h3>
+          <p>Bitcoin faces several challenges that potential investors should understand:</p>
+
+          <app-key-value-table [items]="primaryRisks" [title]="'Primary Risk Factors'"></app-key-value-table>
+
+          <h3>Security & Custody Options</h3>
+          <p>Securing Bitcoin requires careful consideration:</p>
+          <app-bullet-list [items]="custodyOptions"></app-bullet-list>
+
+          <p><em>Remember: "Not your keys, not your bitcoin." Proper custody is crucial for Bitcoin security.</em></p>
+        </section>
+
+        <!-- Real-World Use Cases -->
+        <section>
+          <h2>Real-World Use Cases</h2>
+          <p>Bitcoin's utility continues expanding:</p>
+
+          <app-tldr [items]="useCases" title="Bitcoin Use Cases"></app-tldr>
+        </section>
+
+        <!-- Comparison Table -->
+        <section>
+          <h2>Comparison: Bitcoin vs. Ethereum vs. Litecoin</h2>
+          <app-material-comparison-table
+            title="Cryptocurrency Comparison"
+            [columns]="comparisonColumns"
+            [rows]="comparisonRows"
+            [highlightRowIndex]="0">
+          </app-material-comparison-table>
+
+          <p>
+            Bitcoin excels as a store of value and the most secure network, while Ethereum offers programmability and Litecoin provides faster transactions.
+          </p>
+        </section>
+
+        <!-- Final Verdict -->
+        <section>
+          <h2>Final Verdict — Is Bitcoin Right for You in 2025?</h2>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+            <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border: 1px solid #bbf7d0;">
+              <h4 style="color: #166534; margin-top: 0;">Bitcoin may be suitable if you:</h4>
+              <app-bullet-list [items]="suitableFor" style="color: #166534;"></app-bullet-list>
+            </div>
+
+            <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border: 1px solid #fecaca;">
+              <h4 style="color: #dc2626; margin-top: 0;">Bitcoin may not be suitable if you:</h4>
+              <app-bullet-list [items]="notSuitableFor" style="color: #dc2626;"></app-bullet-list>
+            </div>
+          </div>
+
+          <p>
+            For UK investors in 2025, Bitcoin represents a mature but volatile asset class worth considering as part of a diversified portfolio, typically recommended at 1-5% allocation for most investors.
+          </p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+          <h2>FAQ — Top Long-Tail Questions</h2>
+          <app-faq [items]="faqItems"></app-faq>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Bitcoin Review Guide 2025"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+    </aside>
+
+  </div>
+</div>

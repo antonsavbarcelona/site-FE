@@ -1,0 +1,222 @@
+// Storybook Page Styles
+@import 'variables';
+
+.storybook-header {
+  padding: 3rem 0 2rem 0;
+  background: linear-gradient(135deg, #f8f9ff, #f0f4ff);
+  margin-bottom: 3rem;
+  border-radius: 16px;
+  border: 1px solid rgba(97, 70, 255, 0.1);
+}
+
+.page-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.page-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #1a202c, #6146FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Component Sections
+.component-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 100px; // For TOC navigation
+}
+
+.component-header {
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.component-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.component-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.component-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  .meta-tag {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6146FF;
+  }
+
+  code {
+    background: rgba(97, 70, 255, 0.1);
+    color: #6146FF;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', 'Monaco', monospace;
+    border: 1px solid rgba(97, 70, 255, 0.2);
+  }
+}
+
+// Component Demo Area
+.component-demo {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &::before {
+    content: '🎭 Demo';
+    position: absolute;
+    top: -10px;
+    left: 1.5rem;
+    background: #6146FF;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  // Special styling for TOC demo
+  .toc-demo-note {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 1px solid #f0c674;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    p {
+      margin: 0 0 1rem 0;
+      color: #856404;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Usage Guidelines Section
+.usage-guidelines {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.guideline-item {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin: 0;
+
+    code {
+      background: rgba(0, 0, 0, 0.1);
+      color: #2d3748;
+      padding: 0.125rem 0.25rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-family: 'Fira Code', 'Monaco', monospace;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .storybook-header {
+    padding: 2rem 0 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .page-intro {
+    padding: 0 1rem;
+  }
+
+  .component-section {
+    margin-bottom: 3rem;
+  }
+
+  .component-header {
+    padding: 0;
+  }
+
+  .component-title {
+    font-size: 1.5rem;
+  }
+
+  .component-demo {
+    padding: 1.5rem;
+  }
+
+  .usage-guidelines {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .guideline-item {
+    padding: 1rem;
+  }
+}
+
+// Dark mode support (if needed in the future)
+@media (prefers-color-scheme: dark) {
+  .page-title {
+    background: linear-gradient(135deg, #f7fafc, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

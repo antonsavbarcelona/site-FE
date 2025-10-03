@@ -1,0 +1,101 @@
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Tokenoversity — Your Complete Crypto Guide</h1>
+      <p class="hero-description">
+        Independent reviews, step-by-step guides, and safety basics. Clear, evergreen, and jargon-free.
+      </p>
+
+      <div class="hero-cta">
+        <app-button-primary text="See Best Exchange for the UK →" link="/best-crypto-exchange-uk"/>
+        <app-button-secondary text="Explore Guides" color="gray" link="/guides" />
+      </div>
+    </div>
+
+    <div class="stats">
+      <a routerLink="/best-crypto-exchange-uk" class="stat-item">
+        <span class="stat-number">#1 Exchange Pick (UK)</span>
+        <span class="stat-label">Kraken — tested & explained</span>
+      </a>
+      <a routerLink="/guides" class="stat-item">
+        <span class="stat-number">Step-by-Step Guides</span>
+        <span class="stat-label">From sign-up to first buy</span>
+      </a>
+      <a routerLink="/coins" class="stat-item">
+        <span class="stat-number">Coin Reviews & Fundamentals</span>
+        <span class="stat-label">Pros, risks & use cases</span>
+      </a>
+      <a routerLink="/security" class="stat-item">
+        <span class="stat-number">Security & Taxes</span>
+        <span class="stat-label">Evergreen guides to stay safe</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="test-large-cards">
+  <h2 class="section-title">Start Here — Review & Top Pick</h2>
+  <div class="test-large-cards-grid">
+    @for (article of testLargeArticles; track article.title) {
+      <app-article-card-large [article]="article" />
+    }
+  </div>
+</section>
+
+<app-news-section [data]="newsData" />
+
+<section class="crypto-knowledge">
+  <h2 class="section-title">Coin Reviews & Fundamentals</h2>
+  <p class="section-subtitle">Plain-English reviews of Bitcoin, Ethereum and Solana — pros, risks, and how to get exposure in the UK.</p>
+
+  <div class="crypto-knowledge-grid">
+    @for (review of cryptoKnowledgeReviews; track review.id) {
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <app-review-card [review]="review" />
+      </article>
+    }
+  </div>
+
+  <div class="section-cta">
+    <app-button-primary text="Explore All Coin Reviews →" link="/coins" />
+  </div>
+</section>
+
+<!-- Security & Taxes -->
+<section class="security-taxes section-full-width">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="header-content">
+        <h2 class="section-title">Security & Taxes</h2>
+        <p class="section-subtitle">Evergreen guides to stay safe and compliant.</p>
+      </div>
+      <div class="header-action">
+        <app-button-secondary
+          text="All security & taxes →"
+          variant="ghost"
+          color="primary"
+          link="/security">
+        </app-button-secondary>
+      </div>
+    </div>
+
+    <div class="security-taxes-grid">
+      @for (review of securityTaxesReviews; track review.id) {
+        <article itemscope itemtype="https://schema.org/BlogPosting" role="article" tabindex="0">
+          <meta [attr.itemprop]="'articleSection'" [attr.content]="review.category">
+          <meta itemprop="datePublished" content="2025-06-30">
+          <meta itemprop="dateModified" content="2025-06-30">
+          <meta itemprop="author" content="Crypto Team">
+          <meta [attr.itemprop]="'headline'" [attr.content]="review.title">
+          <app-review-card [review]="review"></app-review-card>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Review Methodology -->
+<app-review-methodology />
+
+<!-- Evaluation Criteria -->
+<app-evaluation-criteria />

@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: $spacing-2xl $spacing-md;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.spinner-wrapper {
+  margin-bottom: $spacing-lg;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid $color-border;
+  border-top: 4px solid $color-primary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+.loading-text {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

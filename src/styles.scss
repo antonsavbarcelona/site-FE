@@ -1,0 +1,38 @@
+// ================================
+// GLOBAL STYLES ENTRY POINT
+// ================================
+
+// Angular Material setup (must be first)
+@use '@angular/material' as mat;
+@include mat.core();
+
+// Import design tokens and base styles
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/reset';
+@import 'styles/typography';
+@import 'styles/layout';
+
+// Global fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+// CSS Custom Properties for use in HTML
+:root {
+  --gradient-primary: #{$primary-gradient};
+  --gradient-ethereum: #{$ethereum-gradient};
+  --gradient-buying: #{$buying-gradient};
+}
+
+// Global body styles
+body {
+  font-family: $font-family-primary;
+  background-color: $color-bg;
+  color: $color-text;
+  margin: 0;
+  padding: 0;
+}
+
+// Global focus styles for accessibility
+*:focus-visible {
+  @include focus-ring();
+}

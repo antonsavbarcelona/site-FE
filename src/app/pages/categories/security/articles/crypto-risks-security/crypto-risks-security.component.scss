@@ -1,0 +1,43 @@
+// crypto-risks-security.component.scss
+@import '../../../../../../styles/_variables';
+
+// Специфичный background для Security Guide
+.hero-banner {
+  background-image: url('/images/crypto-risks/crypto-security-hero.webp');
+  background-color: #1e293b; // fallback для безопасности
+  background-position: center;
+  background-size: cover;
+}
+
+// Screenshot placeholders
+.screenshot-placeholder {
+  background: $color-bg-muted;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px 20px;
+  margin: 20px 0;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Security guide images - centered and resized
+.security-guide-image {
+  width: 50%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+}
+
+// Main часть использует ТОЛЬКО глобальные стили из _layout.scss

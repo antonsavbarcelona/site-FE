@@ -1,0 +1,187 @@
+// ================================
+// CSS RESET / NORMALIZE
+// ================================
+
+// Box sizing reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Remove default margins and paddings
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// HTML and body setup
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff; // Принудительно белый фон для html
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text;
+  background-color: #ffffff; // Принудительно белый фон для body
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography reset
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: inherit;
+}
+
+p, blockquote, dl, dd {
+  margin: 0;
+}
+
+// List reset
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Link reset
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+// Button reset
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  // Ensure focus styles work
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+// Form elements
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+// Input type specific
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+// Media elements
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  border-style: none;
+}
+
+// Table reset
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 0;
+}
+
+// Hidden attribute
+[hidden] {
+  display: none !important;
+}
+
+// Remove outline for non-keyboard focus
+:focus:not(:focus-visible) {
+  outline: none;
+}

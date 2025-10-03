@@ -1,0 +1,294 @@
+<!-- UK Crypto Tax Guide -->
+
+<div class="page-layout">
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      <!-- Hero секция как banner -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">Tax Guide</span>
+            <span class="date">Jan 20, 2025</span>
+          </div>
+          <h1 class="page-title">UK Crypto Tax Guide</h1>
+          <div class="author-info">
+            <span class="author">Tax Specialists</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-content content-spacing">
+
+        <!-- Hero Section + Intro -->
+        <section>
+          <p>
+            Crypto taxes don't have to be intimidating. In the UK, cryptocurrency is treated as <strong>property</strong>, meaning most disposals (selling, swapping, or spending) are subject to <strong>Capital Gains Tax (CGT)</strong> — not income tax. This guide breaks down everything you need to know about reporting crypto gains, staking rewards, and losses in plain English.
+          </p>
+
+          <p>
+            It is <strong>not financial or tax advice</strong>, but a practical starting point for UK investors who want to stay compliant and avoid HMRC surprises.
+          </p>
+        </section>
+
+        <!-- TL;DR Section -->
+        <section>
+          <h2>Quick Overview</h2>
+          <app-tldr [items]="quickOverview" title="UK Crypto Tax Essentials"></app-tldr>
+        </section>
+
+        <!-- Quick Overview Section -->
+        <section>
+          <h2>How Crypto is Taxed in the UK</h2>
+          <h3>Capital Gains Tax (CGT)</h3>
+          <p>
+            You pay CGT when you sell crypto for GBP, swap one coin for another (e.g. ETH → BTC), or use crypto to pay for goods and services. In 2025, the annual CGT allowance is <strong>£3,000</strong> — gains below this amount are tax-free. Rates are <strong>10% or 20%</strong> depending on your total income.
+          </p>
+
+          <h3>Income Tax</h3>
+          <p>
+            Crypto you receive as <strong>staking rewards, mining payouts, or airdrops</strong> may be treated as income at the market value in GBP at the time of receipt. Subsequent sales are then subject to CGT on any additional gains.
+          </p>
+
+          <h3>HMRC Record-Keeping Rules</h3>
+          <p>
+            You must track the GBP value of every crypto transaction at the time it happens. HMRC uses this data to calculate gains/losses and expects accurate records for up to <strong>5 years</strong>.
+          </p>
+        </section>
+
+        <!-- Capital Gains Tax Explained -->
+        <section>
+          <h2>Capital Gains Tax Explained</h2>
+
+          <p>
+            Understanding Capital Gains Tax (CGT) is crucial for any UK crypto investor. HMRC treats most crypto disposals as taxable events — meaning you owe tax not just when you "cash out," but also when you swap coins or spend crypto.
+          </p>
+
+          <h3>What Triggers CGT Events?</h3>
+          <p>
+            CGT applies in several common scenarios:
+          </p>
+
+          <app-bullet-list [items]="cgtTriggers"></app-bullet-list>
+
+          <img src="/images/uk-crypto-tax/buy-gain-sell-pay.webp" alt="infographic showing flow: Buy → Gain → Sell → Pay CGT with small icons for GBP, tax, and ETH" class="tax-guide-image" />
+
+          <h3>How to Calculate Gains</h3>
+          <p>
+            HMRC uses this formula:
+          </p>
+
+          <div class="formula-card">
+            <div class="formula-main">
+              <strong>Gain = Proceeds – (Cost Basis + Transaction Fees)</strong>
+            </div>
+            <div class="formula-explanation">
+              <p>Where:</p>
+              <ul>
+                <li><strong>Proceeds</strong> = GBP value received when selling or swapping</li>
+                <li><strong>Cost Basis</strong> = your average purchase price (per HMRC's Section 104 pooling rules)</li>
+                <li><strong>Fees</strong> = exchange fees or gas costs you can add to cost basis</li>
+              </ul>
+            </div>
+          </div>
+
+          <img src="/images/uk-crypto-tax/section-104-pooling.webp" alt="FormulaCard component — big bold equation, small tooltip explaining Section 104 Pooling" class="tax-guide-image" />
+
+          <p>
+            Pooling means you calculate an average cost basis for all identical assets you hold — similar to share dealing rules.
+          </p>
+
+          <h3>Example Calculation</h3>
+
+          <p><strong>Scenario:</strong> You bought 1 ETH in January for £1,200 and sold it in March for £1,800.</p>
+
+          <app-key-value-table
+            title="CGT Calculation Example"
+            [items]="calculationExample">
+          </app-key-value-table>
+
+          <p>
+            If your annual gains exceed the <strong>£3,000 CGT allowance (2025)</strong>, here's what you'd pay:
+          </p>
+
+          <app-key-value-table
+            title="Tax Due by Rate"
+            [items]="taxRatesExample">
+          </app-key-value-table>
+
+          <img src="/images/uk-crypto-tax/worked-example-card.webp" alt="worked example card — left column Buy Price £1,200 / Sell Price £1,800 → Gain £600; right column tax due at 10% vs 20% with two coloured badges" class="tax-guide-image" />
+
+          <app-pro-tip text="Keep detailed records of purchase dates and prices. HMRC's Section 104 pooling rules can make calculations complex for frequent traders."></app-pro-tip>
+        </section>
+
+        <!-- Income Tax on Staking, Mining & Airdrops -->
+        <section>
+          <h2>Income Tax on Staking, Mining & Airdrops</h2>
+
+          <p>
+            Not all crypto is taxed under Capital Gains rules — in some cases, HMRC treats it as <strong>income</strong> when you receive it. This is especially relevant for ETH staking rewards, which are becoming a major source of yield for UK investors.
+          </p>
+
+          <h3>Staking Rewards</h3>
+          <p>
+            Any ETH you earn through staking (either directly running a validator or using Kraken's staking product) is taxed as <strong>income at the moment you receive it</strong>. The GBP value on that day is what you must report. When you later sell that ETH, you'll also pay CGT on any price change since you received it.
+          </p>
+
+          <img src="/images/uk-crypto-tax/receive-record-sale-cgt.webp" alt="small diagram: Receive ETH → Record GBP value → Later sale → CGT on difference" class="tax-guide-image" />
+
+          <h3>Mining Rewards</h3>
+          <p>
+            If you mine crypto:
+          </p>
+          <ul>
+            <li><strong>Hobby miners</strong> are taxed on the GBP value of coins mined as miscellaneous income.</li>
+            <li><strong>Professional miners</strong> may have to register as a business and pay Income Tax + National Insurance contributions on profits after expenses.</li>
+          </ul>
+
+          <h3>Airdrops</h3>
+          <p>
+            HMRC distinguishes between free promotional airdrops and those tied to an action (e.g. tweeting, signing up).
+          </p>
+          <ul>
+            <li><strong>Genuine gift:</strong> may not be taxable until sold.</li>
+            <li><strong>Reward for action:</strong> treated as income at GBP value when received.</li>
+          </ul>
+
+          <h3>Key Difference: Income vs CGT</h3>
+
+          <app-material-comparison-table
+            title="Income Tax vs Capital Gains Tax Comparison"
+            [columns]="incomeVsCgtColumns"
+            [rows]="incomeVsCgtRows">
+          </app-material-comparison-table>
+
+          <app-pro-tip text="Keep detailed records of staking rewards — date, time, GBP value. Tools like Koinly or CoinTracking automatically convert to GBP and prepare HMRC reports."></app-pro-tip>
+        </section>
+
+        <!-- Record-Keeping & Tools -->
+        <section>
+          <h2>Record-Keeping & Tools</h2>
+
+          <p>
+            Good record-keeping is the backbone of stress-free crypto taxes in the UK. HMRC requires you to keep <strong>detailed transaction records for at least 5 years</strong> after the end of the tax year. If you can't produce them, you may face penalties or estimated assessments.
+          </p>
+
+          <h3>What to Track</h3>
+          <p>
+            For every buy, sell, swap, or staking reward, record:
+          </p>
+
+          <app-bullet-list [items]="recordKeepingRequirements"></app-bullet-list>
+
+          <app-material-comparison-table
+            title="Example Transaction Records"
+            [columns]="csvRecordColumns"
+            [rows]="csvRecordRows">
+          </app-material-comparison-table>
+
+          <h3>Recommended Tools</h3>
+          <p>
+            Manual spreadsheets work for small portfolios, but most UK investors benefit from using <strong>crypto tax software</strong>:
+          </p>
+
+          <app-key-value-table
+            title="Popular UK Crypto Tax Tools"
+            [items]="recommendedTools">
+          </app-key-value-table>
+
+          <app-pro-tip text="Connect your exchange APIs early in the tax year. Automatic syncing reduces errors and ensures your GBP values are always accurate — especially useful if you trade frequently or stake ETH regularly."></app-pro-tip>
+        </section>
+
+        <!-- Tax Deadlines & Reporting -->
+        <section>
+          <h2>Tax Deadlines & Reporting</h2>
+
+          <p>
+            If you owe crypto tax in the UK, you'll usually report it via <strong>Self Assessment</strong>.
+          </p>
+
+          <app-key-value-table
+            title="Important UK Tax Deadlines"
+            [items]="taxDeadlines">
+          </app-key-value-table>
+        </section>
+
+        <!-- Offsetting Losses -->
+        <section>
+          <h2>Offsetting Losses</h2>
+
+          <p>
+            Selling crypto at a loss isn't always bad news — you can use those losses to reduce future tax bills.
+          </p>
+
+          <ul>
+            <li><strong>Claiming Losses:</strong> Report capital losses to HMRC in the same tax year. They can offset gains on other crypto assets or even other investments.</li>
+            <li><strong>Carrying Forward:</strong> Unused losses can be carried forward to offset gains in future tax years — just make sure you report them within four years of the loss.</li>
+          </ul>
+
+          <app-pro-tip text="Even if your net gains are below the annual allowance, report losses so you can bank them for future use."></app-pro-tip>
+
+          <img src="/images/uk-crypto-tax/loss-report-carry-reduce.webp" alt="infographic showing: Loss → Report → Carry Forward → Reduce Future CGT" class="tax-guide-image" />
+        </section>
+
+        <!-- DeFi & Grey Areas -->
+        <section>
+          <h2>DeFi & Grey Areas</h2>
+
+          <p>
+            DeFi protocols — lending, liquidity pools, yield farming — introduce additional tax complexity.
+          </p>
+
+          <app-bullet-list [items]="defiComplexities"></app-bullet-list>
+
+          <p>
+            HMRC's guidance on DeFi is <strong>still evolving</strong>, so the safest approach is to keep <strong>detailed records</strong> of every deposit, withdrawal, and reward.
+          </p>
+
+        </section>
+
+        <!-- Common Mistakes -->
+        <section>
+          <h2>Common Mistakes</h2>
+
+          <p>
+            Avoid these pitfalls to keep your tax reporting accurate — and stress-free:
+          </p>
+
+          <app-error-list
+            title="Common Tax Mistakes to Avoid"
+            [items]="commonMistakes">
+          </app-error-list>
+          <app-pro-tip text="Use crypto tax software or hire an accountant experienced with digital assets to avoid costly errors."></app-pro-tip>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+          <app-faq
+            title="FAQ – UK Crypto Tax Guide"
+            description="Get answers to the most common questions about UK cryptocurrency taxation"
+            [items]="faqItems">
+          </app-faq>
+        </section>
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="UK Crypto Tax Guide"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+
+      <app-sticky-cta-banner
+        title="Need Tax Help?"
+        description="Professional crypto tax advice for complex situations"
+        ctaText="Find Tax Advisor"
+        ctaLink="/tax-professionals">
+      </app-sticky-cta-banner>
+    </aside>
+
+  </div>
+</div>

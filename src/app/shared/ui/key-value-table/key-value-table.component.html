@@ -1,0 +1,16 @@
+<div class="key-value-table">
+  <!-- Table Header -->
+  <div class="table-header">
+    <h3 class="table-title">{{ title() }}</h3>
+  </div>
+
+  <!-- Table Body -->
+  <div class="table-body">
+    @for (item of items(); track item.key) {
+      <div class="table-row">
+        <div class="table-key">{{ item.key }}</div>
+        <div class="table-value">{{ item.value }}</div>
+      </div>
+    }
+  </div>
+</div>

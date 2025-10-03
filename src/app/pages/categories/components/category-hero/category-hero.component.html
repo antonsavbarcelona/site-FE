@@ -1,0 +1,25 @@
+<section class="hero" [class.hero-with-text-bg]="hasTextBackground()" [style.background]="backgroundStyle()">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">{{ data().title }}</h1>
+        <p class="hero-subtitle">{{ data().subtitle }}</p>
+        <div class="hero-stats">{{ data().stats }}</div>
+
+        <div class="hero-cta">
+          <app-button-primary
+            [text]="data().primaryCta.text"
+            [link]="data().primaryCta.link"
+            [attr.aria-label]="'Navigate to ' + data().primaryCta.text">
+          </app-button-primary>
+          <app-button-primary
+            [text]="data().secondaryCta.text"
+            [link]="data().secondaryCta.link"
+            [external]="true"
+            [attr.aria-label]="'Navigate to ' + data().secondaryCta.text">
+          </app-button-primary>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

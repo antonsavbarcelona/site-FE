@@ -1,0 +1,231 @@
+<!-- Kraken Review - Rebalanced layout -->
+
+<!-- Mobile TOC - выносим из page-layout чтобы убрать отступы -->
+@if (isMobile()) {
+  <app-table-of-contents
+    title="Kraken Review Guide"
+    contentSelector=".article-content"
+    [showMobile]="true">
+  </app-table-of-contents>
+}
+
+<div class="page-layout">
+  <!-- Main layout с сайдбаром -->
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      <!-- Hero секция как banner -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">{{ article.category }}</span>
+            <span class="date">{{ article.date }}</span>
+          </div>
+          <h1 class="page-title">{{ article.title }}</h1>
+          <div class="author-info">
+            <span class="author">By {{ article.author }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-content content-spacing">
+        <!-- Quick Verdict with Visual -->
+        <section>
+          <p>For UK traders seeking a balance between security, regulatory clarity, and advanced trading features, Kraken presents a compelling option. The platform's <strong>FCA authorisation</strong> and defence-in-depth security approach make it particularly attractive to security-conscious investors.</p>
+
+          <p>The competitive maker/taker pricing structure benefits active traders, while practical GBP rails ensure smooth deposits and withdrawals. However, retail UK users should complete <strong>Intermediate verification</strong> before moving significant amounts or attempting to access advanced products.</p>
+
+          <app-tldr [items]="quickVerdictItems" title="Quick verdict"></app-tldr>
+
+          <img src="/images/kraken/kraken-cta-1.webp" alt="Kraken CTA" style="display: block; margin: 20px auto;">
+        </section>
+
+        <!-- Kraken Products Overview -->
+        <section>
+          <h2>Kraken Products Available in the UK</h2>
+
+          <p>Kraken offers a comprehensive suite of products tailored to different types of traders and investors. From basic spot trading to advanced derivatives (for eligible users), the platform scales with your needs. Each product serves specific use cases and comes with different access requirements in the UK market.</p>
+
+          <p>Understanding which product suits your trading style is crucial for making the most of Kraken's offerings. The platform's architecture allows users to <strong>start simple and gradually access more sophisticated tools</strong> as they gain experience and meet eligibility requirements.</p>
+
+          <img src="/images/kraken/kraken-trading-opportunities.webp" alt="Kraken trading opportunities interface" style="display: block; margin: 20px auto;">
+
+          <app-material-comparison-table
+            title="Kraken Products Overview"
+            [columns]="krakenProductsColumns"
+            [rows]="krakenProductsRows">
+          </app-material-comparison-table>
+        </section>
+
+        <!-- Derivatives Special Note -->
+        <section>
+          <h3>Important Note on Derivatives</h3>
+
+          <p>Derivatives trading on Kraken, including perpetuals and futures, is available but <strong>gated for professional clients</strong> in the UK. Retail clients should not expect access unless they meet strict professional client criteria. This restriction is in place to comply with UK financial regulations designed to protect retail investors from high-risk products.</p>
+
+          <p>For developers, quants, and serious traders, Kraken's <strong>API and demo environment</strong> provide valuable tools to backtest strategies before deploying capital. The demo environment is particularly useful for understanding how derivatives work without financial risk.</p>
+
+          <img src="/images/kraken/kraken-derivatives-banner.webp" alt="Kraken derivatives banner" style="display: block; margin: 20px auto;">
+        </section>
+
+        <!-- Pros & Cons -->
+        <section>
+          <h2>Pros & Cons</h2>
+
+          <p>Every exchange has strengths and weaknesses, and Kraken is no exception. Understanding these trade-offs helps you make an informed decision about whether Kraken aligns with your trading needs and priorities. The platform excels in security and regulatory compliance but may not be the simplest option for complete beginners.</p>
+
+          <p>The fee structure, while competitive for active traders, can be less attractive for casual investors making small, infrequent trades. Additionally, the <strong>verification process</strong>, while thorough for security reasons, can take several days to complete during busy periods.</p>
+
+          <app-pros-cons-table
+            [pros]="prosData"
+            [cons]="consData"
+            prosTitle="Advantages"
+            consTitle="Drawbacks">
+          </app-pros-cons-table>
+        </section>
+
+        <!-- Why Choose Kraken - Storytelling -->
+        <section>
+          <h2>Why Choose Kraken?</h2>
+
+          <p>Choosing the right exchange often comes down to real-world scenarios. Consider this: it's Friday evening, and you want to move <strong>£5,000</strong> to catch a market opportunity on Monday. With Kraken, you have multiple options that balance speed, cost, and security. This flexibility becomes crucial when markets move quickly.</p>
+
+          <p>Security isn't just a marketing point for Kraken—it's operational reality. The platform runs public bug bounties, enforces robust two-factor authentication, and keeps the majority of customer funds in <strong>cold storage</strong>. For UK users asking "is Kraken safe?", these practices significantly reduce platform-level risks.</p>
+
+          <app-pros-list [items]="expandedProsItems"></app-pros-list>
+        </section>
+
+        <!-- Deposits & Withdrawals -->
+        <section>
+          <h2>Deposits & Withdrawals — Faster Payments vs CHAPS</h2>
+
+          <p>Understanding Kraken's banking options is essential for UK users. The platform offers two primary methods for GBP transactions: <strong>Faster Payments</strong> for quick, everyday transfers, and <strong>CHAPS</strong> for larger amounts requiring same-day settlement. Each method has different characteristics in terms of speed, limits, and potential fees.</p>
+
+          <p>The choice between these methods depends on your transfer size and timing requirements. Faster Payments typically process near-instantly with no Kraken fees, making them ideal for regular top-ups. CHAPS, while potentially involving intermediary bank fees, provides same-day crediting for time-sensitive large transfers.</p>
+
+          <app-key-value-table [items]="depositsWithdrawalsItems" title="GBP Banking Options"></app-key-value-table>
+
+          <h3>Quick checklist for smooth transactions:</h3>
+          <app-bullet-list [items]="depositChecklistItems"></app-bullet-list>
+        </section>
+
+        <!-- Fee Structure with Concrete Examples -->
+        <section>
+          <h2>Fee Structure — Concrete Example</h2>
+
+          <p>Rather than vague comparisons, here are the actual numbers from Kraken's official fee schedule. Understanding these concrete costs helps you evaluate whether Kraken's pricing works for your trading volume and style.</p>
+
+          <p>Kraken uses maker/taker tiers based on 30-day USD volume. The more you trade, the lower your fees become. Here's how the official tiers look:</p>
+
+          <app-material-comparison-table
+            title="Kraken Maker/Taker Snapshot (Spot Crypto)"
+            [columns]="feeScheduleColumns"
+            [rows]="feeScheduleRows">
+          </app-material-comparison-table>
+
+          <h3>Real-world Examples (GBP) — Exact Math</h3>
+
+          <div class="fee-example">
+            <h4>Scenario A — Casual Investor</h4>
+            <ul>
+              <li>Monthly trading volume: <strong>£200</strong> (one buy order)</li>
+              <li>Typical order type for small instant buy = <strong>taker</strong> (market/instant buy)</li>
+              <li>Fee assumption: tier $0+ (taker <strong>0.40%</strong>) — conservative, official base rate</li>
+            </ul>
+            <p><strong>Calculation:</strong> £200 × 0.40% = <strong>£0.80</strong> fee. Net crypto bought ≈ £199.20 (ignoring spread).</p>
+            <p><strong>Takeaway:</strong> For most casual users the absolute fees are tiny (sub-£1 on a £200 buy). The fee amount is negligible compared with market moves; choose Kraken for security and rails rather than micro-fee savings.</p>
+          </div>
+
+          <div class="fee-example">
+            <h4>Scenario B — Active Trader / Higher Volume</h4>
+            <ul>
+              <li>Monthly trading volume: <strong>£100,000</strong> (total executed volume)</li>
+              <li>Convert to USD ≈ <strong>$125,000</strong> (approx. FX ×1.25) — note Kraken tiers are in USD</li>
+              <li>That volume sits near the <strong>$100k+</strong> tier, so use maker <strong>0.12%</strong> / taker <strong>0.22%</strong> as working rates</li>
+            </ul>
+            <p><strong>Calculation</strong> (assume all taker for conservative estimate): £100,000 × 0.22% = <strong>£220</strong> total fees for the month.</p>
+            <p>If a portion is maker (limit orders), cost lowers: e.g., 50/50 split maker/taker → (£50,000 × 0.12%) + (£50,000 × 0.22%) = £60 + £110 = <strong>£170</strong>.</p>
+            <p><strong>Takeaway:</strong> Active traders quickly benefit from tiered discounts — going from ~0.40% to ~0.22% (or lower) reduces monthly fees materially. For high volumes the difference is dozens to hundreds of pounds per month.</p>
+          </div>
+
+          <p><em>Full official schedule available on Kraken's fee page. Tiers are based on 30-day USD volume and updated regularly.</em></p>
+        </section>
+
+        <!-- Comparison with Competitors -->
+        <section>
+          <h2>How Kraken Compares</h2>
+
+          <p>The UK cryptocurrency exchange landscape offers various options, each with distinct advantages. Kraken positions itself between consumer-focused simplicity and professional-grade functionality, making it suitable for users who have outgrown basic apps but don't require institutional-level features.</p>
+
+          <p>Compared to competitors, Kraken's <strong>regulatory clarity stands out</strong>. While some exchanges have faced regulatory challenges in the UK, Kraken's FCA registration and e-money authorizations provide a stable foundation for UK operations.</p>
+
+          <app-material-comparison-table
+            title="Kraken vs Other UK Exchanges"
+            [columns]="comparisonColumns"
+            [rows]="comparisonRows">
+          </app-material-comparison-table>
+
+          <p><strong>Verdict:</strong> Kraken sits between consumer simplicity and pro-grade platform — best if you prioritise security, GBP rails and competitive trading economics.</p>
+        </section>
+
+        <!-- How Kraken Works -->
+        <section>
+          <h2>How Kraken Works — Sign Up, Verify, Trade</h2>
+
+          <p>Getting started with Kraken follows a straightforward three-step process: sign up, verify your identity, and begin trading. The platform's verification tiers determine your access to different features and higher limits, so understanding these levels is crucial for planning your Kraken experience.</p>
+
+          <p>Most UK users will want to reach <strong>Intermediate verification</strong> to unlock GBP deposits and higher trading limits. The verification process is thorough but necessary for regulatory compliance and security. Processing typically takes up to five days when all documents are correctly submitted.</p>
+
+          <app-key-value-table [items]="howItWorksItems" title="Step-by-Step Process"></app-key-value-table>
+
+          <h3>Practical Steps for Success:</h3>
+          <app-bullet-list [items]="practicalStepsItems"></app-bullet-list>
+
+          <p><strong>Important note:</strong> Confirm margin and derivative eligibility before attempting to use leverage, as UK retail rules may restrict access to these advanced features.</p>
+        </section>
+
+        <!-- FAQs -->
+        <section>
+          <h2>Frequently Asked Questions</h2>
+
+          <p>These frequently asked questions address the most common concerns and queries from UK users considering or currently using Kraken. The answers provide practical, actionable guidance based on real user experiences and Kraken's official support documentation.</p>
+
+          <app-faq [items]="faqItems"></app-faq>
+        </section>
+
+        <!-- Final Verdict -->
+        <section>
+          <h2>Final Verdict — Who Should Use Kraken in the UK?</h2>
+
+          <p>Kraken excels for UK users who prioritize security, regulatory clarity, and competitive trading economics. The platform's FCA registration and e-money authorizations provide regulatory clarity that some competitors lack. Its security-first approach and professional trading tools make it particularly suitable for serious traders and security-conscious investors.</p>
+
+          <p>However, Kraken may <strong>not be ideal</strong> if you prefer the simplest possible user experience or need retail access to derivatives. The platform assumes some familiarity with trading concepts and may feel overwhelming for complete beginners who just want to buy and hold cryptocurrency.</p>
+
+          <app-pros-cons-table
+            [pros]="finalVerdictPros"
+            [cons]="finalVerdictCons"
+            prosTitle="Best For"
+            consTitle="Not Ideal For">
+          </app-pros-cons-table>
+
+          <div class="cta-section">
+            <p><strong>Ready to get started?</strong> Before depositing large amounts: <strong>enable 2FA → complete Intermediate verification → use Faster Payments</strong> for quick GBP deposits</p>
+            <img src="/images/kraken/kraken-cta-1.webp" alt="Kraken CTA" style="display: block; margin: 20px auto;">
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Kraken Review Guide"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+    </aside>
+
+  </div>
+</div>

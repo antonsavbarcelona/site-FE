@@ -1,0 +1,107 @@
+<header class="app-header">
+  <div class="container">
+    <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+      <!-- Brand / Logo -->
+      <div class="brand">
+        <a href="/home" class="brand-link" aria-label="TokenOversity - Главная страница">
+          <img src="/images/logo.webp" alt="TokenOversity Logo" class="brand-logo" />
+          <span class="brand-text">
+            TOKENO<span class="brand-accent">VERSITY</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-desktop">
+        <ul class="nav-list" role="menubar">
+          @for (link of navLinks; track link.href) {
+            <li class="nav-item" role="none">
+              <a
+                [href]="link.href"
+                class="nav-link"
+                [class.active]="link.active"
+                [class.accent]="link.accent"
+                role="menuitem"
+                [attr.aria-current]="link.active ? 'page' : null"
+                [attr.aria-label]="link.ariaLabel || null"
+                [attr.title]="link.title || null"
+                (click)="onNavLinkClick(link.href); $event.preventDefault()"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="mobile-menu-btn"
+        type="button"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-label="Открыть меню навигации"
+        (click)="toggleMenu()"
+        [ngClass]="{ 'is-open': isMenuOpen() }"
+      >
+        <span class="hamburger">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Navigation - создается динамически только при открытии -->
+@if (isMenuOpen()) {
+  <div class="mobile-overlay">
+    <!-- Backdrop -->
+    <div class="mobile-backdrop" (click)="closeMenu()"></div>
+
+    <!-- Menu Content -->
+    <div class="mobile-menu">
+      <!-- Header с кнопкой закрытия -->
+      <div class="mobile-menu-header">
+        <a href="/" class="mobile-brand" (click)="onNavLinkClick('/home'); $event.preventDefault()">
+          <img src="/images/logo.webp" alt="TokenOversity Logo" class="brand-logo" />
+          <span class="brand-text">
+            TOKENO<span class="brand-accent">VERSITY</span>
+          </span>
+        </a>
+        <button
+          class="mobile-close-btn"
+          (click)="closeMenu()"
+          aria-label="Закрыть меню"
+          type="button"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mobile-nav" role="navigation">
+        <ul class="mobile-nav-list" role="menu">
+          @for (link of navLinks; track link.href) {
+            <li class="mobile-nav-item" role="none">
+              <a
+                [href]="link.href"
+                class="mobile-nav-link"
+                [class.active]="link.active"
+                [class.accent]="link.accent"
+                role="menuitem"
+                [attr.aria-current]="link.active ? 'page' : null"
+                [attr.aria-label]="link.ariaLabel || null"
+                [attr.title]="link.title || null"
+                (click)="onNavLinkClick(link.href); $event.preventDefault()"
+              >
+                {{ link.mobileLabel || link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+}

@@ -1,0 +1,83 @@
+<!-- Desktop Version (Sidebar) -->
+@if (!isMobileDevice()) {
+  <div class="toc-container desktop-toc">
+    <div class="toc-header">
+      <h4 class="toc-title">{{ title() }}</h4>
+    </div>
+
+    <nav class="toc-nav" role="navigation" aria-label="Table of contents">
+      <ul class="toc-list">
+        @for (item of tocItems(); track item.id) {
+          <li class="toc-item" [class]="'toc-level-' + item.level">
+            <button
+              type="button"
+              class="toc-link"
+              [class.active]="activeItemId() === item.id"
+              [attr.data-id]="item.id"
+              (click)="scrollToHeading(item)"
+              [attr.aria-current]="activeItemId() === item.id ? 'true' : null"
+            >
+              {{ item.title }}
+            </button>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+}
+
+<!-- Mobile Version (Sticky under header) -->
+@if (showMobile() && isMobileDevice()) {
+  <div class="mobile-toc" [class.is-open]="isMobileOpen()">
+    <!-- Mobile TOC Trigger Button -->
+    <button
+      type="button"
+      class="mobile-toc-trigger"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileOpen()"
+      aria-controls="mobile-toc-menu"
+    >
+      <span class="current-heading">{{ currentActiveTitle() }}</span>
+      <svg
+        class="chevron-icon"
+        [class.rotated]="isMobileOpen()"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+      </svg>
+    </button>
+
+    <!-- Mobile TOC Menu -->
+    <div
+      id="mobile-toc-menu"
+      class="mobile-toc-menu"
+      [attr.aria-hidden]="!isMobileOpen()"
+    >
+      <nav role="navigation" aria-label="Article sections">
+        <ul class="mobile-toc-list">
+          @for (item of tocItems(); track item.id) {
+            <li class="mobile-toc-item">
+              <button
+                type="button"
+                class="mobile-toc-link"
+                [class.active]="activeItemId() === item.id"
+                [attr.data-id]="item.id"
+                (click)="scrollToHeading(item)"
+              >
+                {{ item.title }}
+              </button>
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Mobile Backdrop -->
+    @if (isMobileOpen()) {
+      <div class="mobile-toc-backdrop" (click)="toggleMobileMenu()"></div>
+    }
+  </div>
+}

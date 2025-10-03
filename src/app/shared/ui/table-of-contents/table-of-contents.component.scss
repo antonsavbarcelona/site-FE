@@ -1,0 +1,375 @@
+// ================================
+// TABLE OF CONTENTS COMPONENT
+// ================================
+
+// Import variables with correct path
+@import 'variables';
+
+// ================================
+// DESKTOP VERSION (SIDEBAR) - ПРАВИЛЬНЫЕ СТИЛИ
+// ================================
+
+.desktop-toc {
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.toc-container {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  // Показываем только на desktop
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.toc-header {
+  background-color: #383545;
+  padding: 1rem 1.25rem;
+}
+
+.toc-title {
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.toc-nav {
+  padding: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+
+  // Стили для видимого скролла
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  border-bottom: 1px solid #F3F4F6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.toc-link {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #F9FAFB;
+    color: #1F2937;
+  }
+
+  &:focus-visible,
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  // Активное состояние - темный фон как в референсе
+  &.active {
+    background-color: #383545;
+    color: #FFFFFF;
+    font-weight: 500;
+    position: relative;
+
+    &:hover {
+      background-color: #4A4659;
+      color: #FFFFFF;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: $color-primary;
+    }
+  }
+}
+
+// Уровни заголовков - отступы для иерархии
+.toc-level-2 .toc-link {
+  padding-left: 1.25rem;
+}
+
+.toc-level-3 .toc-link {
+  padding-left: 2rem;
+  font-size: 0.8125rem;
+  color: #6B7280;
+
+  &.active {
+    color: #FFFFFF;
+  }
+}
+
+.toc-level-4 .toc-link {
+  padding-left: 2.75rem;
+  font-size: 0.8125rem;
+  color: #9CA3AF;
+
+  &.active {
+    color: #FFFFFF;
+  }
+}
+
+// Responsive adjustments для больших экранов
+@media (max-width: 1200px) {
+  .toc-container {
+    font-size: 0.8125rem;
+  }
+
+  .toc-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .toc-level-3 .toc-link {
+    padding-left: 1.75rem;
+  }
+
+  .toc-level-4 .toc-link {
+    padding-left: 2.25rem;
+  }
+}
+
+// ================================
+// MOBILE VERSION (STATIC IN HEADER CONTAINER) - НОВАЯ АРХИТЕКТУРА
+// ================================
+
+.mobile-toc {
+  position: static; // Теперь статичная внутри sticky header-container
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+
+  // Показываем только на мобилке и планшете
+  @media (min-width: 1025px) {
+    display: none !important;
+  }
+}
+
+.mobile-toc-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: #383545; // Темный фон как в desktop
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #FFFFFF; // Белый текст
+  transition: background-color 0.2s ease;
+  min-height: 48px;
+
+  &:hover {
+    background-color: #4A4659;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+  }
+}
+
+.current-heading {
+  flex: 1;
+  text-align: left;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  margin-right: 0.5rem;
+  line-height: 1.4;
+  color: #FFFFFF; // Белый цвет текста
+}
+
+.chevron-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  color: #FFFFFF; // Белая иконка
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.mobile-toc-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 40vh;
+  overflow-y: auto;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+
+  // Стили для видимого скролла в мобильной версии
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+
+  .mobile-toc.is-open & {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.mobile-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-toc-item {
+  margin: 0;
+  border-bottom: 1px solid #F3F4F6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mobile-toc-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #374151;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #F9FAFB;
+    color: #1F2937;
+  }
+
+  &.active {
+    background-color: #383545; // Темный фон для активного как в desktop
+    color: #FFFFFF;
+    font-weight: 500;
+    position: relative;
+
+    &:hover {
+      background-color: #4A4659;
+      color: #FFFFFF;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: $color-primary;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+  }
+}
+
+.mobile-toc-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+// ================================
+// ANIMATIONS
+// ================================
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-toc-menu,
+  .chevron-icon {
+    transition: none;
+  }
+}

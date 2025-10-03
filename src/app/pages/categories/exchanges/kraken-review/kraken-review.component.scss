@@ -1,0 +1,137 @@
+// kraken-review.component.scss
+@import 'variables';
+
+// Заголовок над hero
+.article-header {
+  padding: 2rem 0 1rem 0;
+  max-width: none;
+  margin: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  .breadcrumb-nav {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+
+    .breadcrumb-item {
+      &.current {
+        background: #e5e7eb;
+        color: #374151;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+    }
+
+    .breadcrumb-separator {
+      margin: 0 0.5rem;
+      color: #9ca3af;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.4;
+    margin: 0 0 1rem 0;
+  }
+
+  .article-meta {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    text-align: left;
+
+    .meta-item {
+      strong {
+        color: #374151;
+        font-weight: 600;
+      }
+    }
+
+    .meta-separator {
+      margin: 0 0.5rem;
+      color: #9ca3af;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .breadcrumb-nav,
+    .article-meta {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// Hero изображение с заголовком внутри - КАК У COINBASE
+.hero-banner {
+  background-image: url('/images/kraken/kraken-review-hero.webp');
+}
+
+// CTA sections styling
+.cta-section {
+  text-align: center;
+  margin: 2rem 0;
+
+  p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+
+    strong {
+      color: var(--primary-color, #2563eb);
+    }
+  }
+}
+
+// Fee example styling
+.fee-example {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+
+  h4 {
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.25rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+  }
+
+  p {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: #1e40af;
+    font-weight: 600;
+  }
+}
+
+// Main часть использует ТОЛЬКО глобальные стили из _layout.scss:
+// .page-layout, .layout-sidebar, .article-content-wrapper,
+// .article-content, .content-spacing, .sidebar, etc.

@@ -1,0 +1,37 @@
+<a [routerLink]="review().link" class="article-card-link" [attr.aria-label]="'Read ' + review().title">
+  <div class="article-card"
+       [class.dark-theme]="review().theme === 'dark'"
+       [attr.itemscope]=""
+       [attr.itemtype]="'https://schema.org/BlogPosting'"
+       tabindex="0">
+    <div class="article-image"
+         [style.background]="review().imageUrl ? 'url(' + review().imageUrl + ') center/cover' : 'var(--gradient-primary)'"
+         [style.aspect-ratio]="'16/9'"
+         [attr.alt]="'Cover: ' + coinName() + ' review'">
+      @if (!review().imageUrl) {
+        <div class="article-icon" aria-hidden="true">{{ review().icon }}</div>
+      }
+      <span class="article-label" [class.featured]="review().featured">{{ review().label }}</span>
+    </div>
+    <div class="article-content">
+      <h3 class="article-title" [attr.itemprop]="'headline'">{{ review().title }}</h3>
+      @if (review().teaser) {
+        <p class="article-teaser">{{ review().teaser }}</p>
+      }
+      <div class="article-meta">
+        <span class="article-author" [attr.itemprop]="'author'">{{ review().author }}</span>
+        <span class="meta-separator">•</span>
+        <span class="article-date" [attr.itemprop]="'datePublished'" [attr.content]="review().date">{{ review().date }}</span>
+        @if (review().readTime) {
+          <span class="meta-separator">•</span>
+          <span class="article-read-time">{{ review().readTime }}</span>
+        }
+      </div>
+      <div class="article-footer">
+        <span class="article-btn">
+          {{ review().buttonText }}
+        </span>
+      </div>
+    </div>
+  </div>
+</a>

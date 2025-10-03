@@ -1,0 +1,209 @@
+<!-- Crypto Risks & Security Hub -->
+
+<div class="page-layout">
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      <!-- Hero секция как banner -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">Security</span>
+            <span class="date">Jan 15, 2025</span>
+          </div>
+          <h1 class="page-title">Crypto Risks & Security Hub</h1>
+          <div class="author-info">
+            <span class="author">By Security Team</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-content content-spacing">
+        <!-- Hero / Introduction -->
+        <section>
+          <p>
+            Crypto is one of the most exciting innovations of the past decade — but with opportunity comes risk. Prices move quickly, exchanges can freeze withdrawals, and scams target inexperienced investors daily.
+          </p>
+
+          <p>
+            This UK-focused guide explains the main types of crypto risk — market volatility, exchange and custody risk, technical vulnerabilities, and compliance obligations — plus practical steps to stay safe.
+          </p>
+          <p>
+            <strong>See our exchange reviews →</strong> <a href="/exchanges/kraken-review" style="color: #6366f1; text-decoration: underline;">Kraken</a>, <a href="/exchanges/coinbase-review" style="color: #6366f1; text-decoration: underline;">Coinbase</a> to compare FCA-registered platforms.
+          </p>
+        </section>
+        <!-- Core Types of Risk -->
+        <section>
+          <h2>Core Types of Risk</h2>
+
+          <app-bullet-list [items]="riskTypes"></app-bullet-list>
+
+          <h3>Market Risk (Volatility)</h3>
+          <p>
+            Crypto markets are famously volatile. Daily swings of 5–10% are common, and events like the 2022 crash or the 2024 spot ETF rally can move ETH and BTC prices by double digits in hours. Volatility creates opportunity but also significant downside risk — never invest more than you can afford to lose.
+          </p>
+
+          <h3>Counterparty Risk (Exchanges & Custodians)</h3>
+          <p>
+            When you keep assets on a centralised exchange, you trust that exchange to stay solvent and honour withdrawals. History has shown failures — from FTX in 2022 to smaller UK platforms shutting down unexpectedly. Minimise risk by using FCA-registered exchanges, enabling withdrawal whitelists, and moving long-term holdings to self-custody.
+          </p>
+
+          <h3>Technical Risks (Smart Contracts, Bugs)</h3>
+          <p>
+            DeFi protocols and smart contracts are powerful but not foolproof. High-profile exploits like The DAO hack and PolyNetwork drained millions in user funds. Stick to battle-tested protocols with audits and large user bases, and never risk funds you cannot afford to lose on experimental projects.
+          </p>
+
+          <h3>Regulatory & Compliance Risk (UK)</h3>
+          <p>
+            UK investors must complete KYC when using regulated exchanges, and certain products — like crypto derivatives — remain restricted for retail users under FCA rules. HMRC requires accurate records of all transactions in GBP for Capital Gains Tax reporting, including staking and airdrop rewards.
+          </p>
+        </section>
+
+        <!-- Security Fundamentals -->
+        <section>
+          <h2>Security Fundamentals</h2>
+
+          <p>
+            Strong security habits are the foundation of safe crypto investing. A few simple steps dramatically reduce your exposure to hacks, phishing, and accidental loss.
+          </p>
+
+          <h3>Secure Accounts</h3>
+
+          <p>
+            Your exchange account is your gateway to crypto — treat it like online banking:
+          </p>
+
+          <app-bullet-list [items]="secureAccountSteps"></app-bullet-list>
+
+          <img src="/images/crypto-risks/crypto-risks-kraken-2fa.webp" alt="Kraken security settings with 2FA enabled" class="security-guide-image" />
+
+          <h3>Safe Devices & Networks</h3>
+
+          <p>
+            Even a secure account can be compromised on an insecure device.
+          </p>
+
+          <app-bullet-list [items]="deviceSafetyTips"></app-bullet-list>
+
+          <h3>Withdrawal Safety</h3>
+
+          <p>
+            Most exchange hacks result in stolen withdrawals — not stolen logins.
+          </p>
+
+          <app-bullet-list [items]="withdrawalSafetySteps"></app-bullet-list>
+
+        </section>
+
+        <!-- Custody Models Explained -->
+        <section>
+          <h2>Custody Models Explained</h2>
+
+          <p>
+            How and where you store your crypto matters as much as which assets you buy. There are two main approaches:
+          </p>
+
+          <h3>Custodial (Exchange)</h3>
+          <p>
+            You keep your crypto on an exchange like Kraken or Coinbase.
+          </p>
+
+          <app-pros-cons-table
+            [pros]="custodialPros"
+            [cons]="custodialCons"
+            prosTitle="Why Choose Exchange Custody"
+            consTitle="Risks & Limitations">
+          </app-pros-cons-table>
+
+          <h3>Non-Custodial (Self-Custody)</h3>
+          <p>
+            You hold the private keys yourself in a hardware or software wallet.
+          </p>
+
+          <app-pros-cons-table
+            [pros]="selfCustodyPros"
+            [cons]="selfCustodyCons"
+            prosTitle="Benefits of Self-Custody"
+            consTitle="Responsibilities & Risks">
+          </app-pros-cons-table>
+
+          <img src="/images/crypto-risks/exchange-vs-hard-wallet.webp" alt="Diagram showing exchange custody vs. hardware wallet custody — with arrows 'You control keys' vs. 'Exchange controls keys'" class="security-guide-image" />
+        </section>
+
+        <!-- Common Scams & How to Avoid Them -->
+        <section>
+          <h2>Common Scams & How to Avoid Them</h2>
+
+          <p>
+            Crypto attracts innovation — but also scammers. Staying alert can save you from devastating losses.
+          </p>
+
+          <app-error-list
+            title="Common Crypto Scams to Avoid"
+            [items]="commonScams">
+          </app-error-list>
+
+          <app-pro-tip text="if it sounds too good to be true, it probably is."></app-pro-tip>
+        </section>
+
+        <!-- 10-Point Security Checklist -->
+        <section>
+          <h2>10-Point Security Checklist</h2>
+
+          <p>
+            Follow this checklist to reduce 90% of common crypto losses:
+          </p>
+
+          <app-checklist
+            title="Essential Security Steps"
+            [items]="securityChecklist">
+          </app-checklist>
+        </section>
+
+        <!-- Links & Next Steps -->
+        <section>
+          <h2>Links & Next Steps</h2>
+
+          <p>
+            Now that you understand the key risks and how to protect yourself, you're ready to choose a secure exchange and start investing.
+          </p>
+
+          <ul>
+            <li>🔗 <strong>Read our <a href="/exchanges/kraken-review" style="color: #6366f1; text-decoration: underline;">Kraken Review</a> →</strong> — see why it's our top pick for UK investors.</li>
+            <li>📊 <strong>Plan ahead with our <a href="/guides/uk-crypto-tax" style="color: #6366f1; text-decoration: underline;">UK Crypto Tax Guide</a> →</strong> — avoid surprises at tax season.</li>
+          </ul>
+        </section>
+
+        <!-- Frequently Asked Questions -->
+        <section>
+          <app-faq
+            title="Frequently Asked Questions"
+            description="Get answers to the most common questions about crypto security and risks"
+            [items]="allFAQs">
+          </app-faq>
+
+          <app-pro-tip text="Always verify information from multiple sources and stay updated on the latest security practices. The crypto landscape evolves quickly."></app-pro-tip>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Crypto Security Guide"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+
+      <app-sticky-cta-banner
+        title="Secure Your Crypto"
+        description="Protect your investments with proper security practices"
+        ctaText="Learn Security Basics"
+        ctaLink="/guides/security-fundamentals">
+      </app-sticky-cta-banner>
+    </aside>
+
+  </div>
+</div>

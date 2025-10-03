@@ -1,0 +1,154 @@
+@import 'variables';
+@import 'mixins';
+
+// Control Panel
+.control-panel {
+  padding: $spacing-xl 0;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border-light;
+
+  @include mobile-tablet {
+    padding: $spacing-lg 0;
+  }
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $spacing-xl;
+
+  @include mobile-tablet {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+// Filter Chips
+.filter-chips {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+
+  @include mobile-tablet {
+    gap: 6px;
+  }
+}
+
+.filter-chip {
+  background: $color-bg;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-xl;
+  padding: $spacing-xs $spacing-md;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: $color-text-secondary;
+  white-space: nowrap;
+  min-width: 78px;
+  text-align: center;
+
+  &:hover {
+    background: $color-bg-light;
+    border-color: $color-border-dark;
+  }
+
+  &.active {
+    background: $color-text;
+    border-color: $color-text;
+    color: white;
+  }
+
+  &:focus-visible {
+    @include focus-ring();
+  }
+
+  @include mobile {
+    padding: 6px $spacing-sm;
+    font-size: 13px;
+    min-width: 60px;
+  }
+}
+
+// Search & Sort
+.search-sort {
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+
+  @include mobile-tablet {
+    width: 100%;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.search-input,
+.sort-select {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius;
+  font-size: 14px;
+  background: $color-bg;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.search-input {
+  width: 280px;
+
+  @include mobile-tablet {
+    width: 100%;
+  }
+}
+
+.sort-select {
+  cursor: pointer;
+  min-width: 120px;
+
+  @include mobile-tablet {
+    width: 100%;
+  }
+}
+
+// Filter Status
+.filter-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border-light;
+  font-size: 14px;
+  color: $color-text-secondary;
+
+  @include mobile-tablet {
+    flex-direction: column;
+    gap: $spacing-xs;
+    align-items: flex-start;
+  }
+}
+
+.clear-filters {
+  background: none;
+  border: none;
+  color: $color-primary;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  padding: 0;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+}

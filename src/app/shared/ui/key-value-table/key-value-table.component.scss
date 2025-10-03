@@ -1,0 +1,100 @@
+@import 'variables';
+@import 'mixins';
+
+.key-value-table {
+  background: $color-bg;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $shadow;
+}
+
+.table-header {
+  background-color: $color-bg-light;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.table-title {
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semi-bold;
+  color: $color-text;
+  line-height: 1.5;
+}
+
+.table-body {
+  padding: 0;
+}
+
+.table-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  transition: background-color 0.2s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: $color-bg-light;
+  }
+}
+
+.table-key {
+  flex: 1;
+  font-size: 14px;
+  font-weight: $font-weight-regular;
+  color: $color-text-secondary;
+  line-height: 1.5;
+}
+
+.table-value {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+  line-height: 1.5;
+  text-align: right;
+  margin-left: $spacing-md;
+
+  a {
+    color: $color-warning;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@include mobile {
+  .table-header {
+    padding: 14px $spacing-md;
+  }
+
+  .table-title {
+    font-size: 15px;
+  }
+
+  .table-row {
+    padding: $spacing-sm $spacing-md;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-xs;
+  }
+
+  .table-key,
+  .table-value {
+    font-size: 13px;
+  }
+
+  .table-value {
+    text-align: left;
+    margin-left: 0;
+  }
+}

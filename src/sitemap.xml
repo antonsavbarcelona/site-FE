@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://tokenoversity.com/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Top Pages -->
+  <url>
+    <loc>https://tokenoversity.com/best-crypto-exchange-uk</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Exchange Reviews -->
+  <url>
+    <loc>https://tokenoversity.com/kraken-review</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Guides Hub -->
+  <url>
+    <loc>https://tokenoversity.com/guides</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- How-to Guides -->
+  <url>
+    <loc>https://tokenoversity.com/guides/how-to-deposit-kraken</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/guides/how-to-buy-eth-uk</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/guides/how-to-buy-btc-uk</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/guides/withdraw-hardware-wallet</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Coins Hub -->
+  <url>
+    <loc>https://tokenoversity.com/coins</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Coin Reviews -->
+  <url>
+    <loc>https://tokenoversity.com/coins/bitcoin-review</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/coins/ethereum-review</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/coins/solana-review</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Security Hub -->
+  <url>
+    <loc>https://tokenoversity.com/security</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Security Guides -->
+  <url>
+    <loc>https://tokenoversity.com/security/crypto-scams</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tokenoversity.com/security/uk-crypto-tax-basics</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Learn Hub -->
+  <url>
+    <loc>https://tokenoversity.com/learn</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,212 @@
+// ================================
+// GLOBAL LAYOUT SYSTEM
+// ================================
+
+// App Shell - основная структура приложения
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+// ================================
+// CONTAINER SYSTEM
+// ================================
+
+// Основной контейнер
+.container {
+  width: 100%;
+  max-width: $container-desktop;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-md;
+  padding-right: $spacing-md;
+
+  @include mobile {
+    padding-left: $spacing-md;
+    padding-right: $spacing-md;
+  }
+}
+
+// Узкий контейнер для текстового контента
+.container-narrow {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-md;
+  padding-right: $spacing-md;
+
+  @include mobile {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+  }
+}
+
+// Широкий контейнер
+.container-wide {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-md;
+  padding-right: $spacing-md;
+
+  @include mobile {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+  }
+}
+
+// ================================
+// GRID LAYOUTS
+// ================================
+
+// Layout с сайдбаром
+.layout-sidebar {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 3rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  @include mobile-tablet {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+
+  // Главная колонка должна уметь сжиматься
+  > *:first-child {
+    min-width: 0;
+  }
+}
+
+// Две колонки
+.layout-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+// Три колонки
+.layout-three-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @include mobile-tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+// ================================
+// SPACING UTILITIES
+// ================================
+
+// Вертикальные отступы между элементами
+.content-spacing {
+  > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+.content-spacing-large {
+  > * + * {
+    margin-top: 3rem;
+  }
+}
+
+// ================================
+// PAGE LAYOUTS
+// ================================
+
+// Базовый layout страницы
+.page-layout {
+  padding: 2rem 0;
+
+  @include mobile {
+    padding: 1rem 0;
+  }
+}
+
+.page-header {
+  margin-bottom: 3rem;
+
+  @include mobile {
+    margin-bottom: 2rem;
+  }
+}
+
+// ================================
+// ARTICLE CONTENT
+// ================================
+
+// Стили для контента статей (параграфы, заголовки, списки)
+.article-content {
+  // Параграфы
+  p {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Заголовки
+  h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  // Списки
+  ul, ol {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+  }
+
+  // Изображения
+  img {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    height: auto;
+  }
+}

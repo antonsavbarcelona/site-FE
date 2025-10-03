@@ -1,0 +1,53 @@
+<!-- Bitcoin Review 2025 - Refactored with innerHTML -->
+
+<!-- Mobile TOC -->
+@if (isMobile()) {
+  <app-table-of-contents
+    title="Bitcoin Review Guide 2025"
+    contentSelector=".article-content"
+    [showMobile]="true">
+  </app-table-of-contents>
+}
+
+<div class="page-layout">
+  <div class="layout-sidebar">
+
+    <!-- Main контент -->
+    <main class="article-content-wrapper">
+      
+      <!-- Hero секция -->
+      <div class="hero-section hero-banner">
+        <div class="hero-content">
+          <div class="article-meta">
+            <span class="category">{{ article.category }}</span>
+            <span class="date">{{ article.date }}</span>
+          </div>
+          <h1 class="page-title">{{ article.title }}</h1>
+          <div class="author-info">
+            <span class="author">By {{ article.author }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Content через innerHTML -->
+      <div class="article-content content-spacing">
+        
+        <!-- Рендерим каждый блок контента через innerHTML -->
+        @for (block of contentBlocks; track $index) {
+          <div [innerHTML]="block.html"></div>
+        }
+        
+      </div>
+    </main>
+
+    <!-- Desktop сайдбар -->
+    <aside class="sidebar sidebar-hidden-mobile">
+      <app-table-of-contents
+        title="Bitcoin Review Guide 2025"
+        contentSelector=".article-content"
+        [showMobile]="false">
+      </app-table-of-contents>
+    </aside>
+
+  </div>
+</div>
