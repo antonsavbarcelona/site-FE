@@ -72,11 +72,9 @@
                 },
                 "fonts": true
               },
-              "buildOptimizer": true,
               "sourceMap": false,
               "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
