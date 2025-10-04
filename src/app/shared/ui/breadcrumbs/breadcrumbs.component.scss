@@ -1,0 +1,62 @@
+@import 'variables';
+
+.breadcrumbs {
+  padding: 20px 0 12px;
+
+  @media (max-width: 768px) {
+    padding: 16px 0 8px;
+  }
+}
+
+.breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    gap: 10px;
+  }
+}
+
+.breadcrumbs-link {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.breadcrumbs-current {
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumbs-separator {
+  color: #d1d5db;
+  user-select: none;
+  font-size: 14px;
+}
+
+.breadcrumbs-icon {
+  display: none; // Hide icons for minimal design
+}

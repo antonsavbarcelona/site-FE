@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       title: 'Best crypto exchange for the UK',
       accent: true
     },
-    { label: 'Learn', href: '/learn', active: false },
+    // { label: 'Learn', href: '/learn', active: false },
     { label: 'Guides', href: '/guides', active: false },
     { label: 'Coins', href: '/coins', active: false },
     { label: 'Security', href: '/security', active: false }

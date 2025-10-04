@@ -157,6 +157,90 @@
 // ARTICLE CONTENT
 // ================================
 
+// Hero Section для статей
+.hero-section {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  @include mobile-tablet {
+    min-height: 320px;
+  }
+
+  @include mobile {
+    min-height: 280px;
+  }
+
+  &.hero-banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 2;
+
+    @include mobile-tablet {
+      padding: 2rem 1.5rem;
+    }
+
+    @include mobile {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+
+    .category {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .date {
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+    color: #fff;
+
+    @include mobile-tablet {
+      font-size: 2rem;
+    }
+
+    @include mobile {
+      font-size: 1.75rem;
+    }
+  }
+
+  .author-info {
+    .author {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+  }
+}
+
 // Стили для контента статей (параграфы, заголовки, списки)
 .article-content {
   // Параграфы

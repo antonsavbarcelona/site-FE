@@ -68,7 +68,7 @@ export class SecurityComponent {
       icon: '🛡️',
       label: 'GUIDE',
       theme: 'light',
-      link: '/security/crypto-scams',
+      link: '/security/crypto-risks',
       buttonText: 'Read Guide',
       teaser: 'Red flags, fake support, phishing and "too-good-to-be-true" yields — how to verify links, wallets and apps.',
       imageUrl: '/images/home/security-avoid-scams-article-preview.webp',
@@ -84,7 +84,7 @@ export class SecurityComponent {
       icon: '💼',
       label: 'GUIDE',
       theme: 'light',
-      link: '/security/uk-crypto-tax-basics',
+      link: '/security/uk-crypto-tax',
       buttonText: 'Read Guide',
       teaser: 'Income vs capital gains, HMRC rules, allowances, record-keeping and simple examples for beginners.',
       imageUrl: '/images/home/security-taxes-explaining-article-preview.webp',
@@ -99,13 +99,13 @@ export class SecurityComponent {
         title: 'Avoid Common Crypto Scams',
         category: 'Security',
         date: 'Jun 30, 2025',
-        link: '/security/crypto-scams'
+        link: '/security/crypto-risks'
       },
       {
         title: 'UK Crypto Tax Basics',
         category: 'Taxes',
         date: 'Jun 30, 2025',
-        link: '/security/uk-crypto-tax-basics'
+        link: '/security/uk-crypto-tax'
       },
       {
         title: 'Hardware Wallet Setup',

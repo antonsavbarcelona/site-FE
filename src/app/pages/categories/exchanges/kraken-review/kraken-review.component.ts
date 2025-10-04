@@ -1,4 +1,5 @@
 import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../shared/ui/tldr/tldr.component';
 import {
   KeyValueTableComponent,
@@ -13,6 +14,8 @@ import {FaqComponent, FaqItem} from '../../../../shared/ui/faq/faq.component';
 import {TableOfContentsComponent} from '../../../../shared/ui/table-of-contents/table-of-contents.component';
 import {ProsItem, ProsListComponent} from '../../../../shared/ui/pros-list';
 import {BulletListComponent} from '../../../../shared/ui/bullet-list';
+import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../shared/ui/breadcrumbs/breadcrumbs.component';
+import {generateBreadcrumbs} from '../../../../shared/utils/breadcrumbs.utils';
 
 
 @Component({
@@ -29,16 +32,23 @@ import {BulletListComponent} from '../../../../shared/ui/bullet-list';
     TableOfContentsComponent,
     ProsListComponent,
     BulletListComponent,
-
+    BreadcrumbsComponent
   ]
 })
 export class KrakenReviewComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [];
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.checkMobile();
+    this.breadcrumbs = generateBreadcrumbs(
+      this.router.url,
+      'Kraken UK Review 2025'
+    );
   }
 
   @HostListener('window:resize')

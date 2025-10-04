@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
@@ -13,6 +15,8 @@ import {FaqComponent, FaqItem} from '../../../../../shared/ui/faq/faq.component'
 import {ErrorListComponent} from '../../../../../shared/ui/error-list/error-list.component';
 import {ProsConsItem, ProsConsTableComponent} from '../../../../../shared/ui/pros-cons-table/pros-cons-table.component';
 import {ChecklistComponent} from '../../../../../shared/ui/checklist/checklist.component';
+import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
+import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 
 
 @Component({
@@ -32,10 +36,22 @@ import {ChecklistComponent} from '../../../../../shared/ui/checklist/checklist.c
     FaqComponent,
     ErrorListComponent,
     ProsConsTableComponent,
-    ChecklistComponent
+    ChecklistComponent,
+    BreadcrumbsComponent
   ]
 })
-export class CryptoRisksSecurityComponent {
+export class CryptoRisksSecurityComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Generate breadcrumbs with custom article title
+    this.breadcrumbs = generateBreadcrumbs(
+      this.router.url,
+      'Crypto Risks & Security Hub'
+    );
+  }
 
   // Основные данные для компонентов
   quickSummary = [

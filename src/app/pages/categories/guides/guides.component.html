@@ -2,16 +2,18 @@
 <app-category-hero [data]="heroData"></app-category-hero>
 
 <!-- Content Control Panel -->
-<app-category-controls
-  [config]="controlsConfig"
-  [searchQuery]="searchQuery"
-  [currentFilter]="currentFilter"
-  [currentSort]="currentSort"
-  (filterChange)="onFilterChange($event)"
-  (searchChange)="onSearchChange($event)"
-  (sortChange)="onSortChange($event)"
-  (clearFilters)="onClearFilters()">
-</app-category-controls>
+@if (false) {
+  <app-category-controls
+    [config]="controlsConfig"
+    [searchQuery]="searchQuery"
+    [currentFilter]="currentFilter"
+    [currentSort]="currentSort"
+    (filterChange)="onFilterChange($event)"
+    (searchChange)="onSearchChange($event)"
+    (sortChange)="onSortChange($event)"
+    (clearFilters)="onClearFilters()">
+  </app-category-controls>
+}
 
 <!-- Main Content with Sidebar -->
 <div class="content-with-sidebar">
@@ -28,8 +30,10 @@
     </div>
 
     <!-- Sidebar -->
-    <div class="sidebar-content">
-      <app-category-sidebar [data]="sidebarData"></app-category-sidebar>
-    </div>
+    @if (false) {
+      <div class="sidebar-content">
+        <app-category-sidebar [data]="sidebarData"></app-category-sidebar>
+      </div>
+    }
   </div>
 </div>

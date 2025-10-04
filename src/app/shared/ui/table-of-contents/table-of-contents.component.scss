@@ -22,8 +22,9 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: sticky;
-  top: 100px;
+  top: 90px; // Отступ от sticky header
   height: fit-content;
+  max-height: calc(100vh - 110px); // Максимальная высота с учетом header
   // Показываем только на desktop
   @media (max-width: 1024px) {
     display: none;

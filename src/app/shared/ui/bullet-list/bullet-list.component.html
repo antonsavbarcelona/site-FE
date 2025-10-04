@@ -1,5 +1,5 @@
 <ul class="bullet-list">
   @for (item of items(); track $index) {
-    <li class="bullet-item">{{ item }}</li>
+    <li class="bullet-item" [innerHTML]="item"></li>
   }
 </ul>

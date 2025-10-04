@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
@@ -17,6 +18,8 @@ import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-conten
 import {StickyCTABannerComponent} from '../../../../../shared/ui/sticky-cta-banner/sticky-cta-banner.component';
 import {ChecklistComponent} from '../../../../../shared/ui/checklist/checklist.component';
 import {ErrorListComponent} from '../../../../../shared/ui/error-list/error-list.component';
+import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
+import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 
 
 @Component({
@@ -36,10 +39,21 @@ import {ErrorListComponent} from '../../../../../shared/ui/error-list/error-list
     TableOfContentsComponent,
     StickyCTABannerComponent,
     ChecklistComponent,
-    ErrorListComponent
+    ErrorListComponent,
+    BreadcrumbsComponent
   ]
 })
-export class UkCryptoTaxComponent {
+export class UkCryptoTaxComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.breadcrumbs = generateBreadcrumbs(
+      this.router.url,
+      'UK Crypto Taxes — 2025 Basics'
+    );
+  }
 
   // Quick Overview данные для TLDR компонента
   quickOverview = [
