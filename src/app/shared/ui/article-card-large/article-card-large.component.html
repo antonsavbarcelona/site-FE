@@ -30,13 +30,14 @@
         <app-button-primary
           [text]="article().primaryCta"
           [link]="article().primaryCtaLink"
-          [external]="true"
+          [external]="article().primaryCtaExternal || false"
           [attr.aria-label]="getAriaLabel('primary')">
         </app-button-primary>
 
         <app-button-secondary
           [text]="article().secondaryCta"
-          [link]="article().secondaryCtaLink || article().routerLink">
+          [link]="article().secondaryCtaLink || article().routerLink"
+          [external]="article().secondaryCtaExternal || false">
         </app-button-secondary>
       </div>
     </div>

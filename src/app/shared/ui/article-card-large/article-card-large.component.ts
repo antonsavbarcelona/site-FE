@@ -20,6 +20,8 @@ export interface ArticleCardLargeData {
   secondaryCtaLink?: string;
   gradient?: string;
   icon?: string;
+  primaryCtaExternal?: boolean;
+  secondaryCtaExternal?: boolean;
 }
 
 @Component({

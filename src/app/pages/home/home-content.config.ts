@@ -108,6 +108,7 @@ export const testLargeArticles = [
     routerLink: '/exchanges/kraken-review',
     primaryCta: 'Open Kraken Account →',
     primaryCtaLink: 'https://r.kraken.com/signup?utm_source=tokenoversity&utm_medium=affiliate&utm_campaign=home_block&utm_content=review_btn',
+    primaryCtaExternal: true,
     secondaryCta: 'Read full review',
     secondaryCtaLink: '/exchanges/kraken-review',
     imageUrl: '/images/kraken/kraken-preview-card.webp',
@@ -123,7 +124,8 @@ export const testLargeArticles = [
     primaryCta: 'See Best Exchange →',
     primaryCtaLink: '/best-crypto-exchange-uk',
     secondaryCta: 'Start on Kraken →',
-    secondaryCtaLink: 'https://r.kraken.com/signup?utm_source=tokenoversity&utm_medium=affiliate&utm_campaign=home_top_pick&utm_content=card_btn',
+    secondaryCtaLink: 'https://r.kraken.com/signup',
+    secondaryCtaExternal: true,
     imageUrl: '/images/home/best-exchange-card-preview.webp',
     icon: '🏆'
   }
@@ -143,7 +145,8 @@ export const newsData = {
     routerLink: '/guides/how-to-deposit-kraken',
     affiliateLink: 'https://r.kraken.com/signup?utm_source=tokenoversity&utm_medium=affiliate&utm_campaign=home_howto&utm_content=deposit_tile_btn',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    icon: '₿'
+    icon: '₿',
+    buttonText: 'See the steps (not active)'
   },
   regularItems: [
     {
@@ -156,13 +159,15 @@ export const newsData = {
       title: 'How to Buy BTC (UK)',
       category: 'Guide',
       date: 'Jun 29, 2025',
-      routerLink: '/guides/how-to-buy-btc-uk'
+      routerLink: '/guides/how-to-buy-btc-uk',
+      buttonText: 'Read Guide (not active)'
     },
     {
       title: 'Withdraw to a Hardware Wallet',
       category: 'Guide',
       date: 'Jun 29, 2025',
-      routerLink: '/guides/withdraw-hardware-wallet'
+      routerLink: '/guides/withdraw-hardware-wallet',
+      buttonText: 'Read Guide (not active)'
     }
   ]
 };
@@ -208,7 +213,7 @@ export const cryptoKnowledgeReviews = [
     label: 'REVIEW',
     theme: 'light' as const,
     link: '/coins/solana-review',
-    buttonText: 'Read Review',
+    buttonText: 'Read Review (not active)',
     imageUrl: '/images/home/SOL-card-article-preview.webp'
   }
 ];

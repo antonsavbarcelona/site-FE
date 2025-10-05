@@ -12,12 +12,13 @@
             [link]="data().primaryCta.link"
             [attr.aria-label]="'Navigate to ' + data().primaryCta.text">
           </app-button-primary>
-          <app-button-primary
-            [text]="data().secondaryCta.text"
-            [link]="data().secondaryCta.link"
-            [external]="true"
-            [attr.aria-label]="'Navigate to ' + data().secondaryCta.text">
-          </app-button-primary>
+          @if (data().secondaryCta) {
+            <app-button-primary
+              [text]="data().secondaryCta!.text"
+              [link]="data().secondaryCta!.link"
+              [attr.aria-label]="'Navigate to ' + data().secondaryCta!.text">
+            </app-button-primary>
+          }
         </div>
       </div>
     </div>

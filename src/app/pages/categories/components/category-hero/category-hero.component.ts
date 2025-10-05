@@ -11,7 +11,7 @@ export interface CategoryHeroData {
     text: string;
     link: string;
   };
-  secondaryCta: {
+  secondaryCta?: {
     text: string;
     link: string;
   };

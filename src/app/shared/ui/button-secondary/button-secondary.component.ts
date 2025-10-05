@@ -15,6 +15,7 @@ export class ButtonSecondaryComponent {
   color = input<'primary' | 'gray'>('primary');
   link = input<string>('#');
   external = input<boolean>(false);
+  target = input<'_blank' | '_self'>('_blank');
 
   buttonClass = computed(() =>
     `btn-secondary btn-secondary--${this.size()} btn-secondary--${this.variant()} btn-secondary--${this.color()}`

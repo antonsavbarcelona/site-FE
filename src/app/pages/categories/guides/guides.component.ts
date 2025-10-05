@@ -24,11 +24,11 @@ export class GuidesComponent {
     subtitle: 'Step-by-step tutorials for buying, trading, and managing cryptocurrency safely in the UK.',
     stats: '8 guides • Updated Jun 2025',
     primaryCta: {
-      text: 'Start with basics →',
+      text: 'Start with basics (not active) →',
       link: '/guides/basics'
     },
     secondaryCta: {
-      text: 'Browse all guides →',
+      text: 'Browse all guides (not active) →',
       link: '#feed'
     },
     backgroundColor: "url('/images/categories/guides/guides-hero.webp') center/cover no-repeat",
@@ -72,81 +72,6 @@ export class GuidesComponent {
       buttonText: 'Read Guide',
       teaser: 'Complete step-by-step guide to buying Ethereum safely in the UK using Kraken exchange.',
       coinTag: 'buying'
-    },
-    {
-      id: 2,
-      title: 'How to Buy BTC (UK)',
-      category: 'Buying Guide',
-      date: 'Jan 12, 2025',
-      readTime: '9–11 min read',
-      author: 'Crypto Team',
-      icon: '₿',
-      label: 'GUIDE',
-      theme: 'light',
-      link: '/guides/how-to-buy-btc-uk',
-      buttonText: 'Read Guide',
-      teaser: 'Your first Bitcoin purchase made simple — from account setup to secure storage.',
-      coinTag: 'buying'
-    },
-    {
-      id: 3,
-      title: 'How to Deposit on Kraken — Step‑by‑Step',
-      category: 'Exchange Guide',
-      date: 'Jan 10, 2025',
-      readTime: '5–7 min read',
-      author: 'Crypto Team',
-      icon: '💳',
-      label: 'GUIDE',
-      theme: 'light',
-      link: '/guides/how-to-deposit-kraken',
-      buttonText: 'Read Guide',
-      teaser: 'Fund your Kraken account safely — SEPA transfers, card deposits, and verification tips.',
-      coinTag: 'beginner'
-    },
-    {
-      id: 4,
-      title: 'Withdraw to a Hardware Wallet',
-      category: 'Security Guide',
-      date: 'Jan 8, 2025',
-      readTime: '7–9 min read',
-      author: 'Crypto Team',
-      icon: '🔐',
-      label: 'GUIDE',
-      theme: 'light',
-      link: '/guides/withdraw-hardware-wallet',
-      buttonText: 'Read Guide',
-      teaser: 'Move your crypto from exchanges to cold storage — Ledger and Trezor setup included.',
-      coinTag: 'security'
-    },
-    {
-      id: 5,
-      title: 'Setting Up 2FA for Crypto Accounts',
-      category: 'Security Guide',
-      date: 'Jan 5, 2025',
-      readTime: '6–8 min read',
-      author: 'Crypto Team',
-      icon: '🛡️',
-      label: 'GUIDE',
-      theme: 'light',
-      link: '/guides/setup-2fa-crypto',
-      buttonText: 'Read Guide',
-      teaser: 'Secure your exchange accounts with two-factor authentication — Google Authenticator and backup codes.',
-      coinTag: 'security'
-    },
-    {
-      id: 6,
-      title: 'Understanding Crypto Wallets',
-      category: 'Beginner Guide',
-      date: 'Jan 3, 2025',
-      readTime: '8–10 min read',
-      author: 'Crypto Team',
-      icon: '👛',
-      label: 'GUIDE',
-      theme: 'light',
-      link: '/guides/crypto-wallets-explained',
-      buttonText: 'Read Guide',
-      teaser: 'Hot vs cold wallets, private keys, and seed phrases — everything beginners need to know.',
-      coinTag: 'beginner'
     }
   ];
 

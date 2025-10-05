@@ -25,11 +25,11 @@ export class SecurityComponent {
     stats: '7 guides • Updated Jun 2025',
     primaryCta: {
       text: 'Security basics →',
-      link: '/security/basics'
+      link: '/security/crypto-risks'
     },
     secondaryCta: {
       text: 'Tax guide →',
-      link: '/security/taxes'
+      link: '/security/uk-crypto-tax'
     },
     backgroundColor: "url('/images/categories/security/security-hero.webp') center/cover no-repeat",
     useTextBackground: true

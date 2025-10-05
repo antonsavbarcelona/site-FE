@@ -24,11 +24,7 @@ export class CoinsComponent {
     stats: '3 reviews • Updated Jun 2025',
     primaryCta: {
       text: 'See Bitcoin review →',
-      link: '/coin/bitcoin'
-    },
-    secondaryCta: {
-      text: 'Browse all reviews →',
-      link: '#feed'
+      link: '/coins/bitcoin-review'
     },
     backgroundColor: "url('/images/categories/coins-reviews/coins-review-hero.webp') center/cover no-repeat",
     useTextBackground: true
@@ -66,7 +62,7 @@ export class CoinsComponent {
       icon: '₿',
       label: 'REVIEW',
       theme: 'light',
-      link: '/coin/bitcoin',
+      link: '/coins/bitcoin-review',
       buttonText: 'Read Review',
       imageUrl: '/images/home/BTC-card-article-preview.webp',
       teaser: 'Fundamentals, risks, and real-world use cases — written for UK investors.',
@@ -82,7 +78,7 @@ export class CoinsComponent {
       icon: 'Ξ',
       label: 'REVIEW',
       theme: 'light',
-      link: '/coin/ethereum',
+      link: '/coins/ethereum-review',
       buttonText: 'Read Review',
       imageUrl: '/images/home/ETH-card-article-preview.webp',
       teaser: 'Fundamentals, risks, and real-world use cases — written for UK investors.',
@@ -98,8 +94,8 @@ export class CoinsComponent {
       icon: '◎',
       label: 'REVIEW',
       theme: 'light',
-      link: '/coin/solana',
-      buttonText: 'Read Review',
+      link: '/coins/solana-review',
+      buttonText: 'Read Review (not active)',
       imageUrl: '/images/home/SOL-card-article-preview.webp',
       teaser: 'Fundamentals, risks, and real-world use cases — written for UK investors.',
       coinTag: 'solana'

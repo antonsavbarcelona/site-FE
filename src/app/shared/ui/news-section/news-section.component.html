@@ -46,7 +46,7 @@
 
               <div class="cta-buttons">
                 <app-button-primary
-                  text="See the steps"
+                  [text]="data().featuredItem.buttonText || 'See the steps'"
                   [link]="data().featuredItem.routerLink"
                   (click)="$event.stopPropagation()">
                 </app-button-primary>
@@ -84,7 +84,7 @@
                   <span class="article-date">{{ item.date }}</span>
                 </div>
               </div>
-              <app-button-primary text="Read Guide" size="small">
+              <app-button-primary [text]="item.buttonText || 'Read Guide'" size="small">
               </app-button-primary>
             </a>
           </div>

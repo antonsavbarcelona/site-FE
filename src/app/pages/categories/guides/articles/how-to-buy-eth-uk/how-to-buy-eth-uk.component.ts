@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-contents/table-of-contents.component';
 import {StickyCTABannerComponent} from '../../../../../shared/ui/sticky-cta-banner/sticky-cta-banner.component';
@@ -10,6 +10,8 @@ import {
 import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
 import {ProTipComponent} from '../../../../../shared/ui/pro-tip/pro-tip.component';
 import { KRAKEN_URL } from '../../../../../shared/kraken-url';
+import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
+import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 
 
 @Component({
@@ -24,10 +26,21 @@ import { KRAKEN_URL } from '../../../../../shared/kraken-url';
     StickyCTABannerComponent,
     MaterialComparisonTableComponent,
     BulletListComponent,
-    ProTipComponent
+    ProTipComponent,
+    BreadcrumbsComponent
   ]
 })
-export class HowToBuyEthUkComponent {
+export class HowToBuyEthUkComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.breadcrumbs = generateBreadcrumbs(
+      this.router.url,
+      'How to Buy ETH in the UK — Kraken Walkthrough (2025)'
+    );
+  }
 
   quickVerdict = [
     'For UK investors in 2025, Kraken stands out as the top choice to buy ETH. FCA-authorised, secure, and offering practical GBP rails (Faster Payments and CHAPS), Kraken ensures a low-friction, reliable path from pounds to Ether.',

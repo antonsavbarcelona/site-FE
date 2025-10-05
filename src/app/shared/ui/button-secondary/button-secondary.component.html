@@ -1,7 +1,7 @@
 @if (external()) {
   <a [href]="link()"
      [class]="buttonClass()"
-     target="_blank"
+     [target]="target()"
      rel="noopener noreferrer">
     {{ text() }}
   </a>

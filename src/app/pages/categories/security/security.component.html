@@ -3,7 +3,7 @@
 
 <!-- Content Control Panel -->
 
-@if (false) {
+@if (true) {
   <app-category-controls
     [config]="controlsConfig"
     [searchQuery]="searchQuery"
@@ -19,7 +19,7 @@
 
 <!-- Main Content with Sidebar -->
 <div class="content-with-sidebar">
-  <div class="content-grid no-sidebar">
+  <div class="content-grid">
     <!-- Main Content -->
     <div class="main-content">
       <app-category-grid
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Sidebar -->
-    @if (false) {
+    @if (true) {
       <div class="sidebar-content">
         <app-category-sidebar [data]="sidebarData"></app-category-sidebar>
       </div>

@@ -1,4 +1,5 @@
 import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {
   KeyValueTableComponent,
@@ -12,6 +13,8 @@ import {
 import {FaqComponent, FaqItem} from '../../../../../shared/ui/faq/faq.component';
 import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-contents/table-of-contents.component';
 import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
+import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
+import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 
 @Component({
   selector: 'app-bitcoin-origin-new',
@@ -25,16 +28,24 @@ import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
     MaterialComparisonTableComponent,
     FaqComponent,
     TableOfContentsComponent,
-    BulletListComponent
+    BulletListComponent,
+    BreadcrumbsComponent
   ]
 })
 export class BitcoinOriginNewComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [];
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.checkMobile();
+    this.breadcrumbs = generateBreadcrumbs(
+      this.router.url,
+      'Bitcoin Review: The Original Cryptocurrency'
+    );
   }
 
   @HostListener('window:resize')
@@ -252,6 +263,4 @@ export class BitcoinOriginNewComponent implements OnInit {
     'Are uncomfortable with technology complexity',
     'Prefer traditional regulated investments exclusively'
   ];
-
-  constructor() {}
 }
