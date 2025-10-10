@@ -71,6 +71,8 @@
 
 // Featured Article
 .featured-article {
+  position: relative;
+
   .article-link {
     display: block;
     text-decoration: none;
@@ -78,6 +80,7 @@
     border-radius: $border-radius-xl;
     transition: transform 0.3s ease;
     box-shadow: $shadow-lg;
+    cursor: pointer;
 
     &:hover {
       transform: translateY(-4px);
@@ -185,6 +188,13 @@
     50% {
       transform: translateY(-10px) rotate(5deg);
     }
+  }
+
+  // Кнопки и ссылки внутри карточки должны быть кликабельны
+  .cta-buttons,
+  .see-all-link {
+    position: relative;
+    z-index: 10;
   }
 }
 
@@ -309,16 +319,15 @@
     border-bottom: 1px solid $color-border-light;
   }
 
-  .article-link {
+  .article-link-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: $spacing-md 0;
-    text-decoration: none;
-    color: inherit;
     transition: all 0.2s ease;
     width: 100%;
     min-width: 0;
+    gap: $spacing-sm;
 
     &:hover {
       background: rgba($color-primary, 0.04);
@@ -328,12 +337,23 @@
     }
 
     @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-xs;
+
       &:hover {
         padding-left: 0;
         padding-right: 0;
         background: none;
       }
     }
+  }
+
+  .article-link {
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
 
     &:focus-visible {
       @include focus-ring();

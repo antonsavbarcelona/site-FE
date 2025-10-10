@@ -36,7 +36,7 @@
 <div class="skeleton-grid">
   <div class="cards-grid">
     <!-- 6 skeleton cards -->
-    <div class="skeleton-card" *ngFor="let item of [1,2,3,4,5,6]">
+    <div class="skeleton-card" @for (item of skeletonItems; track item)>
       <div class="skeleton-image"></div>
       <div class="card-content">
         <div class="skeleton-badge"></div>

@@ -11,7 +11,7 @@
   <div class="news-grid" [class.featured-right]="data().layout === 'featured-right'">
     <!-- Featured Article (Large) -->
     <div class="featured-article">
-      <a [routerLink]="data().featuredItem.routerLink" class="article-link" aria-label="Kraken deposit guide cover">
+      <div class="article-card" (click)="navigateToFeatured($event)">
         <div class="article-image" [style.background]="data().featuredItem.imageUrl ? 'url(' + data().featuredItem.imageUrl + ') center/cover' : (data().featuredItem.gradient || 'linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%)')">
           <!-- Декоративные элементы -->
           <div class="article-coin-icon">₿</div>
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
 
     <!-- Regular Articles (Small) -->
@@ -75,18 +75,23 @@
       <div class="articles-list">
         @for (item of data().regularItems; track item.title) {
           <div class="regular-article">
-            <a [routerLink]="item.routerLink" class="article-link">
-              <div class="article-content">
-                <h4 class="article-title">{{ item.title }}</h4>
-                <div class="article-meta">
-                  <span class="article-category-chip">{{ item.category }}</span>
-                  <span class="meta-separator"> • </span>
-                  <span class="article-date">{{ item.date }}</span>
+            <div class="article-link-wrapper">
+              <a [routerLink]="item.routerLink" class="article-link">
+                <div class="article-content">
+                  <h4 class="article-title">{{ item.title }}</h4>
+                  <div class="article-meta">
+                    <span class="article-category-chip">{{ item.category }}</span>
+                    <span class="meta-separator"> • </span>
+                    <span class="article-date">{{ item.date }}</span>
+                  </div>
                 </div>
-              </div>
-              <app-button-primary [text]="item.buttonText || 'Read Guide'" size="small">
+              </a>
+              <app-button-primary
+                [text]="item.buttonText || 'Read Guide'"
+                [link]="item.routerLink"
+                size="small">
               </app-button-primary>
-            </a>
+            </div>
           </div>
         }
       </div>

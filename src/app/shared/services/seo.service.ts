@@ -1,6 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 export interface SeoConfig {
   title: string;
@@ -32,7 +32,8 @@ export class SeoService {
   constructor(
     private meta: Meta,
     private title: Title,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   /**
@@ -90,18 +91,18 @@ export class SeoService {
    */
   addJsonLd(schema: JsonLdSchema | JsonLdSchema[]): void {
     const schemas = Array.isArray(schema) ? schema : [schema];
-    
+
     schemas.forEach((s, index) => {
       const scriptId = `json-ld-${index}`;
       let script = this.document.getElementById(scriptId) as HTMLScriptElement;
-      
+
       if (!script) {
         script = this.document.createElement('script');
         script.id = scriptId;
         script.type = 'application/ld+json';
         this.document.head.appendChild(script);
       }
-      
+
       script.textContent = JSON.stringify(s);
     });
   }
@@ -119,13 +120,13 @@ export class SeoService {
    */
   private updateCanonical(url: string): void {
     let link: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
-    
+
     if (!link) {
       link = this.document.createElement('link');
       link.setAttribute('rel', 'canonical');
       this.document.head.appendChild(link);
     }
-    
+
     link.setAttribute('href', url);
   }
 

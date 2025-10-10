@@ -1,5 +1,5 @@
-import { Component, input, OnInit, OnDestroy, signal, HostListener } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, input, OnInit, OnDestroy, signal, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface TocItem {
   id: string;
@@ -26,9 +26,15 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
   protected readonly currentActiveTitle = signal<string>('');
   protected readonly isMobileDevice = signal<boolean>(false);
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   private observer?: IntersectionObserver;
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return; // Не выполняем на сервере
+    }
+
     this.checkMobileDevice();
 
     // Перемещаем мобильную TOC в header-container
@@ -52,6 +58,10 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
   // Проверяем размер экрана
   @HostListener('window:resize')
   protected checkMobileDevice(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const wasMobile = this.isMobileDevice();
     this.isMobileDevice.set(window.innerWidth < 1025);
 
@@ -67,6 +77,8 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
   // Перемещаем мобильную TOC в header container
   private moveTocToHeaderContainer(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     setTimeout(() => {
       const mobileToc = document.querySelector('.mobile-toc') as HTMLElement;
       const headerSlot = document.querySelector('#mobile-toc-slot') as HTMLElement;
@@ -79,6 +91,8 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
   // Возвращаем TOC обратно
   private moveTocBackFromHeader(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const mobileToc = document.querySelector('.mobile-toc') as HTMLElement;
     const headerSlot = document.querySelector('#mobile-toc-slot') as HTMLElement;
 
@@ -101,6 +115,8 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
   // Генерируем элементы TOC из заголовков в статье
   private generateTocItems(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const contentElement = document.querySelector(this.contentSelector());
     if (!contentElement) return;
 
