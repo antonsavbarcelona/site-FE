@@ -66,7 +66,7 @@ module.exports = {
         'crawlable-anchors': 'error',
         'robots-txt': 'warn',
         'canonical': 'error',
-        'hreflang': 'off',
+        'hreflang': 'error',
         'font-size': 'error',
         'tap-targets': 'error',
 

@@ -53,6 +53,9 @@ export class SeoService {
     const canonicalUrl = config.url || this.baseUrl;
     this.updateCanonical(canonicalUrl);
 
+    // hreflang tags
+    this.updateHreflang(canonicalUrl);
+
     // Open Graph tags
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({ property: 'og:description', content: config.description });
@@ -128,6 +131,30 @@ export class SeoService {
     }
 
     link.setAttribute('href', url);
+  }
+
+  /**
+   * Обновляет hreflang теги для международной SEO
+   * Добавляет en-GB для UK аудитории и x-default для остальных
+   */
+  private updateHreflang(url: string): void {
+    // Удаляем существующие hreflang ссылки
+    const existingLinks = this.document.querySelectorAll('link[rel="alternate"][hreflang]');
+    existingLinks.forEach(link => link.remove());
+
+    // Добавляем en-GB (английский для Великобритании)
+    const linkGB = this.document.createElement('link');
+    linkGB.setAttribute('rel', 'alternate');
+    linkGB.setAttribute('hreflang', 'en-GB');
+    linkGB.setAttribute('href', url);
+    this.document.head.appendChild(linkGB);
+
+    // Добавляем x-default (дефолтная версия для всех остальных регионов)
+    const linkDefault = this.document.createElement('link');
+    linkDefault.setAttribute('rel', 'alternate');
+    linkDefault.setAttribute('hreflang', 'x-default');
+    linkDefault.setAttribute('href', url);
+    this.document.head.appendChild(linkDefault);
   }
 
   /**
