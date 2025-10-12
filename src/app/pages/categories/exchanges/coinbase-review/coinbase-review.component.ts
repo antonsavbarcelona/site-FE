@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
 import {TldrComponent} from '../../../../shared/ui/tldr/tldr.component';
 import {
   KeyValueTableComponent,
@@ -12,6 +12,8 @@ import {
 import {FaqComponent} from '../../../../shared/ui/faq/faq.component';
 import {TableOfContentsComponent} from '../../../../shared/ui/table-of-contents/table-of-contents.component';
 import {ProsListComponent} from '../../../../shared/ui/pros-list';
+import {SeoService} from '../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -29,13 +31,32 @@ import {ProsListComponent} from '../../../../shared/ui/pros-list';
     ProsListComponent
   ]
 })
-export class CoinbaseReviewComponent implements OnInit {
+export class CoinbaseReviewComponent implements OnInit, OnDestroy {
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
+  constructor(private seo: SeoService) {}
+
   ngOnInit(): void {
     this.checkMobile();
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'Coinbase UK Review 2025: Fees, FCA Regulation & Safety',
+      description: 'Comprehensive Coinbase UK review: FCA regulation, fees, payment methods, security. Independent analysis for UK crypto investors.',
+      keywords: 'coinbase uk, coinbase review, coinbase fees, FCA regulated, crypto exchange uk, buy bitcoin uk',
+      image: '/images/coinbase-review-hero.webp',
+      url: '/exchanges/coinbase-review',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Exchange Review'
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   @HostListener('window:resize')

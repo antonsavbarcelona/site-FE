@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-contents/table-of-contents.component';
@@ -12,6 +12,8 @@ import {ProTipComponent} from '../../../../../shared/ui/pro-tip/pro-tip.componen
 import { KRAKEN_URL } from '../../../../../shared/kraken-url';
 import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
+import {SeoService} from '../../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -30,16 +32,37 @@ import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils
     BreadcrumbsComponent
   ]
 })
-export class HowToBuyEthUkComponent implements OnInit {
+export class HowToBuyEthUkComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private seo: SeoService
+  ) {}
 
   ngOnInit() {
     this.breadcrumbs = generateBreadcrumbs(
       this.router.url,
       'How to Buy ETH in the UK — Kraken Walkthrough (2025)'
     );
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'How to Buy ETH in the UK — Complete Guide 2025',
+      description: 'Step-by-step guide to buying Ethereum in the UK using Kraken. FCA-regulated, secure, with GBP deposits and staking options.',
+      keywords: 'how to buy ethereum uk, buy eth uk, ethereum guide, kraken eth, ethereum staking uk, FCA regulated',
+      image: '/images/how-to-buy-ethereum/how-to-buy-eth-hero.webp',
+      url: '/guides/how-to-buy-eth-uk',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Crypto Guide',
+      breadcrumbs: this.breadcrumbs
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   quickVerdict = [

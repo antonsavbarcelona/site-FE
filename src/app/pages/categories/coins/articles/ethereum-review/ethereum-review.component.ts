@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {
   KeyValueTableComponent,
@@ -12,6 +12,8 @@ import {
 import {FaqComponent, FaqItem} from '../../../../../shared/ui/faq/faq.component';
 import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-contents/table-of-contents.component';
 import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
+import {SeoService} from '../../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -29,13 +31,32 @@ import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
     BulletListComponent
   ]
 })
-export class EthereumReviewComponent implements OnInit {
+export class EthereumReviewComponent implements OnInit, OnDestroy {
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
+  constructor(private seo: SeoService) {}
+
   ngOnInit(): void {
     this.checkMobile();
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'What is Ethereum? — Ethereum Review 2025',
+      description: 'Comprehensive Ethereum review 2025: ETH staking, smart contracts, DeFi, and Layer-2 scaling. Independent analysis for UK investors.',
+      keywords: 'ethereum, ETH, ethereum review, ethereum staking, smart contracts, DeFi, Layer-2, proof of stake, EVM',
+      image: '/images/ethereum-review/eth-review-hero.webp',
+      url: '/coins/ethereum-review',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Cryptocurrency Review'
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   @HostListener('window:resize')
@@ -232,6 +253,4 @@ export class EthereumReviewComponent implements OnInit {
     '<strong>Shanghai/Capella upgrade:</strong> Enabled validator withdrawals',
     '<strong>Dencun/EIP-4844:</strong> Proto-danksharding which lowered Layer-2 data costs and improved user economics'
   ];
-
-  constructor() {}
 }

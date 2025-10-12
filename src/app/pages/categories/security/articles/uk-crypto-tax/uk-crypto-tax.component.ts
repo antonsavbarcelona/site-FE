@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -20,6 +20,8 @@ import {ChecklistComponent} from '../../../../../shared/ui/checklist/checklist.c
 import {ErrorListComponent} from '../../../../../shared/ui/error-list/error-list.component';
 import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
+import {SeoService} from '../../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -43,16 +45,37 @@ import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils
     BreadcrumbsComponent
   ]
 })
-export class UkCryptoTaxComponent implements OnInit {
+export class UkCryptoTaxComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private seo: SeoService
+  ) {}
 
   ngOnInit() {
     this.breadcrumbs = generateBreadcrumbs(
       this.router.url,
       'UK Crypto Taxes — 2025 Basics'
     );
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'UK Crypto Tax Guide 2025 — CGT, Income Tax & HMRC Rules',
+      description: 'Complete UK crypto tax guide 2025: Capital Gains Tax, Income Tax on staking, HMRC reporting, deadlines, and record-keeping.',
+      keywords: 'uk crypto tax, capital gains tax, staking tax, HMRC crypto, self assessment, crypto tax guide uk',
+      image: '/images/uk-crypto-tax/uk-tax-hero.webp',
+      url: '/security/uk-crypto-tax',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Tax Guide',
+      breadcrumbs: this.breadcrumbs
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   // Quick Overview данные для TLDR компонента

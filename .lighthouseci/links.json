@@ -1,0 +1,7 @@
+{
+  "http://localhost:4200/home": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760283010032-2756.report.html",
+  "http://localhost:4200/best-crypto-exchange-uk": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760283011030-46604.report.html",
+  "http://localhost:4200/guides": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760283012029-38379.report.html",
+  "http://localhost:4200/coins": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760283013030-38098.report.html",
+  "http://localhost:4200/security": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760283014033-62621.report.html"
+}

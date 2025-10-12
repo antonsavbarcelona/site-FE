@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
 import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../shared/ui/tldr/tldr.component';
 import {
@@ -16,6 +16,8 @@ import {ProsItem, ProsListComponent} from '../../../../shared/ui/pros-list';
 import {BulletListComponent} from '../../../../shared/ui/bullet-list';
 import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../shared/ui/breadcrumbs/breadcrumbs.component';
 import {generateBreadcrumbs} from '../../../../shared/utils/breadcrumbs.utils';
+import {SeoService} from '../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -35,13 +37,16 @@ import {generateBreadcrumbs} from '../../../../shared/utils/breadcrumbs.utils';
     BreadcrumbsComponent
   ]
 })
-export class KrakenReviewComponent implements OnInit {
+export class KrakenReviewComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private seo: SeoService
+  ) {}
 
   ngOnInit(): void {
     this.checkMobile();
@@ -49,6 +54,24 @@ export class KrakenReviewComponent implements OnInit {
       this.router.url,
       'Kraken UK Review 2025'
     );
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'Kraken UK Review 2025: Fees, Security & FCA Regulation',
+      description: 'Comprehensive Kraken UK review: FCA registration, trading fees, GBP deposits, security features. Independent analysis for UK investors.',
+      keywords: 'kraken uk, kraken review, kraken fees, FCA registered, crypto exchange uk, kraken security',
+      image: '/images/kraken/kraken-review-hero.webp',
+      url: '/exchanges/kraken-review',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Exchange Review',
+      breadcrumbs: this.breadcrumbs
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   @HostListener('window:resize')

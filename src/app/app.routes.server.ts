@@ -38,4 +38,10 @@ export const serverRoutes: ServerRoute[] = [
 
   // Storybook
   { path: 'storybook', renderMode: RenderMode.Client },
+
+  // 404 page - prerender
+  { path: '404', renderMode: RenderMode.Prerender },
+
+  // Wildcard - client side (не пререндерим, иначе все несуществующие URL станут 404)
+  { path: '**', renderMode: RenderMode.Client }
 ];

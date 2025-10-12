@@ -90,4 +90,15 @@ export const routes: Routes = [
     path: 'storybook',
     loadComponent: () => import('./pages/storybook/storybook.component').then(m => m.StorybookComponent)
   },
+  // 404 routes - ДОЛЖНЫ БЫТЬ В КОНЦЕ!
+  {
+    path: '404',
+    loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent),
+    title: '404 - Page Not Found | Tokenoversity'
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent),
+    title: '404 - Page Not Found | Tokenoversity'
+  }
 ];

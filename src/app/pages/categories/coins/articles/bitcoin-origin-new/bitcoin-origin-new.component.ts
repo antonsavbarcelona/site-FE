@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, HostListener} from '@angular/core';
+import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
 import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {
@@ -15,6 +15,8 @@ import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-conten
 import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
 import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
+import {SeoService} from '../../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 
 @Component({
   selector: 'app-bitcoin-origin-new',
@@ -32,13 +34,16 @@ import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils
     BreadcrumbsComponent
   ]
 })
-export class BitcoinOriginNewComponent implements OnInit {
+export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
   // Mobile detection
   protected readonly isMobile = signal<boolean>(false);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private seo: SeoService
+  ) {}
 
   ngOnInit(): void {
     this.checkMobile();
@@ -46,6 +51,20 @@ export class BitcoinOriginNewComponent implements OnInit {
       this.router.url,
       'Bitcoin Review: The Original Cryptocurrency'
     );
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'What is Bitcoin? — Bitcoin Review 2025',
+      description: 'Bitcoin remains the gold standard of cryptocurrencies in 2025, offering digital scarcity, decentralisation, and growing institutional adoption.',
+      keywords: 'bitcoin, BTC, bitcoin review, cryptocurrency, digital gold, bitcoin UK, bitcoin investment, bitcoin price',
+      image: '/images/bitcoin-review/btc-review-hero.webp',
+      url: '/coins/bitcoin-review',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Cryptocurrency Review',
+      breadcrumbs: this.breadcrumbs
+    });
   }
 
   @HostListener('window:resize')
@@ -263,4 +282,8 @@ export class BitcoinOriginNewComponent implements OnInit {
     'Are uncomfortable with technology complexity',
     'Prefer traditional regulated investments exclusively'
   ];
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
@@ -17,6 +17,8 @@ import {ProsConsItem, ProsConsTableComponent} from '../../../../../shared/ui/pro
 import {ChecklistComponent} from '../../../../../shared/ui/checklist/checklist.component';
 import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/breadcrumbs/breadcrumbs.component';
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
+import {SeoService} from '../../../../../shared/services/seo.service';
+import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 
 
 @Component({
@@ -40,10 +42,13 @@ import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils
     BreadcrumbsComponent
   ]
 })
-export class CryptoRisksSecurityComponent implements OnInit {
+export class CryptoRisksSecurityComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private seo: SeoService
+  ) {}
 
   ngOnInit() {
     // Generate breadcrumbs with custom article title
@@ -51,6 +56,24 @@ export class CryptoRisksSecurityComponent implements OnInit {
       this.router.url,
       'Crypto Risks & Security Hub'
     );
+
+    // SEO Setup
+    setupArticleSeo(this.seo, {
+      title: 'Crypto Risks & Security Guide UK 2025 — Stay Safe',
+      description: 'Complete crypto security guide for UK investors: avoid scams, secure wallets, exchange safety, 2FA setup, and UK compliance.',
+      keywords: 'crypto security uk, crypto scams, hardware wallet, 2FA, exchange safety, self custody, crypto risks',
+      image: '/images/crypto-risks/crypto-risks-hero.webp',
+      url: '/security/crypto-risks-security',
+      author: 'Crypto Expert Team',
+      publishedTime: '2025-01-15T00:00:00Z',
+      modifiedTime: '2025-01-15T00:00:00Z',
+      section: 'Security Guide',
+      breadcrumbs: this.breadcrumbs
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   // Основные данные для компонентов
