@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <!-- Home Page -->
   <url>
     <loc>https://tokenoversity.com/</loc>
@@ -111,7 +111,7 @@
   <url>
     <loc>https://tokenoversity.com/security/uk-crypto-tax-basics</loc>
     <lastmod>2025-01-15</lastmod>
-    <changefreq>quarterly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
