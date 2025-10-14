@@ -11,10 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "browser": "src/main.ts",
-            "server": "src/main.server.ts",
+            "outputPath": "dist/member-client/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -42,8 +43,7 @@
               "includePaths": [
                 "src/styles"
               ]
-            },
-            "outputMode": "static"
+            }
           },
           "configurations": {
             "production": {

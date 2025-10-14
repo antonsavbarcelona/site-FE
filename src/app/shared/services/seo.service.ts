@@ -93,6 +93,10 @@ export class SeoService {
    * Добавляет JSON-LD схему на страницу
    */
   addJsonLd(schema: JsonLdSchema | JsonLdSchema[]): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return; // Skip on server
+    }
+
     const schemas = Array.isArray(schema) ? schema : [schema];
 
     schemas.forEach((s, index) => {
@@ -114,6 +118,10 @@ export class SeoService {
    * Удаляет все JSON-LD схемы
    */
   removeJsonLd(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return; // Skip on server
+    }
+
     const scripts = this.document.querySelectorAll('script[type="application/ld+json"]');
     scripts.forEach(script => script.remove());
   }
@@ -122,6 +130,10 @@ export class SeoService {
    * Обновляет canonical URL
    */
   private updateCanonical(url: string): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return; // Skip on server
+    }
+
     let link: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
 
     if (!link) {
@@ -138,6 +150,10 @@ export class SeoService {
    * Добавляет en-GB для UK аудитории и x-default для остальных
    */
   private updateHreflang(url: string): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return; // Skip on server
+    }
+
     // Удаляем существующие hreflang ссылки
     const existingLinks = this.document.querySelectorAll('link[rel="alternate"][hreflang]');
     existingLinks.forEach(link => link.remove());
