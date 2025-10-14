@@ -11,6 +11,12 @@
   ],
   "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npm run build:ssg",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
