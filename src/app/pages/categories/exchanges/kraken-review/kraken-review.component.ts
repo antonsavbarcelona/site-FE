@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../shared/ui/tldr/tldr.component';
 import {
@@ -18,6 +18,7 @@ import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../shared/ui/breadc
 import {generateBreadcrumbs} from '../../../../shared/utils/breadcrumbs.utils';
 import {SeoService} from '../../../../shared/services/seo.service';
 import {setupArticleSeo} from '../../../../shared/utils/article-seo.utils';
+import {ViewportService} from '../../../../shared/services/viewport.service';
 
 
 @Component({
@@ -40,16 +41,18 @@ import {setupArticleSeo} from '../../../../shared/utils/article-seo.utils';
 export class KrakenReviewComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
-  // Mobile detection
-  protected readonly isMobile = signal<boolean>(false);
-
   constructor(
     private router: Router,
-    private seo: SeoService
+    private seo: SeoService,
+    protected viewport: ViewportService
   ) {}
 
+  // Mobile detection from shared service
+  protected get isMobile() {
+    return this.viewport.isMobile;
+  }
+
   ngOnInit(): void {
-    this.checkMobile();
     this.breadcrumbs = generateBreadcrumbs(
       this.router.url,
       'Kraken UK Review 2025'
@@ -72,11 +75,6 @@ export class KrakenReviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.removeJsonLd();
-  }
-
-  @HostListener('window:resize')
-  protected checkMobile(): void {
-    this.isMobile.set(window.innerWidth < 1025);
   }
 
   // Hero данные

@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {
   KeyValueTableComponent,
@@ -14,6 +14,7 @@ import {TableOfContentsComponent} from '../../../../../shared/ui/table-of-conten
 import {BulletListComponent} from '../../../../../shared/ui/bullet-list';
 import {SeoService} from '../../../../../shared/services/seo.service';
 import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
+import {ViewportService} from '../../../../../shared/services/viewport.service';
 
 
 @Component({
@@ -33,13 +34,17 @@ import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
 })
 export class EthereumReviewComponent implements OnInit, OnDestroy {
 
-  // Mobile detection
-  protected readonly isMobile = signal<boolean>(false);
+  constructor(
+    private seo: SeoService,
+    protected viewport: ViewportService
+  ) {}
 
-  constructor(private seo: SeoService) {}
+  // Mobile detection from shared service
+  protected get isMobile() {
+    return this.viewport.isMobile;
+  }
 
   ngOnInit(): void {
-    this.checkMobile();
 
     // SEO Setup
     setupArticleSeo(this.seo, {
@@ -57,11 +62,6 @@ export class EthereumReviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.removeJsonLd();
-  }
-
-  @HostListener('window:resize')
-  protected checkMobile(): void {
-    this.isMobile.set(window.innerWidth < 1025);
   }
 
   // Hero данные для Ethereum Review

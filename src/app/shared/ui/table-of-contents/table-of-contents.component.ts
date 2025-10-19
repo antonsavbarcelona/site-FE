@@ -1,5 +1,7 @@
-import { Component, input, OnInit, OnDestroy, signal, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import {Component, input, OnInit, OnDestroy, signal, HostListener, Inject, PLATFORM_ID} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { ViewportService } from '../../services/viewport.service';
+import { WindowService } from '../../services/window.service';
 
 export interface TocItem {
   id: string;
@@ -24,18 +26,24 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
   protected readonly activeItemId = signal<string>('');
   protected readonly isMobileOpen = signal<boolean>(false);
   protected readonly currentActiveTitle = signal<string>('');
-  protected readonly isMobileDevice = signal<boolean>(false);
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   private observer?: IntersectionObserver;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    protected viewport: ViewportService,
+    private windowService: WindowService
+  ) {}
+
+  // Геттер для проверки мобильного устройства
+  protected get isMobileDevice() {
+    return this.viewport.isMobile;
+  }
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
       return; // Не выполняем на сервере
     }
-
-    this.checkMobileDevice();
 
     // Перемещаем мобильную TOC в header-container
     if (this.isMobileDevice()) {
@@ -53,26 +61,6 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.observer?.disconnect();
     // Возвращаем TOC обратно если нужно
     this.moveTocBackFromHeader();
-  }
-
-  // Проверяем размер экрана
-  @HostListener('window:resize')
-  protected checkMobileDevice(): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    const wasMobile = this.isMobileDevice();
-    this.isMobileDevice.set(window.innerWidth < 1025);
-
-    // Если изменился режим мобиле/десктоп
-    if (wasMobile !== this.isMobileDevice()) {
-      if (this.isMobileDevice()) {
-        this.moveTocToHeaderContainer();
-      } else {
-        this.moveTocBackFromHeader();
-      }
-    }
   }
 
   // Перемещаем мобильную TOC в header container
@@ -256,7 +244,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     const headerHeight = 100; // Высота sticky header
     const elementTop = item.element.offsetTop - headerHeight;
 
-    window.scrollTo({
+    this.windowService.scrollTo({
       top: elementTop,
       behavior: 'smooth'
     });

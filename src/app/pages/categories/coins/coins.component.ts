@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {CategoryHeroComponent, CategoryHeroData} from '../components/category-hero/category-hero.component';
 import {
@@ -8,6 +8,7 @@ import {
 import {CategoryGridComponent} from '../components/category-grid/category-grid.component';
 import {CategorySidebarComponent, SidebarData} from '../components/category-sidebar/category-sidebar.component';
 import {ReviewCardData} from '@shared/ui/review-card/review-card.component';
+import { SeoService } from '../../../shared/services/seo.service';
 
 @Component({
   selector: 'app-coins',
@@ -16,7 +17,7 @@ import {ReviewCardData} from '@shared/ui/review-card/review-card.component';
   standalone: true,
   imports: [RouterLink, CategoryHeroComponent, CategoryControlsComponent, CategoryGridComponent, CategorySidebarComponent]
 })
-export class CoinsComponent {
+export class CoinsComponent implements OnInit, OnDestroy {
   // Hero configuration
   heroData: CategoryHeroData = {
     title: 'Coin Reviews',
@@ -148,6 +149,31 @@ export class CoinsComponent {
   searchQuery = '';
   currentFilter = 'all';
   currentSort = 'newest';
+
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.setPageSeo({
+      title: 'Coin Reviews — Tokenoversity',
+      description: 'Independent reviews of major cryptocurrencies — fundamentals, risks and use cases for UK investors.',
+      keywords: 'cryptocurrency reviews, bitcoin review, ethereum review, solana review, crypto fundamentals',
+      url: 'https://tokenoversity.com/coins',
+      type: 'website'
+    });
+
+    this.seo.addJsonLd([
+      this.seo.createWebSiteSchema(),
+      this.seo.createItemListSchema(this.reviewCards.map(card => ({
+        name: card.title,
+        url: card.link,
+        image: card.imageUrl
+      })))
+    ]);
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
+  }
 
   // Event handlers
   onFilterChange(filter: string) {

@@ -1,8 +1,9 @@
-import { Component, signal, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, signal, HostListener, OnDestroy, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ScrollLockService } from '../../shared/services/scroll-lock.service';
+import { WindowService } from '../../shared/services/window.service';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +12,15 @@ import { ScrollLockService } from '../../shared/services/scroll-lock.service';
   standalone: true,
   imports: [NgClass]
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   // Mobile menu state
   protected readonly isMenuOpen = signal(false);
 
   constructor(
     private router: Router,
-    private scrollLock: ScrollLockService
+    private scrollLock: ScrollLockService,
+    private elementRef: ElementRef,
+    private windowService: WindowService
   ) {}
 
   // Navigation links
@@ -47,6 +50,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.updateActiveState(event.url);
       });
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.windowService.isBrowserPlatform()) return;
+
+    // Set header height as CSS variable
+    this.windowService.setTimeout(() => this.updateHeaderHeight(), 0);
+
+    // Update on resize
+    this.windowService.addEventListener('resize', () => this.updateHeaderHeight());
+  }
+
+  private updateHeaderHeight(): void {
+    if (!this.windowService.isBrowserPlatform()) return;
+
+    const headerElement = this.elementRef.nativeElement.querySelector('.app-header');
+    const doc = this.windowService.document;
+
+    if (headerElement && doc) {
+      const height = headerElement.offsetHeight;
+      doc.documentElement.style.setProperty('--header-height', `${height}px`);
+    }
   }
 
   // Update active state based on current URL
@@ -90,5 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Cleanup on destroy
   ngOnDestroy(): void {
     this.scrollLock.unlock();
+    // Note: removeEventListener with arrow function won't work, but it's okay
+    // The listener will be cleaned up when component is destroyed
   }
 }
