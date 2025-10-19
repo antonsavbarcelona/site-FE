@@ -1,0 +1,67 @@
+<div class="crypto-calculator">
+  <div class="calculator-header">
+    <div class="header-icon">₿</div>
+    <h3 class="calculator-title">Quick Calculator</h3>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading price...</p>
+    </div>
+  } @else if (error()) {
+    <div class="error-state">
+      <p>{{ error() }}</p>
+      <button class="retry-btn" (click)="fetchPrice()">Retry</button>
+    </div>
+  } @else {
+    <div class="calculator-content">
+      <!-- Current Price Display -->
+      <div class="price-display">
+        <span class="price-label">1 {{ config().cryptoSymbol }}</span>
+        <span class="price-value">{{ formatPrice(currentPrice()) }}</span>
+      </div>
+
+      <!-- Input Section -->
+      <div class="input-section">
+        <label class="input-label">I want to invest</label>
+        <div class="input-wrapper">
+          <span class="currency-symbol">£</span>
+          <input
+            type="number"
+            class="amount-input"
+            [value]="gbpAmount()"
+            (input)="onGbpChange($any($event.target).value)"
+            min="1"
+            step="10"
+            placeholder="10"
+          />
+        </div>
+      </div>
+
+      <!-- Result Section -->
+      <div class="result-section">
+        <div class="result-label">You'll get approximately</div>
+        <div class="result-value">
+          <span class="crypto-amount">{{ formatCrypto(cryptoAmount()) }}</span>
+          <span class="crypto-symbol">{{ config().cryptoSymbol }}</span>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <a
+        [href]="config().exchangeUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-button"
+      >
+        Buy on {{ config().exchangeName }} →
+      </a>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        Prices update in real-time. Actual rates may vary on exchange.
+      </p>
+    </div>
+  }
+</div>

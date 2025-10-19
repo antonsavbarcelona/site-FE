@@ -58,23 +58,33 @@
       class="mobile-toc-menu"
       [attr.aria-hidden]="!isMobileOpen()"
     >
-      <nav role="navigation" aria-label="Article sections">
-        <ul class="mobile-toc-list">
-          @for (item of tocItems(); track item.id) {
-            <li class="mobile-toc-item">
-              <button
-                type="button"
-                class="mobile-toc-link"
-                [class.active]="activeItemId() === item.id"
-                [attr.data-id]="item.id"
-                (click)="scrollToHeading(item)"
-              >
-                {{ item.title }}
-              </button>
-            </li>
-          }
-        </ul>
-      </nav>
+      <!-- Calculator в мобильном меню - STICKY вверху -->
+      @if (calculatorConfig()) {
+        <div class="mobile-calculator-sticky">
+          <app-crypto-calculator [config]="calculatorConfig()"></app-crypto-calculator>
+        </div>
+      }
+
+      <!-- Scrollable navigation -->
+      <div class="mobile-toc-scroll">
+        <nav role="navigation" aria-label="Article sections">
+          <ul class="mobile-toc-list">
+            @for (item of tocItems(); track item.id) {
+              <li class="mobile-toc-item">
+                <button
+                  type="button"
+                  class="mobile-toc-link"
+                  [class.active]="activeItemId() === item.id"
+                  [attr.data-id]="item.id"
+                  (click)="scrollToHeading(item)"
+                >
+                  {{ item.title }}
+                </button>
+              </li>
+            }
+          </ul>
+        </nav>
+      </div>
     </div>
 
     <!-- Mobile Backdrop -->

@@ -1,4 +1,4 @@
-import {Component, signal, OnInit, OnDestroy, HostListener} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {TldrComponent} from '../../../../../shared/ui/tldr/tldr.component';
 import {
@@ -17,6 +17,8 @@ import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/bre
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 import {SeoService} from '../../../../../shared/services/seo.service';
 import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
+import {ViewportService} from '../../../../../shared/services/viewport.service';
+import {CryptoCalculatorComponent, CryptoCalculatorConfig} from '../../../../../shared/ui/crypto-calculator/crypto-calculator.component';
 
 @Component({
   selector: 'app-bitcoin-origin-new',
@@ -31,22 +33,33 @@ import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
     FaqComponent,
     TableOfContentsComponent,
     BulletListComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    CryptoCalculatorComponent
   ]
 })
 export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [];
 
-  // Mobile detection
-  protected readonly isMobile = signal<boolean>(false);
+  // Calculator config
+  protected readonly calculatorConfig: CryptoCalculatorConfig = {
+    cryptoSymbol: 'BTC',
+    cryptoName: 'Bitcoin',
+    exchangeUrl: 'https://www.kraken.com',
+    exchangeName: 'Kraken'
+  };
 
   constructor(
     private router: Router,
-    private seo: SeoService
+    private seo: SeoService,
+    protected viewport: ViewportService
   ) {}
 
+  // Mobile detection from shared service
+  protected get isMobile() {
+    return this.viewport.isMobile;
+  }
+
   ngOnInit(): void {
-    this.checkMobile();
     this.breadcrumbs = generateBreadcrumbs(
       this.router.url,
       'Bitcoin Review: The Original Cryptocurrency'
@@ -67,9 +80,8 @@ export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
     });
   }
 
-  @HostListener('window:resize')
-  protected checkMobile(): void {
-    this.isMobile.set(window.innerWidth < 1025);
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd();
   }
 
   // Hero данные для Bitcoin Review
@@ -220,7 +232,7 @@ export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Key milestones данные - БЕЗ <strong> тегов!
+  // Key milestones данные
   protected readonly keyMilestones: string[] = [
     '2009: First Bitcoin transaction',
     '2010: First real-world purchase (10,000 BTC for two pizzas)',
@@ -258,7 +270,7 @@ export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Security & Custody Options данные - БЕЗ <strong> тегов!
+  // Security & Custody Options данные
   protected readonly custodyOptions: string[] = [
     'Hardware wallets (Ledger, Trezor): Best for long-term storage',
     'Software wallets: Convenient for regular transactions',
@@ -282,8 +294,4 @@ export class BitcoinOriginNewComponent implements OnInit, OnDestroy {
     'Are uncomfortable with technology complexity',
     'Prefer traditional regulated investments exclusively'
   ];
-
-  ngOnDestroy(): void {
-    this.seo.removeJsonLd();
-  }
 }

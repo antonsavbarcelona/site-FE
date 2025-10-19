@@ -5,7 +5,8 @@
   <app-table-of-contents
     title="Bitcoin Review Guide 2025"
     contentSelector=".article-content"
-    [showMobile]="true">
+    [showMobile]="true"
+    [calculatorConfig]="calculatorConfig">
   </app-table-of-contents>
 }
 
@@ -213,6 +214,9 @@
         contentSelector=".article-content"
         [showMobile]="false">
       </app-table-of-contents>
+
+      <!-- Bitcoin Calculator -->
+      <app-crypto-calculator [config]="calculatorConfig"></app-crypto-calculator>
     </aside>
 
   </div>

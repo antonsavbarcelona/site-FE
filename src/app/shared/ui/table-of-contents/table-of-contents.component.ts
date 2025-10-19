@@ -2,6 +2,7 @@ import {Component, input, OnInit, OnDestroy, signal, HostListener, Inject, PLATF
 import { isPlatformBrowser } from '@angular/common';
 import { ViewportService } from '../../services/viewport.service';
 import { WindowService } from '../../services/window.service';
+import { CryptoCalculatorComponent } from '../crypto-calculator/crypto-calculator.component';
 
 export interface TocItem {
   id: string;
@@ -15,12 +16,13 @@ export interface TocItem {
   templateUrl: './table-of-contents.component.html',
   styleUrl: './table-of-contents.component.scss',
   standalone: true,
-  imports: []
+  imports: [CryptoCalculatorComponent]
 })
 export class TableOfContentsComponent implements OnInit, OnDestroy {
   title = input<string>('Best Stock Trading Apps of 2025');
   contentSelector = input<string>('.article-content');
   showMobile = input<boolean>(false);
+  calculatorConfig = input<any>(); // Конфиг для калькулятора (опционально)
 
   protected readonly tocItems = signal<TocItem[]>([]);
   protected readonly activeItemId = signal<string>('');
@@ -50,11 +52,29 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
       this.moveTocToHeaderContainer();
     }
 
-    // Небольшая задержка чтобы innerHTML успел отрендериться
-    setTimeout(() => {
-      this.generateTocItems();
-      this.setupIntersectionObserver();
-    }, 500);
+    // Пытаемся сразу загрузить TOC
+    this.tryGenerateToc();
+  }
+
+  // Пытаемся сгенерировать TOC с умной задержкой
+  private tryGenerateToc(attempt = 0): void {
+    const maxAttempts = 10;
+    const delay = attempt === 0 ? 0 : Math.min(50 * attempt, 200); // 0, 50, 100, 150, 200ms
+
+    this.windowService.setTimeout(() => {
+      const contentElement = document.querySelector(this.contentSelector());
+      const headings = contentElement?.querySelectorAll('h2, h3, h4');
+
+      // Если нашли заголовки - генерируем TOC
+      if (headings && headings.length > 0) {
+        this.generateTocItems();
+        this.setupIntersectionObserver();
+      }
+      // Если не нашли и еще есть попытки - пробуем снова
+      else if (attempt < maxAttempts) {
+        this.tryGenerateToc(attempt + 1);
+      }
+    }, delay);
   }
 
   ngOnDestroy(): void {

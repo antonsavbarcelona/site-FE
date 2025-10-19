@@ -74,24 +74,20 @@
     font-weight: 600;
     font-size: 0.875rem;
     border-right: 1px solid #4A4659;
-    padding: 0 0.75rem;
-    min-width: 80px;
-    white-space: nowrap;
+    padding: 0.75rem;
+    min-width: 120px;
+    white-space: normal; // Разрешаем перенос текста
+    word-wrap: break-word;
+    line-height: 1.4;
 
     @media (max-width: 768px) {
       font-size: 0.75rem;
-      padding: 0 0.5rem;
-      min-width: 60px;
+      padding: 0.5rem;
+      min-width: 100px;
     }
 
     &:last-child {
       border-right: none;
-      min-width: 180px; // Увеличиваем для последней колонки
-      white-space: normal; // Разрешаем перенос в последней колонке
-
-      @media (max-width: 768px) {
-        min-width: 120px;
-      }
     }
   }
 
@@ -99,26 +95,21 @@
     color: #374151;
     font-size: 0.875rem;
     border-right: 1px solid #F3F4F6;
-    padding: 0 0.75rem;
-    min-width: 80px;
-    white-space: nowrap;
+    padding: 0.75rem;
+    min-width: 120px;
+    white-space: normal; // Разрешаем перенос текста
+    word-wrap: break-word; // Переносим длинные слова
     vertical-align: top; // Выравнивание по верху для многострочного текста
+    line-height: 1.5;
 
     @media (max-width: 768px) {
       font-size: 0.75rem;
-      padding: 0 0.5rem;
-      min-width: 60px;
+      padding: 0.5rem;
+      min-width: 100px;
     }
 
     &:last-child {
       border-right: none;
-      min-width: 180px; // Увеличиваем для последней колонки
-      white-space: normal; // Разрешаем перенос в последней колонке
-      line-height: 1.4; // Увеличиваем межстрочный интервал
-
-      @media (max-width: 768px) {
-        min-width: 120px;
-      }
     }
 
     &.percentage-cell {
