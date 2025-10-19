@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ViewportService } from '../../services/viewport.service';
 import { WindowService } from '../../services/window.service';
 import { CryptoCalculatorComponent } from '../crypto-calculator/crypto-calculator.component';
+import { ScrollLockService } from '../../services/scroll-lock.service';
 
 export interface TocItem {
   id: string;
@@ -34,7 +35,8 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     protected viewport: ViewportService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private scrollLock: ScrollLockService
   ) {}
 
   // Геттер для проверки мобильного устройства
@@ -81,6 +83,8 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.observer?.disconnect();
     // Возвращаем TOC обратно если нужно
     this.moveTocBackFromHeader();
+    // Разблокируем скролл если был заблокирован
+    this.scrollLock.unlock();
   }
 
   // Перемещаем мобильную TOC в header container
@@ -118,6 +122,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
     if (!tocElement && this.isMobileOpen()) {
       this.isMobileOpen.set(false);
+      this.scrollLock.unlock();
     }
   }
 
@@ -273,8 +278,9 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.activeItemId.set(item.id);
     this.currentActiveTitle.set(item.title);
 
-    // Закрываем мобильное меню
+    // Закрываем мобильное меню и разблокируем скролл
     this.isMobileOpen.set(false);
+    this.scrollLock.unlock();
   }
 
   // Переключаем мобильное меню
@@ -282,9 +288,14 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     const wasOpen = this.isMobileOpen();
     this.isMobileOpen.update(current => !current);
 
-    // Если меню только что открылось, прокручиваем к активному элементу
-    if (!wasOpen && this.isMobileOpen()) {
+    // Управляем scroll lock
+    if (this.isMobileOpen()) {
+      // Открылось меню - блокируем скролл страницы
+      this.scrollLock.lock();
       this.scrollToActiveItemInMobileToc();
+    } else {
+      // Закрылось меню - разблокируем скролл
+      this.scrollLock.unlock();
     }
   }
 
