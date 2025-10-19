@@ -11,6 +11,8 @@
 
 .app-main {
   flex: 1;
+  overflow: visible; // КРИТИЧНО: не ломаем sticky
+  transform: none; // КРИТИЧНО
 }
 
 // ================================
@@ -25,6 +27,8 @@
   margin-right: auto;
   padding-left: $spacing-md;
   padding-right: $spacing-md;
+  overflow: visible; // КРИТИЧНО: не ломаем sticky
+  transform: none; // КРИТИЧНО
 
   @include mobile {
     padding-left: $spacing-md;
@@ -75,6 +79,9 @@
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
+  align-items: start; // ВАЖНО для sticky
+  overflow: visible; // КРИТИЧНО: не трогаем sticky context
+  transform: none; // КРИТИЧНО: не создаем stacking context
 
   @include mobile-tablet {
     grid-template-columns: 1fr;
@@ -84,6 +91,37 @@
   // Главная колонка должна уметь сжиматься
   > *:first-child {
     min-width: 0;
+  }
+}
+
+// Sidebar стили - ЛИПКИЙ САЙДБАР
+.sidebar {
+  position: sticky;
+  top: 90px; // фиксированный отступ под header (как в старой версии)
+  height: max-content;
+  overflow: visible; // КРИТИЧНО: не мешаем липкости
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-self: start;
+
+  // Скрываем на мобильных устройствах
+  &.sidebar-hidden-mobile {
+    @include mobile-tablet {
+      display: none;
+    }
+  }
+}
+
+// Sidebar ad block
+.sidebar-ad-block {
+  padding: 1.5rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 }
 
@@ -139,6 +177,8 @@
 // Базовый layout страницы
 .page-layout {
   padding: 2rem 0;
+  overflow: visible; // КРИТИЧНО: не ломаем sticky
+  transform: none; // КРИТИЧНО: не создаем stacking context
 
   @include mobile {
     padding: 1rem 0;
@@ -157,6 +197,13 @@
 // ARTICLE CONTENT
 // ================================
 
+// Wrapper для контента статьи
+.article-content-wrapper {
+  overflow: visible; // КРИТИЧНО: не ломаем sticky в sidebar
+  transform: none; // КРИТИЧНО: не создаем stacking context
+  min-width: 0; // Позволяет контенту правильно сжиматься
+}
+
 // Hero Section для статей
 .hero-section {
   width: 100%;
@@ -164,7 +211,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible; // ВАЖНО: не hidden, чтобы не ломать sticky в sidebar!
   margin-bottom: 2rem;
 
   @include mobile-tablet {
@@ -179,6 +226,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 8px; // Добавим скругление вместо overflow: hidden
   }
 
   .hero-content {

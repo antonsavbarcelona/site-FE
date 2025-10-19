@@ -5,8 +5,13 @@
 // Import variables with correct path
 @import 'variables';
 
+// HOST LEVEL
+:host {
+  display: contents;
+}
+
 // ================================
-// DESKTOP VERSION (SIDEBAR) - ПРАВИЛЬНЫЕ СТИЛИ
+// DESKTOP VERSION (SIDEBAR)
 // ================================
 
 .desktop-toc {
@@ -19,21 +24,19 @@
   background-color: #FFFFFF;
   border: 1px solid #E5E7EB;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 90px; // Отступ от sticky header
   height: fit-content;
-  max-height: calc(100vh - 110px); // Максимальная высота с учетом header
-  // Показываем только на desktop
-  @media (max-width: 1024px) {
-    display: none;
-  }
+  display: flex;
+  flex-direction: column;
+  overflow: visible; // ВАЖНО: не мешаем sticky на родителе!
+  position: static;  // ВАЖНО: sticky будет на aside, не здесь
 }
 
 .toc-header {
   background-color: #383545;
   padding: 1rem 1.25rem;
+  border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
 }
 
 .toc-title {
@@ -46,8 +49,11 @@
 
 .toc-nav {
   padding: 0;
-  max-height: 40vh;
-  overflow-y: auto;
+  overflow-y: auto; // Прокрутка только здесь
+  flex: 1;
+  min-height: 0;
+  max-height: 40vh; // Максимум 40% от высоты viewport
+  border-radius: 0 0 8px 8px;
 
   // Стили для видимого скролла
   &::-webkit-scrollbar {
@@ -114,7 +120,6 @@
     background-color: rgba($color-primary, 0.05);
   }
 
-  // Активное состояние - темный фон как в референсе
   &.active {
     background-color: #383545;
     color: #FFFFFF;
@@ -138,7 +143,7 @@
   }
 }
 
-// Уровни заголовков - отступы для иерархии
+// Уровни заголовков
 .toc-level-2 .toc-link {
   padding-left: 1.25rem;
 }
@@ -163,7 +168,6 @@
   }
 }
 
-// Responsive adjustments для больших экранов
 @media (max-width: 1200px) {
   .toc-container {
     font-size: 0.8125rem;
@@ -184,18 +188,17 @@
 }
 
 // ================================
-// MOBILE VERSION (STATIC IN HEADER CONTAINER) - НОВАЯ АРХИТЕКТУРА
+// MOBILE VERSION
 // ================================
 
 .mobile-toc {
-  position: static; // Теперь статичная внутри sticky header-container
+  position: static;
   background: transparent;
   border: none;
   box-shadow: none;
   margin: 0;
   padding: 0;
 
-  // Показываем только на мобилке и планшете
   @media (min-width: 1025px) {
     display: none !important;
   }
@@ -207,12 +210,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.875rem 1.25rem;
-  background: #383545; // Темный фон как в desktop
+  background: #383545;
   border: none;
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #FFFFFF; // Белый текст
+  color: #FFFFFF;
   transition: background-color 0.2s ease;
   min-height: 48px;
 
@@ -234,13 +237,13 @@
   text-overflow: unset;
   margin-right: 0.5rem;
   line-height: 1.4;
-  color: #FFFFFF; // Белый цвет текста
+  color: #FFFFFF;
 }
 
 .chevron-icon {
   flex-shrink: 0;
   transition: transform 0.2s ease;
-  color: #FFFFFF; // Белая иконка
+  color: #FFFFFF;
 
   &.rotated {
     transform: rotate(180deg);
@@ -262,7 +265,6 @@
   visibility: hidden;
   transition: all 0.2s ease;
 
-  // Стили для видимого скролла в мобильной версии
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -281,7 +283,6 @@
     }
   }
 
-  // Firefox scrollbar
   scrollbar-width: thin;
   scrollbar-color: #c1c1c1 #f1f1f1;
 
@@ -327,7 +328,7 @@
   }
 
   &.active {
-    background-color: #383545; // Темный фон для активного как в desktop
+    background-color: #383545;
     color: #FFFFFF;
     font-weight: 500;
     position: relative;
@@ -363,10 +364,6 @@
   background: rgba(0, 0, 0, 0.3);
   z-index: -1;
 }
-
-// ================================
-// ANIMATIONS
-// ================================
 
 @media (prefers-reduced-motion: reduce) {
   .mobile-toc-menu,
