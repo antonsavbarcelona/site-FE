@@ -22,6 +22,7 @@ import {BreadcrumbsComponent, BreadcrumbItem} from '../../../../../shared/ui/bre
 import {generateBreadcrumbs} from '../../../../../shared/utils/breadcrumbs.utils';
 import {SeoService} from '../../../../../shared/services/seo.service';
 import {setupArticleSeo} from '../../../../../shared/utils/article-seo.utils';
+import {ViewportService} from '../../../../../shared/services/viewport.service';
 
 
 @Component({
@@ -50,8 +51,14 @@ export class UkCryptoTaxComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private seo: SeoService
+    private seo: SeoService,
+    protected viewport: ViewportService
   ) {}
+
+  // Геттер для проверки мобильного устройства
+  protected isMobile() {
+    return this.viewport.isMobile;
+  }
 
   ngOnInit() {
     this.breadcrumbs = generateBreadcrumbs(

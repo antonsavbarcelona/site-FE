@@ -1,5 +1,14 @@
 <!-- UK Crypto Tax Guide -->
 
+<!-- Mobile TOC - выносим из page-layout чтобы убрать отступы -->
+@if (isMobile()) {
+  <app-table-of-contents
+    title="UK Crypto Tax Guide"
+    contentSelector=".article-content"
+    [showMobile]="true">
+  </app-table-of-contents>
+}
+
 <div class="page-layout">
   <div class="layout-sidebar">
 
