@@ -192,12 +192,14 @@
 // ================================
 
 .mobile-toc {
-  position: static;
+  position: relative; // ВАЖНО: создаём positioning context для absolute menu
   background: transparent;
   border: none;
   box-shadow: none;
   margin: 0;
   padding: 0;
+  width: 100%; // На всю ширину
+  z-index: 100; // Поверх контента
 
   @media (min-width: 1025px) {
     display: none !important;
@@ -258,14 +260,16 @@
   background: white;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 70vh;
-  overflow: hidden; // Убираем scroll отсюда
+  max-height: 70vh; // Максимальная высота (не фиксированная!)
+  min-height: 200px; // Минимум чтобы было видно
+  overflow: hidden; // Без скролла здесь
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
+  z-index: 100; // Добавляем z-index чтобы не перекрывался
 
   .mobile-toc.is-open & {
     transform: translateY(0);
@@ -274,15 +278,14 @@
   }
 }
 
-// Sticky Calculator в топе меню
+// Calculator блок - НЕ растягивается
 .mobile-calculator-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding: 0.5rem;
+  flex-shrink: 0; // НЕ сжимается
+  flex-grow: 0;   // НЕ растягивается
+  padding: 0.5rem 0.5rem 1rem 0.5rem; // Больше padding снизу для отступа
   background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
-  flex-shrink: 0; // Не сжимается
+  border-bottom: 2px solid #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
   // УЛЬТРА компактная версия калькулятора для мобилки
   ::ng-deep .crypto-calculator {
@@ -363,11 +366,12 @@
   }
 }
 
-// Scrollable область с TOC списком
+// Scrollable область с TOC списком - РАСТЯГИВАЕТСЯ и скроллится
 .mobile-toc-scroll {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
+  flex: 1; // Занимает всё оставшееся место
+  overflow-y: auto; // Скролл ТОЛЬКО здесь
+  min-height: 0; // Для корректной работы flex
+  background: white;
 
   // Стили скролла
   &::-webkit-scrollbar {
@@ -395,7 +399,7 @@
 .mobile-toc-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1rem 0 0 0; // Больше отступ сверху
 }
 
 .mobile-toc-item {
@@ -461,7 +465,15 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: -1;
+  z-index: 99; // Ниже чем menu (100), но выше контента
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+
+  .mobile-toc.is-open & {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

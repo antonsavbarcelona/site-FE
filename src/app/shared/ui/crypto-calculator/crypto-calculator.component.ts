@@ -30,30 +30,22 @@ export class CryptoCalculatorComponent implements OnInit {
     this.fetchPrice();
   }
 
-  // Получаем текущий курс с CoinGecko API
+  // Получаем текущий курс - MOCK VERSION (CoinGecko забанил)
   async fetchPrice(): Promise<void> {
     this.isLoading.set(true);
     this.error.set('');
 
     try {
-      const cryptoId = this.config().cryptoSymbol.toLowerCase() === 'btc' ? 'bitcoin' : 'ethereum';
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoId}&vs_currencies=gbp`
-      );
+      // Мок данные вместо реального API
+      await new Promise(resolve => setTimeout(resolve, 500)); // Имитация загрузки
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch price');
-      }
+      // Генерируем реалистичную цену BTC с небольшими колебаниями
+      const basePrice = this.config().cryptoSymbol === 'BTC' ? 82500 : 3200; // BTC или ETH
+      const randomVariation = (Math.random() - 0.5) * 1000; // ±500
+      const mockPrice = basePrice + randomVariation;
 
-      const data = await response.json();
-      const price = data[cryptoId]?.gbp;
-
-      if (price) {
-        this.currentPrice.set(price);
-        this.calculate();
-      } else {
-        throw new Error('Price not available');
-      }
+      this.currentPrice.set(mockPrice);
+      this.calculate();
     } catch (err) {
       this.error.set('Unable to fetch price');
       console.error('Price fetch error:', err);

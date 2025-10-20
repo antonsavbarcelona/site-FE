@@ -17,14 +17,11 @@ export class ScrollLockService {
     if (this.isLocked || !this.windowService.isBrowserPlatform()) return;
 
     const doc = this.windowService.document;
-    const win = this.windowService.nativeWindow;
-    if (!doc || !win) return;
+    if (!doc) return;
 
-    this.scrollPosition = win.scrollY;
+    // Просто блокируем overflow без position: fixed
+    // Это не ломает позиционирование absolute элементов
     doc.body.style.overflow = 'hidden';
-    doc.body.style.position = 'fixed';
-    doc.body.style.top = `-${this.scrollPosition}px`;
-    doc.body.style.width = '100%';
     this.isLocked = true;
   }
 
@@ -38,10 +35,6 @@ export class ScrollLockService {
     if (!doc) return;
 
     doc.body.style.overflow = '';
-    doc.body.style.position = '';
-    doc.body.style.top = '';
-    doc.body.style.width = '';
-    this.windowService.scrollTo({ top: this.scrollPosition, behavior: 'auto' });
     this.isLocked = false;
   }
 

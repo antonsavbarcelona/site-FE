@@ -92,26 +92,44 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
 
     setTimeout(() => {
-      const mobileToc = document.querySelector('.mobile-toc') as HTMLElement;
       const headerSlot = document.querySelector('#mobile-toc-slot') as HTMLElement;
+      if (!headerSlot) return;
 
-      if (mobileToc && headerSlot && !headerSlot.contains(mobileToc)) {
+      // Удаляем ТОЛЬКО старые элементы (не текущий компонент)
+      const oldElements = headerSlot.querySelectorAll('.mobile-toc[data-destroyed="true"]');
+      oldElements.forEach(el => el.remove());
+
+      // Ищем НАШ новый элемент mobile-toc
+      const mobileToc = document.querySelector('.mobile-toc:not([data-destroyed])') as HTMLElement;
+
+      if (mobileToc && !headerSlot.contains(mobileToc)) {
         headerSlot.appendChild(mobileToc);
       }
     }, 0);
   }
 
-  // Возвращаем TOC обратно
+  // Возвращаем TOC обратно и маркируем для удаления
   private moveTocBackFromHeader(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    const mobileToc = document.querySelector('.mobile-toc') as HTMLElement;
     const headerSlot = document.querySelector('#mobile-toc-slot') as HTMLElement;
+    if (!headerSlot) return;
 
-    if (mobileToc && headerSlot && headerSlot.contains(mobileToc)) {
-      // Можно вернуть в оригинальное место или просто скрыть
-      mobileToc.style.display = 'none';
-    }
+    // Находим ВСЕ mobile-toc внутри слота
+    const allMobileTocs = headerSlot.querySelectorAll('.mobile-toc');
+
+    allMobileTocs.forEach((toc) => {
+      // Маркируем элемент как "уничтоженный"
+      (toc as HTMLElement).setAttribute('data-destroyed', 'true');
+      // Скрываем чтобы не мелькал
+      (toc as HTMLElement).style.display = 'none';
+    });
+
+    // Через небольшую задержку удаляем помеченные элементы
+    setTimeout(() => {
+      const destroyedElements = headerSlot.querySelectorAll('.mobile-toc[data-destroyed="true"]');
+      destroyedElements.forEach(el => el.remove());
+    }, 100);
   }
 
   // Закрываем мобильное меню при клике вне его
@@ -237,12 +255,12 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
       // Для мобильной версии (если открыто меню)
       if (this.isMobileOpen()) {
-        const mobileActiveLink = document.querySelector(`.mobile-toc-menu .mobile-toc-link[data-id="${activeId}"]`);
+        const mobileActiveLink = document.querySelector(`.mobile-toc-scroll .mobile-toc-link[data-id="${activeId}"]`);
         if (mobileActiveLink) {
-          const mobileMenu = document.querySelector('.mobile-toc-menu');
-          if (mobileMenu) {
-            const containerTop = mobileMenu.scrollTop;
-            const containerHeight = mobileMenu.clientHeight;
+          const scrollContainer = document.querySelector('.mobile-toc-scroll');
+          if (scrollContainer) {
+            const containerTop = scrollContainer.scrollTop;
+            const containerHeight = scrollContainer.clientHeight;
             const elementTop = (mobileActiveLink as HTMLElement).offsetTop;
             const elementHeight = (mobileActiveLink as HTMLElement).offsetHeight;
 
@@ -251,7 +269,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
             if (elementTop < containerTop || elementBottom > containerBottom) {
               const scrollTarget = elementTop - (containerHeight / 2) + (elementHeight / 2);
-              mobileMenu.scrollTo({
+              scrollContainer.scrollTo({
                 top: Math.max(0, scrollTarget),
                 behavior: 'smooth'
               });
@@ -304,24 +322,22 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     const activeId = this.activeItemId();
     if (!activeId) return;
 
-    // Ждем, пока анимация открытия завершится
+    // Ждем, пока DOM обновится
     setTimeout(() => {
-      const mobileActiveLink = document.querySelector(`.mobile-toc-menu .mobile-toc-link[data-id="${activeId}"]`);
+      const mobileActiveLink = document.querySelector(`.mobile-toc-scroll .mobile-toc-link[data-id="${activeId}"]`) as HTMLElement;
       if (mobileActiveLink) {
-        const mobileMenu = document.querySelector('.mobile-toc-menu');
-        if (mobileMenu) {
-          const elementTop = (mobileActiveLink as HTMLElement).offsetTop;
-          const elementHeight = (mobileActiveLink as HTMLElement).offsetHeight;
-          const containerHeight = mobileMenu.clientHeight;
+        // Используем scrollIntoView для надежности
+        mobileActiveLink.scrollIntoView({
+          block: 'start', // К началу элемента
+          behavior: 'auto'
+        });
 
-          // Центрируем активный элемент в контейнере
-          const scrollTarget = elementTop - (containerHeight / 2) + (elementHeight / 2);
-          mobileMenu.scrollTo({
-            top: Math.max(0, scrollTarget),
-            behavior: 'smooth'
-          });
+        // Небольшой отступ сверху
+        const scrollContainer = document.querySelector('.mobile-toc-scroll');
+        if (scrollContainer) {
+          scrollContainer.scrollTop = Math.max(0, scrollContainer.scrollTop - 20);
         }
       }
-    }, 250); // Ждем завершения CSS transition (0.2s + небольшой запас)
+    }, 100);
   }
 }
