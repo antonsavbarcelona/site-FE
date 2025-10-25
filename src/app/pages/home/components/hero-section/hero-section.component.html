@@ -1,0 +1,27 @@
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ data.title }}</h1>
+      <p class="hero-description">{{ data.description }}</p>
+
+      <div class="hero-cta">
+        <app-button-primary 
+          [text]="data.primaryCta.text" 
+          [link]="data.primaryCta.link" />
+        <app-button-secondary 
+          [text]="data.secondaryCta.text" 
+          color="gray" 
+          [link]="data.secondaryCta.link" />
+      </div>
+    </div>
+
+    <div class="stats">
+      @for (stat of data.stats; track stat.link) {
+        <a [routerLink]="stat.link" class="stat-item">
+          <span class="stat-number">{{ stat.number }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>

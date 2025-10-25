@@ -1,104 +1,185 @@
 /**
  * Home Page Content Configuration
- * Вся верстка вынесена в конфиг для удобства редактирования
+ * All content extracted for i18n support
  */
 
-export interface HomeSection {
-  id: string;
-  type: 'html' | 'component';
-  html?: string;
-  component?: string; // имя компонента для динамического рендеринга
-  data?: any;
+// ============================================
+// SECTION CONFIGURATION
+// ============================================
+export type SectionType =
+  | 'hero'
+  | 'top-picks'
+  | 'guides'
+  | 'coin-reviews'
+  | 'security-taxes'
+  | 'review-methodology'
+  | 'evaluation-criteria';
+
+export interface PageSection {
+  type: SectionType;
+  enabled: boolean;
+  order: number;
 }
 
-export const homePageContent: HomeSection[] = [
-  // Hero Section
-  {
-    id: 'hero',
-    type: 'html',
-    html: `
-      <section class="hero">
-        <div class="hero-container">
-          <div class="hero-content">
-            <h1 class="hero-title">Tokenoversity — Your Complete Crypto Guide</h1>
-            <p class="hero-description">
-              Independent reviews, step-by-step guides, and safety basics. Clear, evergreen, and jargon-free.
-            </p>
-
-            <div class="hero-cta">
-              <app-button-primary text="See Best Exchange for the UK →" link="/best-crypto-exchange-uk"></app-button-primary>
-              <app-button-secondary text="Explore Guides" color="gray" link="/guides"></app-button-secondary>
-            </div>
-          </div>
-
-          <div class="stats">
-            <a routerLink="/best-crypto-exchange-uk" class="stat-item">
-              <span class="stat-number">#1 Exchange Pick (UK)</span>
-              <span class="stat-label">Kraken — tested & explained</span>
-            </a>
-            <a routerLink="/guides" class="stat-item">
-              <span class="stat-number">Step-by-Step Guides</span>
-              <span class="stat-label">From sign-up to first buy</span>
-            </a>
-            <a routerLink="/coins" class="stat-item">
-              <span class="stat-number">Coin Reviews & Fundamentals</span>
-              <span class="stat-label">Pros, risks & use cases</span>
-            </a>
-            <a routerLink="/security" class="stat-item">
-              <span class="stat-number">Security & Taxes</span>
-              <span class="stat-label">Evergreen guides to stay safe</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    `
-  },
-
-  // Test Large Cards Section
-  {
-    id: 'test-large-cards',
-    type: 'component',
-    component: 'test-large-cards'
-  },
-
-  // News Section
-  {
-    id: 'news-section',
-    type: 'component',
-    component: 'news-section'
-  },
-
-  // Crypto Knowledge Section
-  {
-    id: 'crypto-knowledge',
-    type: 'component',
-    component: 'crypto-knowledge'
-  },
-
-  // Security & Taxes Section
-  {
-    id: 'security-taxes',
-    type: 'component',
-    component: 'security-taxes'
-  },
-
-  // Review Methodology
-  {
-    id: 'review-methodology',
-    type: 'component',
-    component: 'review-methodology'
-  },
-
-  // Evaluation Criteria
-  {
-    id: 'evaluation-criteria',
-    type: 'component',
-    component: 'evaluation-criteria'
-  }
+export const homePageSections: PageSection[] = [
+  { type: 'hero', enabled: true, order: 1 },
+  { type: 'top-picks', enabled: true, order: 2 },
+  { type: 'guides', enabled: true, order: 3 },
+  { type: 'coin-reviews', enabled: true, order: 4 },
+  { type: 'security-taxes', enabled: true, order: 5 },
+  { type: 'review-methodology', enabled: true, order: 6 },
+  { type: 'evaluation-criteria', enabled: true, order: 7 }
 ];
 
-// Данные для карточек статей
-export const testLargeArticles = [
+// ============================================
+// CONTENT INTERFACES
+// ============================================
+export interface HeroContent {
+  title: string;
+  description: string;
+  primaryCta: {
+    text: string;
+    link: string;
+  };
+  secondaryCta: {
+    text: string;
+    link: string;
+  };
+  stats: Array<{
+    number: string;
+    label: string;
+    link: string;
+  }>;
+}
+
+export interface SectionHeader {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+export interface LargeArticle {
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  readTime: string;
+  routerLink: string;
+  primaryCta: string;
+  primaryCtaLink: string;
+  primaryCtaExternal: boolean;
+  secondaryCta: string;
+  secondaryCtaLink: string;
+  secondaryCtaExternal: boolean;
+  imageUrl: string;
+  icon: string;
+}
+
+export interface NewsSection {
+  sectionTitle: string;
+  sectionDescription: string;
+  layout: 'featured-left' | 'featured-right';
+  featuredItem: {
+    title: string;
+    description: string;
+    category: string;
+    date: string;
+    readTime: string;
+    routerLink: string;
+    affiliateLink: string;
+    gradient: string;
+    icon: string;
+    buttonText: string;
+  };
+  regularItems: Array<{
+    title: string;
+    category: string;
+    date: string;
+    routerLink: string;
+    buttonText?: string;
+  }>;
+}
+
+export interface ReviewCard {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  icon: string;
+  label: string;
+  theme: 'light' | 'dark';
+  link: string;
+  buttonText: string;
+  imageUrl: string;
+  teaser?: string;
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+export const heroContent: HeroContent = {
+  title: 'Tokenoversity — Your Complete Crypto Guide',
+  description: 'Independent reviews, step-by-step guides, and safety basics. Clear, evergreen, and jargon-free.',
+  primaryCta: {
+    text: 'See Best Exchange for the UK →',
+    link: '/best-crypto-exchange-uk'
+  },
+  secondaryCta: {
+    text: 'Explore Guides',
+    link: '/guides'
+  },
+  stats: [
+    {
+      number: '#1 Exchange Pick (UK)',
+      label: 'Kraken — tested & explained',
+      link: '/best-crypto-exchange-uk'
+    },
+    {
+      number: 'Step-by-Step Guides',
+      label: 'From sign-up to first buy',
+      link: '/guides'
+    },
+    {
+      number: 'Coin Reviews & Fundamentals',
+      label: 'Pros, risks & use cases',
+      link: '/coins'
+    },
+    {
+      number: 'Security & Taxes',
+      label: 'Evergreen guides to stay safe',
+      link: '/security'
+    }
+  ]
+};
+
+// ============================================
+// SECTIONS HEADERS
+// ============================================
+export const sectionsHeaders = {
+  startHere: {
+    title: 'Start Here — Review & Top Pick',
+  },
+  coinReviews: {
+    title: 'Coin Reviews & Fundamentals',
+    subtitle: 'Plain-English reviews of Bitcoin, Ethereum and Solana — pros, risks, and how to get exposure in the UK.',
+    ctaText: 'Explore All Coin Reviews →',
+    ctaLink: '/coins'
+  },
+  securityTaxes: {
+    title: 'Security & Taxes',
+    subtitle: 'Evergreen guides to stay safe and compliant.',
+    ctaText: 'All security & taxes →',
+    ctaLink: '/security'
+  }
+};
+
+// ============================================
+// LARGE ARTICLES (Top picks)
+// ============================================
+export const testLargeArticles: LargeArticle[] = [
   {
     title: 'Kraken Review 2025 — Why It\'s Our #1 Pick',
     description: 'Security, fees and deposits explained. Clear pros & cons for beginners.',
@@ -133,11 +214,13 @@ export const testLargeArticles = [
   }
 ];
 
-// Данные для новостной секции
-export const newsData = {
+// ============================================
+// NEWS/GUIDES SECTION
+// ============================================
+export const newsData: NewsSection = {
   sectionTitle: 'How-to Guides for Beginners',
   sectionDescription: 'Short, practical steps for your first buy and safe setup.',
-  layout: 'featured-left' as const,
+  layout: 'featured-left',
   featuredItem: {
     title: 'How to Deposit on Kraken — Step‑by‑Step',
     description: 'Create account → Verify → Deposit (SEPA/Card) → First buy — safely.',
@@ -174,8 +257,10 @@ export const newsData = {
   ]
 };
 
-// Данные для Coin Reviews
-export const cryptoKnowledgeReviews = [
+// ============================================
+// COIN REVIEWS
+// ============================================
+export const cryptoKnowledgeReviews: ReviewCard[] = [
   {
     id: 1,
     title: 'Bitcoin Review: The Original Cryptocurrency',
@@ -185,7 +270,7 @@ export const cryptoKnowledgeReviews = [
     author: 'Crypto Team',
     icon: '₿',
     label: 'REVIEW',
-    theme: 'light' as const,
+    theme: 'light',
     link: '/coins/bitcoin-review',
     buttonText: 'Read Review',
     imageUrl: '/images/home/BTC-card-article-preview.webp'
@@ -199,7 +284,7 @@ export const cryptoKnowledgeReviews = [
     author: 'Crypto Team',
     icon: 'Ξ',
     label: 'REVIEW',
-    theme: 'light' as const,
+    theme: 'light',
     link: '/coins/ethereum-review',
     buttonText: 'Read Review',
     imageUrl: '/images/home/ETH-card-article-preview.webp'
@@ -213,15 +298,17 @@ export const cryptoKnowledgeReviews = [
     author: 'Crypto Team',
     icon: '◎',
     label: 'REVIEW',
-    theme: 'light' as const,
+    theme: 'light',
     link: '/coins/solana-review',
     buttonText: 'Read Review (not active)',
     imageUrl: '/images/home/SOL-card-article-preview.webp'
   }
 ];
 
-// Данные для Security & Taxes
-export const securityTaxesReviews = [
+// ============================================
+// SECURITY & TAXES
+// ============================================
+export const securityTaxesReviews: ReviewCard[] = [
   {
     id: 4,
     title: 'Avoid Common Crypto Scams (2025)',
@@ -231,7 +318,7 @@ export const securityTaxesReviews = [
     author: 'Crypto Team',
     icon: '🛡️',
     label: 'SECURITY',
-    theme: 'light' as const,
+    theme: 'light',
     link: '/security/crypto-risks',
     buttonText: 'Read Guide',
     teaser: 'Red flags, fake support, phishing and "too-good-to-be-true" yields — how to verify links, wallets and apps.',
@@ -246,7 +333,7 @@ export const securityTaxesReviews = [
     author: 'Crypto Team',
     icon: '💼',
     label: 'TAXES',
-    theme: 'light' as const,
+    theme: 'light',
     link: '/security/uk-crypto-tax',
     buttonText: 'Read Guide',
     teaser: 'Income vs capital gains, HMRC rules, allowances, record-keeping and simple examples for beginners.',

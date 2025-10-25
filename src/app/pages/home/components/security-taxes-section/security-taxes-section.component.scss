@@ -1,0 +1,79 @@
+@import 'variables';
+@import 'mixins';
+
+// Security & Taxes
+.security-taxes {
+  padding: 64px 0 48px;
+  background: $color-gray-50;
+
+  // Full-width background
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  .section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+
+    @include mobile-tablet {
+      padding: 0 16px;
+    }
+
+    @include mobile {
+      padding: 0 12px;
+    }
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+
+    @include mobile-tablet {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .header-content {
+      .section-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: $color-text;
+        text-align: left;
+        margin-bottom: 8px;
+      }
+
+      .section-subtitle {
+        text-align: left;
+        color: $color-text-secondary;
+        font-size: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    .header-action {
+      .see-all-link {
+        color: $color-primary;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $color-primary-dark;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .security-taxes-grid {
+    @include grid-layout($cols: 2, $gap: 24px, $cols-tablet: 1, $cols-mobile: 1);
+  }
+}

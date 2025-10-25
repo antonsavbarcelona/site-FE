@@ -1,0 +1,59 @@
+@import 'variables';
+@import 'mixins';
+
+// Essential Crypto Knowledge
+.crypto-knowledge {
+  padding: 80px 0;
+  background: $color-bg;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $color-text;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: $color-text-secondary;
+    margin-bottom: 50px;
+    font-size: 16px;
+  }
+
+  .crypto-knowledge-grid {
+    @include grid-layout($cols: 3, $gap: 24px, $cols-tablet: 2, $cols-mobile: 1);
+    margin-top: 40px;
+    width: 100%;
+    overflow: hidden;
+
+    @include mobile-tablet {
+      /* Центрируем третий элемент */
+      > :nth-child(3) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+
+    @include mobile {
+      /* Убираем центрирование на мобильных */
+      > :nth-child(3) {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
+      }
+    }
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: 40px;
+
+    app-button-primary {
+      display: inline-block;
+      max-width: 300px;
+      width: auto;
+    }
+  }
+}

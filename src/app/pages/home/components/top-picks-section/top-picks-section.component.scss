@@ -1,0 +1,21 @@
+@import 'variables';
+@import 'mixins';
+
+// Test Large Article Cards Section
+.test-large-cards {
+  padding: 60px 0;
+  background: $color-bg;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $color-text;
+  }
+
+  .test-large-cards-grid {
+    @include grid-layout($cols: 2, $gap: 32px, $cols-tablet: 1, $cols-mobile: 1);
+    margin-top: 40px;
+  }
+}

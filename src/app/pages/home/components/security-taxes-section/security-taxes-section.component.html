@@ -1,0 +1,35 @@
+<section class="security-taxes section-full-width">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="header-content">
+        <h2 class="section-title">{{ header.title }}</h2>
+        @if (header.subtitle) {
+          <p class="section-subtitle">{{ header.subtitle }}</p>
+        }
+      </div>
+      @if (header.ctaText && header.ctaLink) {
+        <div class="header-action">
+          <app-button-secondary
+            [text]="header.ctaText"
+            variant="ghost"
+            color="primary"
+            [link]="header.ctaLink">
+          </app-button-secondary>
+        </div>
+      }
+    </div>
+
+    <div class="security-taxes-grid">
+      @for (review of reviews; track review.id) {
+        <article itemscope itemtype="https://schema.org/BlogPosting" role="article" tabindex="0">
+          <meta [attr.itemprop]="'articleSection'" [attr.content]="review.category">
+          <meta itemprop="datePublished" content="2025-06-30">
+          <meta itemprop="dateModified" content="2025-06-30">
+          <meta itemprop="author" content="Crypto Team">
+          <meta [attr.itemprop]="'headline'" [attr.content]="review.title">
+          <app-review-card [review]="review"></app-review-card>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section class="crypto-knowledge">
+  <h2 class="section-title">{{ header.title }}</h2>
+  @if (header.subtitle) {
+    <p class="section-subtitle">{{ header.subtitle }}</p>
+  }
+
+  <div class="crypto-knowledge-grid">
+    @for (review of reviews; track review.id) {
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <app-review-card [review]="review" />
+      </article>
+    }
+  </div>
+
+  @if (header.ctaText && header.ctaLink) {
+    <div class="section-cta">
+      <app-button-primary 
+        [text]="header.ctaText" 
+        [link]="header.ctaLink" />
+    </div>
+  }
+</section>

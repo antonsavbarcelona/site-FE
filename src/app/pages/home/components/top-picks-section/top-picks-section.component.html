@@ -1,0 +1,8 @@
+<section class="test-large-cards">
+  <h2 class="section-title">{{ header.title }}</h2>
+  <div class="test-large-cards-grid">
+    @for (article of articles; track article.title) {
+      <app-article-card-large [article]="article" />
+    }
+  </div>
+</section>
